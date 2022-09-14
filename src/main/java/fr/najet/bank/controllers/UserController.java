@@ -35,7 +35,7 @@ public class UserController {
      * @return -A List objet of user full filled
      */
     @PostMapping(value="/users/get")
-    public User getUserByUserName(@RequestBody UserDto userDto) throws Exception{
+    public User UserByUserName(@RequestBody UserDto userDto) throws Exception{
         User user = userRepository.findByUserName(userDto.getUserName());
         return user;
     }
@@ -56,11 +56,10 @@ public class UserController {
      */
     @PostMapping(value = "/users/add")
     @ResponseBody
-    public List<User> createUser(@RequestBody User userDto) throws Exception{
+    public List<User> createUser(@RequestBody UserDto userDto) throws Exception{
         try{
-            userRepository.save(userDto);
-            List<User> users = userRepository.findAll();
-            return  users;
+            List<User> userList = userRepository.findAll();
+            return  userList;
         }
         catch (Exception ex) {
             System.out.println(ex);

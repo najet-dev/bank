@@ -1,25 +1,21 @@
 package fr.najet.bank.entities;
 
-import fr.najet.bank.enums.AccountTypeEnum;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name ="Type_Compte", discriminatorType = DiscriminatorType.STRING,length = 2)
+@DiscriminatorColumn(name ="Type_Account", discriminatorType = DiscriminatorType.STRING,length = 2)
 @Table(name= "accounts")
 public class Account {
     @Id
     protected String id;
 
-    @Enumerated(EnumType.STRING)
-    protected AccountTypeEnum type;
     protected Date dateCreation;
     protected double balance;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Client.class, fetch = FetchType.LAZY)
     @JoinColumn(name="clientId")
     protected Client client;
     @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
@@ -28,8 +24,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(AccountTypeEnum type, Date dateCreation, double balance, Client client, List<Operation> operations) {
-        this.type = type;
+    public Account(String id, Date dateCreation, double balance, Client client, List<Operation> operations) {
+        this.id = id;
         this.dateCreation = dateCreation;
         this.balance = balance;
         this.client = client;
@@ -45,13 +41,6 @@ public class Account {
         this.id = id;
     }
 
-    public AccountTypeEnum getType() {
-        return type;
-    }
-
-    public void setType(AccountTypeEnum type) {
-        this.type = type;
-    }
 
     public Date getDateCreation() {
         return dateCreation;

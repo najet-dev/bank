@@ -1,7 +1,6 @@
 package fr.najet.bank.controllers;
 
 import fr.najet.bank.dto.ClientDto;
-import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.Client;
 import fr.najet.bank.entities.User;
 import fr.najet.bank.exception.ApiRequestException;
@@ -29,37 +28,16 @@ public class ClientController {
      */
     @PostMapping(value = "/clients/add")
     @ResponseBody
-    public List<Client> createClient(@RequestBody Client clientDto) throws Exception{
+    public List<Client> createClient(@RequestBody ClientDto clientDto) throws Exception{
         try{
-            clientRepository.save(clientDto);
-            List<Client> clients = clientRepository.findAll();
-            return  clients;
+            List<Client> clientList = clientRepository.findAll();
+            return  clientList;
         }
         catch (Exception ex) {
             System.out.println(ex);
         }
         return null;
     }
-    @PostMapping(value = "/client/add/{idAccount}/client/{idAccount}")
-    @ResponseBody
-    public Account addAccounToClient(@PathVariable int idClient, @PathVariable int idAccount)
-            throws Exception {
-
-        try {
-            Account account = accountRepository.findById(idAccount);
-            Client client = clientRepository.findById(idClient);
-            if (account.getClient() == null) {
-                account.setClient(client);
-                accountRepository.save(account);
-                return account;
-            }
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
-    }
-
 
     /**
      * Read - Get all clients

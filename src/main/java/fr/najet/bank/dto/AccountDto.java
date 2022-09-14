@@ -3,14 +3,12 @@ package fr.najet.bank.dto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.Client;
 import fr.najet.bank.entities.Operation;
-import fr.najet.bank.enums.AccountTypeEnum;
 
 import java.util.Date;
 import java.util.List;
 
 public class AccountDto {
     public String id;
-    public AccountTypeEnum type;
     public Date dateCreation;
     public double balance;
     public Client client;
@@ -25,14 +23,6 @@ public class AccountDto {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public AccountTypeEnum getType() {
-        return type;
-    }
-
-    public void setType(AccountTypeEnum type) {
-        this.type = type;
     }
 
     public Date getDateCreation() {
@@ -67,7 +57,7 @@ public class AccountDto {
         this.operations = operations;
     }
     public static Account addAccount(AccountDto accountDto) {
-        Account account = new Account(accountDto.getType(), accountDto.getDateCreation(), accountDto.getBalance(), accountDto.getClient(), accountDto.getOperations());
+        Account account = new Account(accountDto.getId(), accountDto.getDateCreation(), accountDto.getBalance(), accountDto.getClient(), accountDto.getOperations());
         return account;
     }
 

@@ -1,7 +1,6 @@
 package fr.najet.bank.services;
 
 import fr.najet.bank.entities.Client;
-import fr.najet.bank.entities.User;
 import fr.najet.bank.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +16,11 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public User createUser(Client client){
+    public Client createClient(Client client){
         return clientRepository.save(client);
     }
 
-    public User getClient(int id){return clientRepository.findById(id);}
+    public Client getClient(int id){return clientRepository.findById(id);}
 
     public void updateClient( Client client) {clientRepository.save(client);}
 
