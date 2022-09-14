@@ -1,0 +1,89 @@
+package fr.najet.bank.entities;
+
+import fr.najet.bank.enums.AccountTypeEnum;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name ="Type_Compte", discriminatorType = DiscriminatorType.STRING,length = 2)
+@Table(name= "accounts")
+public class Account {
+    @Id
+    protected String id;
+
+    @Enumerated(EnumType.STRING)
+    protected AccountTypeEnum type;
+    protected Date dateCreation;
+    protected double balance;
+
+    @ManyToOne
+    @JoinColumn(name="clientId")
+    protected Client client;
+    @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
+    public List<Operation> operations;
+
+    public Account() {
+    }
+
+    public Account(AccountTypeEnum type, Date dateCreation, double balance, Client client, List<Operation> operations) {
+        this.type = type;
+        this.dateCreation = dateCreation;
+        this.balance = balance;
+        this.client = client;
+
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public AccountTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(AccountTypeEnum type) {
+        this.type = type;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
+    }
+
+
+}
