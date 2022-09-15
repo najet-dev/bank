@@ -28,7 +28,7 @@ public class ClientController {
      */
     @PostMapping(value = "/clients/add")
     @ResponseBody
-    public List<Client> createClient(@RequestBody ClientDto clientDto) throws Exception{
+    public List<Client> addClient(@RequestBody ClientDto clientDto) throws Exception{
         try{
             List<Client> clientList = clientRepository.findAll();
             return  clientList;

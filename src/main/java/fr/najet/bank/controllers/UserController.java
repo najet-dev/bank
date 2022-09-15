@@ -56,7 +56,7 @@ public class UserController {
      */
     @PostMapping(value = "/users/add")
     @ResponseBody
-    public List<User> createUser(@RequestBody UserDto userDto) throws Exception{
+    public List<User> addUser(@RequestBody UserDto userDto) throws Exception{
         try{
             List<User> userList = userRepository.findAll();
             return  userList;

@@ -1,10 +1,13 @@
 package fr.najet.bank.entities;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Transactional
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name ="Type_Account", discriminatorType = DiscriminatorType.STRING,length = 2)
 @Table(name= "accounts")
@@ -15,7 +18,7 @@ public class Account {
     protected Date dateCreation;
     protected double balance;
 
-    @ManyToOne(targetEntity = Client.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="clientId")
     protected Client client;
     @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
@@ -29,9 +32,8 @@ public class Account {
         this.dateCreation = dateCreation;
         this.balance = balance;
         this.client = client;
-
+        this.operations = operations;
     }
-
 
     public String getId() {
         return id;

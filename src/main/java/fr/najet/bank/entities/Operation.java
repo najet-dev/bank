@@ -49,7 +49,7 @@ public abstract class Operation {
     public Account getAccount() {
         return account;
     }
-    public void setAccounts(Account account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 }

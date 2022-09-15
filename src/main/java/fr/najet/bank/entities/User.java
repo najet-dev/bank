@@ -15,13 +15,13 @@ public class User {
     public User() {
 
     }
-    public User(String userName, int role, String password) {
+    public User(int id, String userName, int role, String password) {
         this.userName = userName;
         this.role = role;
         this.password = password;
     }
 
-    public int getId() {
+    public int getUserId() {
         return id;
     }
 

@@ -28,9 +28,9 @@ public class AccountController {
     @ResponseBody
     public List<Account> createAccount(@RequestBody Account accountDto) throws Exception{
         try{
-            accountRepository.save(accountDto);
-            List<Account> accounts = accountRepository.findAll();
-            return  accounts;
+            List<Account> accountList = accountRepository.findAll();
+            return  accountList;
+
         }
         catch (Exception ex) {
             System.out.println(ex);

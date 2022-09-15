@@ -20,7 +20,8 @@ public class Client extends User implements Serializable {
         super();
 
     }
-    public Client(String userName, String password, int role, String lastName, String firstName, String email, List<Account> accounts) {
+    public Client(int id, String userName, String password, int role, String lastName, String firstName, String email, List<Account> accounts) {
+        super.id = id;
         super.userName = userName;
         super.role = role;
         super.password = password;
@@ -31,12 +32,11 @@ public class Client extends User implements Serializable {
     }
 
 
-
-    public int getId() {
+    public int getUserId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setUserId(int userId) {
         this.id = id;
     }
 
@@ -71,6 +71,8 @@ public class Client extends User implements Serializable {
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
+
+
 
 }
 

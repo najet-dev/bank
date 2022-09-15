@@ -3,7 +3,7 @@ package fr.najet.bank.dto;
 import fr.najet.bank.entities.User;
 
 public class UserDto {
-    protected int userId;
+    protected int id;
     protected String userName;
     protected String password;
     protected int role;
@@ -16,12 +16,12 @@ public class UserDto {
         this.role = role;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int userId) {
+        this.id = userId;
     }
 
     public String getUserName() {
@@ -49,7 +49,7 @@ public class UserDto {
 
 
     public static User addUser(UserDto userDto) {
-        User user = new User(userDto.getUserName(),userDto.getRole(), userDto.getPassword());
+        User user = new User(userDto.getId(), userDto.getUserName(),userDto.getRole(), userDto.getPassword());
         return user;
     }
 }

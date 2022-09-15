@@ -84,7 +84,7 @@ public class ClientDto {
     }
 
     public static Client addClient(ClientDto clientDto) {
-        Client client = new Client(clientDto.getUserName(), clientDto.getPassword() ,clientDto.getRole(),clientDto.getLastName(), clientDto.getFirstName(), clientDto.getEmail(), clientDto.getAccounts());
+        Client client = new Client(clientDto.getId(), clientDto.getUserName(), clientDto.getPassword() ,clientDto.getRole(),clientDto.getLastName(), clientDto.getFirstName(), clientDto.getEmail(), clientDto.getAccounts());
         return client;
     }
 
