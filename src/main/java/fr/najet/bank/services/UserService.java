@@ -22,7 +22,7 @@ public class UserService {
 
     public User getUser(int id){return userRepository.findById(id);}
 
-    public void updateUser( User user) {userRepository.save(user);}
+    public User updateUser(int id){return userRepository.findById(id);}
 
     public void deleteUserById(int id){ userRepository.deleteById(id);}
 

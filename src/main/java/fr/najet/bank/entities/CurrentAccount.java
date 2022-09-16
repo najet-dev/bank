@@ -12,11 +12,7 @@ public class CurrentAccount extends Account {
         super();
     }
 
-    public CurrentAccount( Date dateCreation, double balance, Client client, double overDraft) {
-        super.id = id;
-        super.dateCreation = dateCreation;
-        super.balance = balance;
-        super.client = client;
+    public CurrentAccount( Date dateCreation, double balance, User user, double overDraft) {
         this.overDraft = overDraft;
     }
 }

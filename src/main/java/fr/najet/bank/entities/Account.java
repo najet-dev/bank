@@ -13,26 +13,26 @@ import java.util.List;
 @Table(name= "accounts")
 public class Account {
     @Id
-    protected String id;
+    private String id;
 
-    protected Date dateCreation;
-    protected double balance;
+    private Date dateCreation;
+    private double balance;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="clientId")
-    protected Client client;
+    @JoinColumn(name="userId")
+    protected User user;
     @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
-    public List<Operation> operations;
+    public List<Payment> payments;
 
     public Account() {
     }
 
-    public Account(String id, Date dateCreation, double balance, Client client, List<Operation> operations) {
+    public Account(String id, Date dateCreation, double balance, User user, List<Payment> payments) {
         this.id = id;
         this.dateCreation = dateCreation;
         this.balance = balance;
-        this.client = client;
-        this.operations = operations;
+        this.user = user;
+        this.payments = payments;
     }
 
     public String getId() {
@@ -60,21 +60,19 @@ public class Account {
         this.balance = balance;
     }
 
-    public User getClient() {
-        return client;
+    public User getUser() {
+        return user;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setUser(User user) {
+        this.user= user;
     }
 
-    public List<Operation> getOperations() {
-        return operations;
+    public List<Payment> getPayments() {
+        return payments;
     }
 
-    public void setOperations(List<Operation> operations) {
-        this.operations = operations;
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
-
-
 }

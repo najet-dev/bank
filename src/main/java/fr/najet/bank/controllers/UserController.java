@@ -3,7 +3,6 @@ package fr.najet.bank.controllers;
 import fr.najet.bank.dto.UserDto;
 import fr.najet.bank.entities.User;
 import fr.najet.bank.exception.ApiRequestException;
-import fr.najet.bank.repositories.ClientRepository;
 import fr.najet.bank.repositories.UserRepository;
 import fr.najet.bank.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    ClientRepository clientRepository;
+
 
     @Autowired
     UserService userService;
@@ -30,15 +28,7 @@ public class UserController {
     public List<User> getUsers(){
         return userService.getUsers();
     }
-    /**
-     * Create - create a user
-     * @return -A List objet of user full filled
-     */
-    @PostMapping(value="/users/get")
-    public User UserByUserName(@RequestBody UserDto userDto) throws Exception{
-        User user = userRepository.findByUserName(userDto.getUserName());
-        return user;
-    }
+
     /**
      * Read - Get one user
      * @param id The id of the user
@@ -56,38 +46,26 @@ public class UserController {
      */
     @PostMapping(value = "/users/add")
     @ResponseBody
-    public List<User> addUser(@RequestBody UserDto userDto) throws Exception{
-        try{
-            List<User> userList = userRepository.findAll();
-            return  userList;
-        }
-        catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
+    public User addUser(@RequestBody UserDto userDto) {
+        User user = new User(userDto.getId(), userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword(), userDto.getAccounts());
+        return this.userService.createUser(user);
     }
     /**
      * Modify - modify a user
      * @return user - The user is updated
      */
-    @PutMapping("/users")
-    @ResponseBody
-    public List<User> updateUser(@RequestBody UserDto userDto)throws Exception{
-        try{
-            User user = UserDto.addUser(userDto);
-            userService.updateUser(user);
-            List<User> users = userService.getUsers();
-            return  users;
-        }
-        catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
+    @PutMapping(value = "/users/update")
+    public  List<User> updateUser(@RequestBody UserDto userDto){
+        User user = userDto.addUser(userDto);
+        userRepository.save(user);
+        List<User> users = userRepository.findAll();
+        return users;
     }
+
     /**
      * Delete - Delete a user
      * @param id - The id of the user to delete
-     * @return user - The user is deleted
+     * @return user - The user is delete
      */
     @DeleteMapping("/users/{id}")
     @ResponseBody

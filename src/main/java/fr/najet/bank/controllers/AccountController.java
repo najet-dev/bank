@@ -1,41 +1,33 @@
 package fr.najet.bank.controllers;
 
+import fr.najet.bank.dto.AccountDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.repositories.AccountRepository;
-import fr.najet.bank.repositories.ClientRepository;
-import fr.najet.bank.services.ClientService;
+import fr.najet.bank.repositories.UserRepository;
+import fr.najet.bank.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 @RestController
 public class AccountController {
     @Autowired
-    ClientRepository clientRepository;
+    UserRepository userRepository;
     @Autowired
     AccountRepository accountRepository;
     @Autowired
-    ClientService clientService;
+    AccountService accountService;
 
     /**
      * Create - create a account
      * @return -A List objet of account full filled
      */
-    @PostMapping(value = "/accounts/add")
+    @PostMapping(value = "/account/add")
     @ResponseBody
-    public List<Account> createAccount(@RequestBody Account accountDto) throws Exception{
-        try{
-            List<Account> accountList = accountRepository.findAll();
-            return  accountList;
-
-        }
-        catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
+    public Account addAccount(@RequestBody AccountDto accountDto) {
+        Account account = new Account(accountDto.getId(), accountDto.getDateCreation(), accountDto.getBalance(), accountDto.getUser(), accountDto.getPayments());
+        return this.accountService.createAccount(account);
     }
 
 

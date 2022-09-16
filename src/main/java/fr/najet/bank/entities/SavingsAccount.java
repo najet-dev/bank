@@ -11,11 +11,7 @@ public class SavingsAccount extends Account {
     public SavingsAccount() {
         super();
     }
-    public SavingsAccount( Date dateCreation, double balance, Client client, double interetRate) {
-        super.id = id;
-        super.dateCreation = dateCreation;
-        super.balance = balance;
-        super.client = client;
+    public SavingsAccount(String id, Date dateCreation, double balance, User user, double interetRate) {
         this.interetRate = interetRate;
     }
 

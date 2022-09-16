@@ -2,7 +2,7 @@ package fr.najet.bank.services;
 
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.repositories.AccountRepository;
-import fr.najet.bank.repositories.ClientRepository;
+import fr.najet.bank.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class AccountService {
     @Autowired
-    ClientRepository clientRepository;
+    UserRepository userRepository;
     @Autowired
     AccountRepository accountRepository;
 
