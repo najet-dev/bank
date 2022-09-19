@@ -3,38 +3,38 @@ package fr.najet.bank.entities;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Transactional
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name ="Type_Account", discriminatorType = DiscriminatorType.STRING,length = 2)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name ="Type", discriminatorType = DiscriminatorType.STRING,length = 2)
 @Table(name= "accounts")
 public class Account {
     @Id
-    private String id;
+    protected String id;
 
-    private Date dateCreation;
-    private double balance;
+
+    protected Date createdAt;
+    protected double balance;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userId")
     protected User user;
     @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
-    public List<Payment> payments;
+    public List<AccountOperation> payments = new ArrayList<>();
 
     public Account() {
     }
-
-    public Account(String id, Date dateCreation, double balance, User user, List<Payment> payments) {
+    public Account(String id, Date createdAt, double balance, User user, List<AccountOperation> payments) {
         this.id = id;
-        this.dateCreation = dateCreation;
+        this.createdAt = createdAt;
         this.balance = balance;
         this.user = user;
         this.payments = payments;
     }
-
     public String getId() {
         return id;
     }
@@ -44,12 +44,12 @@ public class Account {
     }
 
 
-    public Date getDateCreation() {
-        return dateCreation;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public double getBalance() {
@@ -68,11 +68,11 @@ public class Account {
         this.user= user;
     }
 
-    public List<Payment> getPayments() {
+    public List<AccountOperation> getPayments() {
         return payments;
     }
 
-    public void setPayments(List<Payment> payments) {
+    public void setPayments(List<AccountOperation> payments) {
         this.payments = payments;
     }
 }

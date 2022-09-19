@@ -16,12 +16,14 @@ public class User {
     private  String password;
 
     @OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
-    private List<Account> accounts;
+    private List<Account> accounts ;
 
     public User() {
+        super();
 
     }
     public User( int id, String lastName, String firstName, String email, String userName, int role, String password,  List<Account> accounts) {
+        super();
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;

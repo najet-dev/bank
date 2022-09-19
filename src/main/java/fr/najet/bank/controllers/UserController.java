@@ -54,8 +54,8 @@ public class UserController {
      * Modify - modify a user
      * @return user - The user is updated
      */
-    @PutMapping(value = "/users/update")
-    public  List<User> updateUser(@RequestBody UserDto userDto){
+    @PutMapping(value = "/user/update")
+    public  List<User> updateUser( @RequestBody UserDto userDto){
         User user = userDto.addUser(userDto);
         userRepository.save(user);
         List<User> users = userRepository.findAll();

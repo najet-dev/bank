@@ -26,9 +26,16 @@ public class AccountController {
     @PostMapping(value = "/account/add")
     @ResponseBody
     public Account addAccount(@RequestBody AccountDto accountDto) {
-        Account account = new Account(accountDto.getId(), accountDto.getDateCreation(), accountDto.getBalance(), accountDto.getUser(), accountDto.getPayments());
+        Account account = new Account(accountDto.getId(), accountDto.getCreatedAt(), accountDto.getBalance(), accountDto.getUser(), accountDto.getPayments());
         return this.accountService.createAccount(account);
     }
+
+
+
+
+
+
+
 
 
 }

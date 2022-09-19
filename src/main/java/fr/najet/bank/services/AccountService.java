@@ -2,33 +2,18 @@ package fr.najet.bank.services;
 
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.repositories.AccountRepository;
-import fr.najet.bank.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AccountService {
     @Autowired
-    UserRepository userRepository;
-    @Autowired
     AccountRepository accountRepository;
 
-
-    public List<Account> getAccounts(){
-        return accountRepository.findAll();
-    }
-
     public Account createAccount(Account account){
-        return accountRepository.save(account);
+        final Account acounts= accountRepository.save(account);
+        return acounts;
     }
 
-    public Optional <Account> getAccount(String id){return accountRepository.findById(id);}
-
-    public void updateAccount( Account account) {accountRepository.save(account);}
-
-    public void deleteAccountById(int id){ accountRepository.deleteById(id);}
 
 }
