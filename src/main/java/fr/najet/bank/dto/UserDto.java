@@ -1,5 +1,10 @@
 package fr.najet.bank.dto;
 
+import fr.najet.bank.entities.Account;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDto {
     public int id;
     public  String lastName;
@@ -9,11 +14,18 @@ public class UserDto {
     public int role;
     public  String password;
 
-   // public List<Account> accounts;
-
-
+   public List<Account> accounts = new ArrayList<>();
 
     public UserDto(){}
+
+    public UserDto( String lastName, String firstName, String email, String userName, int role, String password) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.userName = userName;
+        this.role = role;
+        this.password = password;
+    }
 
     public int getId() {
         return id;

@@ -30,15 +30,13 @@ public class AccountDto {
 
     public AccountDto(){}
 
-    public AccountDto(String type,  double balance, User user, double overDraft, double interestRate)  {
+    public AccountDto(String type, double balance, User user, double overDraft, double interestRate)  {
         this.type = type;
         this.balance = balance;
         this.user = user;
         this.overDraft = overDraft;
         this.interestRate = interestRate;
     }
-
-
     public int getId() {
         return id;
     }
@@ -147,12 +145,6 @@ public class AccountDto {
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
     }
-
-   /* public static Account updateAccount(AccountDto accountDto) {
-        Account account = new CurrentAccount(accountDto.getId(), accountDto.getType(), accountDto.getCreatedAt(), accountDto.getBalance(), accountDto.getUser(), accountDto.getLastName(), accountDto.getFirstName(), accountDto.getEmail(), accountDto.getUserName(), accountDto.getRole(), accountDto.getPassword(), accountDto.getAccountOperations(), accountDto.getOverDraft());
-
-        return account;
-    }*/
 
 }
 

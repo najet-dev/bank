@@ -17,7 +17,7 @@ public class User {
     private int role;
     private  String password;
     @JsonSerialize(using = UserAccountSerializer.class)
-    @OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Account> accounts ;
 
     public User() {
@@ -25,7 +25,6 @@ public class User {
 
     }
     public User( int id, String lastName, String firstName, String email, String userName, int role, String password,  List<Account> accounts) {
-        super();
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -35,6 +34,15 @@ public class User {
         this.password = password;
         this.accounts = accounts;
 
+    }
+
+    public User(String lastName, String firstName, String email, String userName, int role, String password) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.userName = userName;
+        this.role = role;
+        this.password = password;
     }
 
     public int getId() {

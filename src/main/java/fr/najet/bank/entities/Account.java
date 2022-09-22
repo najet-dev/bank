@@ -20,9 +20,9 @@ public class Account {
     protected double balance;
 
     @ManyToOne
-    //@JoinColumn(name="userId")
+    @JoinColumn(name="userId")
     protected User user;
-    @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     public List<AccountOperation> accountOperations = new ArrayList<>();
 
     public Account() {
