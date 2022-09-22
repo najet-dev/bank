@@ -10,36 +10,39 @@ import java.util.List;
 @Entity
 @Transactional
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name ="Type", discriminatorType = DiscriminatorType.STRING,length = 2)
+//@DiscriminatorColumn(name ="Type", discriminatorType = DiscriminatorType.STRING,length = 2)
 @Table(name= "accounts")
 public class Account {
-    @Id
-    protected String id;
-
-
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected int id;
+    protected String type;
     protected Date createdAt;
     protected double balance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="userId")
+    @ManyToOne
+    //@JoinColumn(name="userId")
     protected User user;
     @OneToMany(mappedBy = "account",fetch=FetchType.LAZY)
-    public List<AccountOperation> payments = new ArrayList<>();
+    public List<AccountOperation> accountOperations = new ArrayList<>();
 
     public Account() {
+        super();
     }
-    public Account(String id, Date createdAt, double balance, User user, List<AccountOperation> payments) {
+    public Account(int id, String type, Date createdAt, double balance, User user, List<AccountOperation>  accountOperations) {
         this.id = id;
+        this.type = type;
         this.createdAt = createdAt;
         this.balance = balance;
         this.user = user;
-        this.payments = payments;
+        this. accountOperations =  accountOperations;
     }
-    public String getId() {
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,11 +71,12 @@ public class Account {
         this.user= user;
     }
 
-    public List<AccountOperation> getPayments() {
-        return payments;
+
+    public List<AccountOperation> getAccountOperations() {
+        return accountOperations;
     }
 
-    public void setPayments(List<AccountOperation> payments) {
-        this.payments = payments;
+    public void setAccountOperations(List<AccountOperation> accountOperations) {
+        this.accountOperations = accountOperations;
     }
 }

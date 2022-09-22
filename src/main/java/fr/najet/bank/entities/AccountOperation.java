@@ -1,6 +1,6 @@
 package fr.najet.bank.entities;
 
-import fr.najet.bank.enums.OperationType;
+import fr.najet.bank.enums.OperationTypeEnum;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -12,32 +12,46 @@ import java.util.Date;
 public class AccountOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private Date operationDate;
+
+    private int accountSource;
+
+    private int accountDestination;
     private double amount;
     @Enumerated(EnumType.STRING)
-    private OperationType type;
+    private OperationTypeEnum type;
     @ManyToOne
     public Account account;
 
-    public String description;
+    private String description;
+
+
 
     public AccountOperation(){}
-    public AccountOperation(Long id, Date operationDate, double amount,OperationType type, Account account, String description) {
+    public AccountOperation(int id, OperationTypeEnum  type, Date operationDate, int accountSource, int accountDestination, double amount, Account account, String description) {
         this.id = id;
-        this.operationDate = operationDate;
-        this.amount = amount;
         this.type = type;
+        this.operationDate = operationDate;
+        this.accountSource = accountSource;
+        this.accountDestination = accountDestination;
+        this.amount = amount;
         this.account = account;
         this.description = description;
-
-
     }
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public  OperationTypeEnum  getType() {
+        return type;
+    }
+
+    public void setType(OperationTypeEnum  type) {
+        this.type = type;
     }
 
     public Date getOperationDate() {
@@ -48,6 +62,22 @@ public class AccountOperation {
         this.operationDate = operationDate;
     }
 
+    public int getAccountSource() {
+        return accountSource;
+    }
+
+    public int getAccountDestination() {
+        return accountDestination;
+    }
+
+    public void setAccountDestination(int accountDestination) {
+        this.accountDestination = accountDestination;
+    }
+
+    public void setAccountSource(int accountSource) {
+        this.accountSource = accountSource;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -56,13 +86,7 @@ public class AccountOperation {
         this.amount = amount;
     }
 
-    public OperationType getType() {
-        return type;
-    }
 
-    public void setType(OperationType type) {
-        this.type = type;
-    }
 
     public Account getAccount() {
         return account;

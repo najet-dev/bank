@@ -1,5 +1,5 @@
 package fr.najet.bank.enums;
 
-public enum OperationType {
+public enum OperationTypeEnum {
     DEBIT, CREDIT
 }

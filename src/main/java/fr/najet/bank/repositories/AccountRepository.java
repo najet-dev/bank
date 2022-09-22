@@ -2,13 +2,15 @@ package fr.najet.bank.repositories;
 
 import fr.najet.bank.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, String> {
+public interface AccountRepository extends JpaRepository<Account, Integer> {
     Account findById(int id);
+    Account save(Account account);
+
+    // Account getById(String id);
+
     void deleteById(int id);
-    @Query("SELECT a FROM Account a WHERE type = :type")
-    Account findByType(String type);
+
 }

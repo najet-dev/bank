@@ -1,10 +1,5 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.entities.Account;
-import fr.najet.bank.entities.User;
-
-import java.util.List;
-
 public class UserDto {
     public int id;
     public  String lastName;
@@ -14,7 +9,7 @@ public class UserDto {
     public int role;
     public  String password;
 
-    public List<Account> accounts;
+   // public List<Account> accounts;
 
 
 
@@ -74,19 +69,10 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
 
 
-
-
-    public static User addUser(UserDto userDto) {
-        User user = new User(userDto.getId(), userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword(), userDto.getAccounts());
+  /*  public static User updateUser(UserDto userDto) {
+        User user = new User(userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword());
         return user;
-    }
+    }*/
 }

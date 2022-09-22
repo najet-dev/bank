@@ -1,23 +1,26 @@
 package fr.najet.bank.entities;
 
-import fr.najet.bank.dto.UserDto;
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("CA")
+//@DiscriminatorValue("CA")
 public class CurrentAccount extends Account {
     private double overDraft; //decouvert
 
-    public CurrentAccount(String id, Date createdAt, double balance, UserDto userDto, double overDraft) {
+    public CurrentAccount() {
         super();
     }
 
-    public CurrentAccount(String id, Date createdAt, double balance, User user, List<AccountOperation> payments, double overDraft) {
-        super(id, createdAt, balance, user, payments);
+
+
+    public CurrentAccount(int id, String type, Date createdAt, double balance, User user, String lastName, String firstName, String email, String userName, int role, String password, List<AccountOperation> accountOperations, double overDraft) {
+        super.id = id;
+        super.createdAt = createdAt;
+        super.balance = balance;
+        super.user = user;
+        super.accountOperations = accountOperations;
         this.overDraft = overDraft;
     }
 

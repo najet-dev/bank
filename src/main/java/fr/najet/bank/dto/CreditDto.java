@@ -1,7 +1,7 @@
 package fr.najet.bank.dto;
 
 public class CreditDto {
-    private String accountId;
+    private int accountId;
     private double amount;
     private String description;
 
@@ -9,18 +9,17 @@ public class CreditDto {
         super();
     }
 
-    public CreditDto(String accountId, double amount, String description) {
-
+    public CreditDto(int accountId, double amount, String description) {
         this.accountId = accountId;
         this.amount = amount;
         this.description = description;
     }
 
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 

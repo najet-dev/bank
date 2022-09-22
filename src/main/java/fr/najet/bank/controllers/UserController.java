@@ -1,6 +1,5 @@
 package fr.najet.bank.controllers;
 
-import fr.najet.bank.dto.UserDto;
 import fr.najet.bank.entities.User;
 import fr.najet.bank.exception.ApiRequestException;
 import fr.najet.bank.repositories.UserRepository;
@@ -15,8 +14,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserRepository userRepository;
-
-
     @Autowired
     UserService userService;
 
@@ -34,34 +31,25 @@ public class UserController {
      * @param id The id of the user
      * @return A user object full filled
      */
-    @GetMapping(path = "/users/{id}")
-    public User getUserById(@PathVariable(value="id") int id){
+    @GetMapping(value = "/users/{id}")
+    public User getUserById(@PathVariable int id){
         User user = userService.getUser(id) ;
         if(user == null) throw new ApiRequestException("Oops cannot get user with id "+ id  + " was not found");
-        return this.userService.getUser(id);
+        return user;
     }
-    /**
-     * Create - create a user
-     * @return -A List objet of user full filled
-     */
     @PostMapping(value = "/users/add")
     @ResponseBody
-    public User addUser(@RequestBody UserDto userDto) {
-        User user = new User(userDto.getId(), userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword(), userDto.getAccounts());
+    public User addUser(@RequestBody User user) throws Exception {
         return this.userService.createUser(user);
-    }
-    /**
+    }    /**
      * Modify - modify a user
      * @return user - The user is updated
      */
     @PutMapping(value = "/user/update")
-    public  List<User> updateUser( @RequestBody UserDto userDto){
-        User user = userDto.addUser(userDto);
-        userRepository.save(user);
-        List<User> users = userRepository.findAll();
-        return users;
+    @ResponseBody
+    public User updateUser(@RequestBody User user) throws Exception {
+        return this.userService.updateUser(user);
     }
-
     /**
      * Delete - Delete a user
      * @param id - The id of the user to delete

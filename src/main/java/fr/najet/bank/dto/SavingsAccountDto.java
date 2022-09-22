@@ -11,6 +11,17 @@ public class SavingsAccountDto {
 
     private double interestRate;
 
+    public SavingsAccountDto() {
+        super();
+    }
+    public SavingsAccountDto(String id, String type, Date createdAt, double balance, UserDto userDto, double interestRate ) {
+        this.id = id;
+        this.createdAt = createdAt;
+        this.balance = balance;
+        this.userDto = userDto;
+        this.interestRate = interestRate;
+    }
+
     public String getId() {
         return id;
     }
@@ -18,6 +29,7 @@ public class SavingsAccountDto {
     public void setId(String id) {
         this.id = id;
     }
+
 
     public Date getCreatedAt() {
         return createdAt;
@@ -50,4 +62,8 @@ public class SavingsAccountDto {
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
     }
+
+    public void setType(String simpleName) {
+    }
 }
+

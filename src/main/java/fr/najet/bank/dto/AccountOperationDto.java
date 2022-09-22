@@ -1,17 +1,15 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.enums.OperationType;
-
 import java.util.Date;
 
 public class AccountOperationDto {
     private Long id;
     private Date operationDate;
     private double amount;
-    private OperationType type;
+    private String type;
     private String description;
 
-    public AccountOperationDto(Long id, Date operationDate, double amount, OperationType type, String description) {
+    public AccountOperationDto(Long id, Date operationDate, double amount, String type, String description) {
 
         this.id = id;
         this.operationDate = operationDate;
@@ -40,10 +38,10 @@ public class AccountOperationDto {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-    public OperationType getType() {
+    public String getType() {
         return type;
     }
-    public void setType(OperationType type) {
+    public void setType(String type) {
         this.type = type;
     }
     public String getDescription() {

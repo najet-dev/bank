@@ -1,5 +1,7 @@
 package fr.najet.bank.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class User {
     private  String userName;
     private int role;
     private  String password;
-
+    @JsonSerialize(using = UserAccountSerializer.class)
     @OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
     private List<Account> accounts ;
 
