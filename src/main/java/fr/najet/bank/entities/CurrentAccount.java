@@ -1,26 +1,17 @@
 package fr.najet.bank.entities;
 
 import javax.persistence.Entity;
-import java.util.Date;
-import java.util.List;
 
 @Entity
-//@DiscriminatorValue("CA")
 public class CurrentAccount extends Account {
-    private double overDraft; //decouvert
+    public double overDraft = 0;
 
     public CurrentAccount() {
         super();
     }
 
-
-
-    public CurrentAccount(int id, String type, Date createdAt, double balance, User user, String lastName, String firstName, String email, String userName, int role, String password, List<AccountOperation> accountOperations, double overDraft) {
-        super.id = id;
-        super.createdAt = createdAt;
-        super.balance = balance;
-        super.user = user;
-        super.accountOperations = accountOperations;
+    public CurrentAccount(double balance, User user, double overDraft) {
+        super("CurrentAccount", balance, user);
         this.overDraft = overDraft;
     }
 
@@ -31,4 +22,5 @@ public class CurrentAccount extends Account {
     public void setOverDraft(double overDraft) {
         this.overDraft = overDraft;
     }
+
 }

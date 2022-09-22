@@ -16,7 +16,7 @@ public class Account {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
     protected String type;
-    protected Date createdAt;
+    protected Date createdAt = new Date();
     protected double balance;
 
     @ManyToOne
@@ -28,13 +28,11 @@ public class Account {
     public Account() {
         super();
     }
-    public Account(int id, String type, Date createdAt, double balance, User user, List<AccountOperation>  accountOperations) {
-        this.id = id;
+
+    public Account(String type, double balance, User user) {
         this.type = type;
-        this.createdAt = createdAt;
         this.balance = balance;
         this.user = user;
-        this. accountOperations =  accountOperations;
     }
 
 

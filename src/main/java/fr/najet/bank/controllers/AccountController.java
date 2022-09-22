@@ -1,7 +1,6 @@
 package fr.najet.bank.controllers;
 
 import fr.najet.bank.dto.AccountDto;
-import fr.najet.bank.dto.SavingsAccountDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.CurrentAccount;
 import fr.najet.bank.entities.SavingsAccount;
@@ -61,23 +60,24 @@ public class AccountController {
      *
      * @return -A List objet of account full filled
      */
-    @PostMapping(value = "/account/add")
+
+   @PostMapping(value = "/account/add")
     public Account createAccount(@RequestBody AccountDto accountDto) throws Exception{
 
+       Account createdAccount = null;
         if(accountDto.getType().equals("CurrentAccount")){
-            CurrentAccount currentAccount = new Account(accountDto.getId(), accountDto.getType(), accountDto.getCreatedAt(), accountDto.getBalance(), accountDto.getUser(),accountDto.getLastName(), accountDto.getFirstName(),accountDto.getEmail(), accountDto.getUserName(), accountDto.getRole(), accountDto.getPassword(), accountDto.getAccountOperations(), accountDto.getOverDraft(), accountDto.getInterestRate());
-            currentAccountRepository.save (currentAccount);
-            return Account;
+            createdAccount = new CurrentAccount(accountDto.getBalance(), accountDto.getUser(), accountDto.getOverDraft());
+            currentAccountRepository.save ((CurrentAccount) createdAccount);
         }else if(accountDto.getType().equals("SavingsAccount")) {
-            SavingsAccount savingsAccount = new  SavingsAccountDto(accountDto.getType(), accountDto.getCreatedAt(), accountDto.getBalance(), accountDto.getUser(), accountDto.getAccountOperations(), accountDto.getInterestRate());
-            savingsAccountRepository.save(savingsAccount);
-            return Account;
+            createdAccount = new SavingsAccount(accountDto.getBalance(), accountDto.getUser(), accountDto.getInterestRate());
+            savingsAccountRepository.save((SavingsAccount) createdAccount);
         }
-        return null;
+        return createdAccount;
     }
 
+
     /**
-     * Modify - modify a account
+     * Modify - modify an account
      *
      * @return user - The account is updated
      */

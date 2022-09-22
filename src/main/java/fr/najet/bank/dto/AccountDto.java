@@ -3,6 +3,7 @@ package fr.najet.bank.dto;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.entities.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class AccountDto {
 
     public String type;
 
-    protected Date createdAt;
+    protected Date createdAt = new Date();
     protected double balance;
 
     protected User user;
@@ -21,7 +22,7 @@ public class AccountDto {
     protected  String userName;
     protected int role;
     protected String password;
-    public List<AccountOperation> accountOperations;
+    public List<AccountOperation> accountOperations = new ArrayList<>();
 
     protected double overDraft;
 
@@ -29,36 +30,15 @@ public class AccountDto {
 
     public AccountDto(){}
 
-    public AccountDto(String type, Date createdAt, double balance, User user, String lastName, String firstName, String email, String userName, int role, String password, List<AccountOperation> accountOperations, double overDraft, double interestRate)  {
+    public AccountDto(String type,  double balance, User user, double overDraft, double interestRate)  {
         this.type = type;
-        this.createdAt = createdAt;
         this.balance = balance;
         this.user = user;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.userName = userName;
-        this.role = role;
-        this.password = password;
-        this.accountOperations = accountOperations;
         this.overDraft = overDraft;
         this.interestRate = interestRate;
     }
-    public AccountDto(int id, String type, Date createdAt, double balance, User user, String lastName, String firstName, String email, String userName, int role, String password, List<AccountOperation> accountOperations, double overDraft, double interestRate)  {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.balance = balance;
-        this.user = user;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.userName = userName;
-        this.role = role;
-        this.password = password;
-        this.accountOperations = accountOperations;
-        this.overDraft = overDraft;
-        this.interestRate = interestRate;
-    }
+
+
     public int getId() {
         return id;
     }
