@@ -8,74 +8,53 @@ import java.util.Date;
 
 @Entity
 @Transactional
-@DiscriminatorValue("P")
 public class AccountOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Date operationDate;
 
-    private int accountSource;
-
-    private int accountDestination;
-    private double amount;
-    @Enumerated(EnumType.STRING)
-    private OperationTypeEnum type;
-    @ManyToOne
-    public Account account;
+    public Date createdAt = new Date();
 
     private String description;
 
+    public double amount;
+
+   @Enumerated(EnumType.STRING)
+    public OperationTypeEnum type;
+    @ManyToOne
+    public Account account;
 
 
     public AccountOperation(){}
-    public AccountOperation(int id, OperationTypeEnum  type, Date operationDate, int accountSource, int accountDestination, double amount, Account account, String description) {
-        this.id = id;
-        this.type = type;
-        this.operationDate = operationDate;
-        this.accountSource = accountSource;
-        this.accountDestination = accountDestination;
+    public AccountOperation( Date createdAt,String description, double amount,OperationTypeEnum type, Account account) {
+        this.createdAt = createdAt;
+        this.description = description;
         this.amount = amount;
         this.account = account;
-        this.description = description;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public  OperationTypeEnum  getType() {
-        return type;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setType(OperationTypeEnum  type) {
-        this.type = type;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getOperationDate() {
-        return operationDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOperationDate(Date operationDate) {
-        this.operationDate = operationDate;
-    }
-
-    public int getAccountSource() {
-        return accountSource;
-    }
-
-    public int getAccountDestination() {
-        return accountDestination;
-    }
-
-    public void setAccountDestination(int accountDestination) {
-        this.accountDestination = accountDestination;
-    }
-
-    public void setAccountSource(int accountSource) {
-        this.accountSource = accountSource;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getAmount() {
@@ -86,7 +65,13 @@ public class AccountOperation {
         this.amount = amount;
     }
 
+    public OperationTypeEnum getType() {
+        return type;
+    }
 
+    public void setType(OperationTypeEnum type) {
+        this.type = type;
+    }
 
     public Account getAccount() {
         return account;
@@ -94,13 +79,5 @@ public class AccountOperation {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -1,13 +1,17 @@
 package fr.najet.bank.controllers;
 
+import fr.najet.bank.dto.CreditDto;
+import fr.najet.bank.dto.DebitDto;
+import fr.najet.bank.dto.TransferDto;
 import fr.najet.bank.entities.AccountOperation;
+import fr.najet.bank.exception.AccountNotFoundException;
+import fr.najet.bank.exception.BalanceNotSufficientException;
 import fr.najet.bank.repositories.AccountOperationRepository;
 import fr.najet.bank.repositories.AccountRepository;
 import fr.najet.bank.services.AccountOperationService;
 import fr.najet.bank.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,19 +35,11 @@ public class AccountOperationController {
         return accountOperationService.getAccountOperations();
     }
 
-
-
-   /* @PostMapping(value = "/account/add")
-    public Account createAccount(@RequestBody AccountOperationDto accountOperationDto) throws Exception {
-
-     return null;
+   /* @PutMapping(value="transfer")
+    public void transfer(@RequestBody TransferDto transfer){
+        accountService.transfer(transfer.getAccountSource(),transfer.getAccountDestination(), transfer.getAmount());
     }*/
-
-    /*@PutMapping(value="transfer")
-    public void transfer(@RequestBody TransferDto request){
-        accountOperationService.transfer(request.getAccountSource(),request.getAccountDestination(),request.getAmount());
-    }*/
-  /*  @PostMapping("/debit")
+      @PostMapping("/debit")
     @ResponseBody
     public DebitDto debit(@RequestBody DebitDto debitDto) throws AccountNotFoundException, BalanceNotSufficientException {
         accountOperationService.debit (debitDto.getAccountId(), debitDto.getAmount(), debitDto.getDescription());
@@ -53,13 +49,17 @@ public class AccountOperationController {
     @PostMapping("/credit")
     @ResponseBody
     public CreditDto credit(@RequestBody CreditDto creditDto) throws AccountNotFoundException, BalanceNotSufficientException {
-        accountOperationService.credit (creditDto.getAccountId(), creditDto.getAmount(), creditDto.getDescription());
+        accountOperationService.credit (creditDto.getId(), creditDto.getAmount(), creditDto.getDescription());
         return creditDto;
     }
-    @PostMapping("/transfer")
+    @PutMapping("/transfer")
     public void transfer(@RequestBody TransferDto transferDto) throws AccountNotFoundException, BalanceNotSufficientException {
         accountOperationService.transfer(transferDto.getAccountSource(),
                 transferDto.getAccountDestination(),
                 transferDto.getAmount());
-    }*/
+    }
+
+
+
+
 }

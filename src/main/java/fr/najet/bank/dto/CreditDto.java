@@ -1,34 +1,63 @@
 package fr.najet.bank.dto;
 
+import fr.najet.bank.entities.Account;
+
+import java.util.Date;
+
 public class CreditDto {
-    private int accountId;
-    private double amount;
+    public int id;
+
+    public Date createdAt = new Date();
+    public double amount;
+
+    public Account account;
+
     private String description;
+
 
     public CreditDto() {
         super();
     }
 
-    public CreditDto(int accountId, double amount, String description) {
-        this.accountId = accountId;
+    public CreditDto(int id, Date createdAt, double amount, Account account, String description) {
+        this.id = id;
+        this.createdAt = createdAt ;
         this.amount = amount;
+        this.account = account;
         this.description = description;
     }
 
-    public int getAccountId() {
-        return accountId;
+
+    public int getId() {
+        return id;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
     public double getAmount() {
         return amount;
     }
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String getDescription() {
@@ -38,7 +67,6 @@ public class CreditDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
 
 

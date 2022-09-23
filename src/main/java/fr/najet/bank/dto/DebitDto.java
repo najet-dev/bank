@@ -2,7 +2,7 @@ package fr.najet.bank.dto;
 
 public class DebitDto {
 
-    private int accountId;
+    private int id;
     private double amount;
     private String description;
 
@@ -10,19 +10,19 @@ public class DebitDto {
         super();
     }
 
-    public DebitDto(int accountId, double amount, String description) {
+    public DebitDto(int id, double amount, String description) {
 
-        this.accountId = accountId;
+        this.id = id;
         this.amount = amount;
         this.description = description;
     }
 
     public int getAccountId() {
-        return accountId;
+        return id;
     }
 
     public void setAccountId(int accountId) {
-        this.accountId = accountId;
+        this.id = id;
     }
 
     public double getAmount() {

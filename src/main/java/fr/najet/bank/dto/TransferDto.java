@@ -2,9 +2,9 @@ package fr.najet.bank.dto;
 
 public class TransferDto {
 
-    private int accountSource;
-    private int accountDestination;
-    private double amount;
+    public int accountSource;
+    public int accountDestination;
+    public double amount;
 
     public TransferDto() {
         super();

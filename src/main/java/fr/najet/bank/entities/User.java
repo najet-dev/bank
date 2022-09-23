@@ -3,6 +3,7 @@ package fr.najet.bank.entities;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,14 +18,15 @@ public class User {
     private int role;
     private  String password;
     @JsonSerialize(using = UserAccountSerializer.class)
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Account> accounts ;
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    private List<Account> accounts = new ArrayList<>() ;
 
     public User() {
         super();
 
     }
     public User( int id, String lastName, String firstName, String email, String userName, int role, String password,  List<Account> accounts) {
+        super();
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -36,14 +38,6 @@ public class User {
 
     }
 
-    public User(String lastName, String firstName, String email, String userName, int role, String password) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.userName = userName;
-        this.role = role;
-        this.password = password;
-    }
 
     public int getId() {
         return id;

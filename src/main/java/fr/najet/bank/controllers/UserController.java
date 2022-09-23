@@ -1,6 +1,5 @@
 package fr.najet.bank.controllers;
 
-import fr.najet.bank.dto.UserDto;
 import fr.najet.bank.entities.User;
 import fr.najet.bank.exception.ApiRequestException;
 import fr.najet.bank.repositories.UserRepository;
@@ -43,16 +42,6 @@ public class UserController {
     public User addUser(@RequestBody User user) throws Exception {
         return this.userService.createUser(user);
     }
-    @PostMapping(value = "/user/add")
-    public User createUser(@RequestBody UserDto userDto) throws Exception {
-
-        User createdUser = null;
-        createdUser = new User(userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(), userDto.getRole(), userDto.getPassword());
-        userRepository.save((User) createdUser);
-
-        return createdUser;
-    }
-
     /**
      * Modify - modify a user
      * @return user - The user is updated

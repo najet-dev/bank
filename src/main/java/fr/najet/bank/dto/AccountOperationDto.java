@@ -1,21 +1,29 @@
 package fr.najet.bank.dto;
 
+import fr.najet.bank.entities.Account;
+import fr.najet.bank.entities.User;
+
 import java.util.Date;
 
 public class AccountOperationDto {
-    private Long id;
-    private Date operationDate;
-    private double amount;
-    private String type;
-    private String description;
+    public Long id;
+    public Date createdAt = new Date();
 
-    public AccountOperationDto(Long id, Date operationDate, double amount, String type, String description) {
+    protected User user;
 
-        this.id = id;
-        this.operationDate = operationDate;
+    public int accountSource;
+
+    public int accountDestination;
+    public double amount;
+    public Account account;
+
+    public AccountOperationDto(Date createdAt, User user, int accountSource, int accountDestination, double amount, Account account) {
+        this.createdAt = createdAt;
+        this.user = user;
+        this.accountSource = accountSource;
+        this.accountDestination = accountDestination;
         this.amount = amount;
-        this.type = type;
-        this.description = description;
+        this.account = account;
     }
     public AccountOperationDto() {
         super();
@@ -26,29 +34,52 @@ public class AccountOperationDto {
     public void setId(Long id) {
         this.id = id;
     }
-    public Date getOperationDate() {
-        return operationDate;
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
-    public void setOperationDate(Date operationDate) {
-        this.operationDate = operationDate;
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getAccountSource() {
+        return accountSource;
+    }
+
+    public void setAccountSource(int accountSource) {
+        this.accountSource = accountSource;
+    }
+
+    public int getAccountDestination() {
+        return accountDestination;
+    }
+
+    public void setAccountDestination(int accountDestination) {
+        this.accountDestination = accountDestination;
+    }
+
     public double getAmount() {
         return amount;
     }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
+
+    public Account getAccount() {
+        return account;
     }
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }

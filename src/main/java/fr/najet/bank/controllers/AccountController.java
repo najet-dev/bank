@@ -61,10 +61,10 @@ public class AccountController {
      * @return -A List objet of account full filled
      */
 
-   @PostMapping(value = "/account/add")
+    @PostMapping(value = "/account/add")
     public Account createAccount(@RequestBody AccountDto accountDto) throws Exception{
 
-       Account createdAccount = null;
+        Account createdAccount = null;
         if(accountDto.getType().equals("CurrentAccount")){
             createdAccount = new CurrentAccount(accountDto.getBalance(), accountDto.getUser(), accountDto.getOverDraft());
             currentAccountRepository.save ((CurrentAccount) createdAccount);
@@ -74,6 +74,12 @@ public class AccountController {
         }
         return createdAccount;
     }
+   /* @PostMapping(value = "/account/add/{id}")
+    public Account createAccount(@PathVariable int id, @RequestBody Account account) throws Exception{
+        User user = userRepository.findById(id);
+        user.getAccounts().add(account);
+        return this.accountService.updateAccount(account);
+    }*/
 
 
     /**

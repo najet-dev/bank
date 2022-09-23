@@ -11,5 +11,5 @@ public interface AccountOperationRepository extends JpaRepository <AccountOperat
 
    // AccountOperation findById(int id);
     AccountOperation save(AccountOperation accountOperation);
-    List<AccountOperation> findByAccountId(String accountId);
+    List<AccountOperation> findById(int id);
 }

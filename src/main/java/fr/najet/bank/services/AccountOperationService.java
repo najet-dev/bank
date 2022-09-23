@@ -1,12 +1,17 @@
 package fr.najet.bank.services;
 
+import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.AccountOperation;
+import fr.najet.bank.enums.OperationTypeEnum;
+import fr.najet.bank.exception.AccountNotFoundException;
+import fr.najet.bank.exception.BalanceNotSufficientException;
 import fr.najet.bank.repositories.AccountOperationRepository;
 import fr.najet.bank.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,21 +29,11 @@ public class AccountOperationService{
         return accountOperationRepository.findAll();
     }
 
-    public AccountOperation createAccountOperation(AccountOperation accountOperation){
+   /* public AccountOperation createAccountOperation(AccountOperation accountOperation){
         return accountOperationRepository.save(accountOperation);
-    }
-
-   /*public void transfer(int codeSource, int codeDestination, double amount) {
-        Account account1 = accountRepository.findById(codeSource);
-        Account account2 = accountRepository.findById(codeDestination);
-        account1.setBalance(account1.getBalance() - amount);
-
-        account2.setBalance(account2.getBalance() + amount);
-        accountRepository.save(account1);
-        accountRepository.save(account2);
     }*/
 
-   /*public void debit(int accountId, double amount, String description) throws AccountNotFoundException, BalanceNotSufficientException {
+    public void debit(int accountId, double amount, String description) throws AccountNotFoundException, BalanceNotSufficientException {
 
         Account account = accountRepository.findById(accountId);
 
@@ -52,7 +47,7 @@ public class AccountOperationService{
         AccountOperation accountOperation = new AccountOperation();
         accountOperation.setType(OperationTypeEnum.DEBIT);
         accountOperation.setAmount(amount);
-        accountOperation.setOperationDate(new Date());
+        accountOperation.setCreatedAt(new Date());
         accountOperation.setAccount(account);
         accountOperation.setDescription(description);
 
@@ -75,7 +70,7 @@ public class AccountOperationService{
         AccountOperation accountOperation = new AccountOperation();
         accountOperation.setType(OperationTypeEnum.CREDIT);
         accountOperation.setAmount(amount);
-        accountOperation.setOperationDate(new Date());
+        accountOperation.setCreatedAt(new Date());
         accountOperation.setAccount(account);
         accountOperation.setDescription(description);
 
@@ -87,7 +82,9 @@ public class AccountOperationService{
     public void transfer(int accountSource, int accountDestination, double amount) throws AccountNotFoundException, BalanceNotSufficientException {
         debit(accountSource, amount, "Transfer to "+accountDestination);
         credit(accountDestination, amount, "Transfer from "+accountSource);
-    }*/
+    }
+
+
 
 
 
