@@ -9,8 +9,6 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     Account findById(int id);
     Account save(Account account);
 
-    // Account getById(String id);
-
     void deleteById(int id);
 
 }

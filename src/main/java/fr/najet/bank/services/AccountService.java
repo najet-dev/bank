@@ -1,22 +1,23 @@
 package fr.najet.bank.services;
 
 import fr.najet.bank.entities.Account;
-import fr.najet.bank.entities.AccountOperation;
-import fr.najet.bank.enums.OperationTypeEnum;
-import fr.najet.bank.exception.AccountNotFoundException;
-import fr.najet.bank.exception.BalanceNotSufficientException;
 import fr.najet.bank.repositories.AccountRepository;
+import fr.najet.bank.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     public List<Account> getAccounts(){
@@ -44,5 +45,9 @@ public class AccountService {
         accountRepository.save(account2);
     }
 
+
+
+
 }
+
 

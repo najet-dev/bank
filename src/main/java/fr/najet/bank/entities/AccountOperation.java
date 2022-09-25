@@ -26,10 +26,12 @@ public class AccountOperation {
 
 
     public AccountOperation(){}
-    public AccountOperation( Date createdAt,String description, double amount,OperationTypeEnum type, Account account) {
+    public AccountOperation( int id, Date createdAt,String description, double amount,OperationTypeEnum type, Account account) {
+        this.id = id;
         this.createdAt = createdAt;
         this.description = description;
         this.amount = amount;
+        this.type = type;
         this.account = account;
     }
 

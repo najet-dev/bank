@@ -17,11 +17,11 @@ public class DebitDto {
         this.description = description;
     }
 
-    public int getAccountId() {
+    public int getId() {
         return id;
     }
 
-    public void setAccountId(int accountId) {
+    public void setId(int id) {
         this.id = id;
     }
 

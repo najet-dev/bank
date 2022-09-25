@@ -1,5 +1,6 @@
 package fr.najet.bank.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -10,7 +11,6 @@ import java.util.List;
 @Entity
 @Transactional
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name ="Type", discriminatorType = DiscriminatorType.STRING,length = 2)
 @Table(name= "accounts")
 public class Account {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,11 @@ public class Account {
     protected Date createdAt = new Date();
     protected double balance;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="userId")
     protected User user;
-    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    @JsonSerialize(using = AccountOperationSerializer.class)
+    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
     public List<AccountOperation> accountOperations = new ArrayList<>();
 
     public Account() {

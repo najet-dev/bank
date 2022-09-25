@@ -1,8 +1,6 @@
 package fr.najet.bank.controllers;
 
-import fr.najet.bank.dto.CreditDto;
-import fr.najet.bank.dto.DebitDto;
-import fr.najet.bank.dto.TransferDto;
+import fr.najet.bank.dto.*;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.exception.AccountNotFoundException;
 import fr.najet.bank.exception.BalanceNotSufficientException;
@@ -42,7 +40,7 @@ public class AccountOperationController {
       @PostMapping("/debit")
     @ResponseBody
     public DebitDto debit(@RequestBody DebitDto debitDto) throws AccountNotFoundException, BalanceNotSufficientException {
-        accountOperationService.debit (debitDto.getAccountId(), debitDto.getAmount(), debitDto.getDescription());
+        accountOperationService.debit (debitDto.getId(), debitDto.getAmount(), debitDto.getDescription());
         return debitDto;
     }
 
@@ -57,6 +55,20 @@ public class AccountOperationController {
         accountOperationService.transfer(transferDto.getAccountSource(),
                 transferDto.getAccountDestination(),
                 transferDto.getAmount());
+    }
+    @GetMapping("/operations/{id}")
+    public List<AccountOperationDto> getHistorical(@PathVariable int id){
+        return accountOperationService.historical(id);
+    }
+
+
+    @GetMapping("/{id}/pageOperations")
+    public AccountHistoryDto getAccountHistorical(
+            @PathVariable int id,
+            @RequestParam(name ="page", defaultValue = "0") int page,
+            @RequestParam(name ="size", defaultValue = "5") int size) throws AccountNotFoundException{
+
+        return accountOperationService.getAccountHistorical(id, page, size);
     }
 
 

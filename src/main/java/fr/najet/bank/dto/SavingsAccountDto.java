@@ -3,7 +3,7 @@ package fr.najet.bank.dto;
 import java.util.Date;
 
 public class SavingsAccountDto {
-    private String id;
+    private int id;
     private Date createdAt;
     private double balance;
 
@@ -14,7 +14,7 @@ public class SavingsAccountDto {
     public SavingsAccountDto() {
         super();
     }
-    public SavingsAccountDto(String id, String type, Date createdAt, double balance, UserDto userDto, double interestRate ) {
+    public SavingsAccountDto(int id, String type, Date createdAt, double balance, UserDto userDto, double interestRate ) {
         this.id = id;
         this.createdAt = createdAt;
         this.balance = balance;
@@ -22,11 +22,11 @@ public class SavingsAccountDto {
         this.interestRate = interestRate;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

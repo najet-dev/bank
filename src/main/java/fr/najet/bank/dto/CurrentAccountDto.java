@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CurrentAccountDto {
 
-    private String id;
+    private int id;
     private Date createdAt;
     private double balance;
     private UserDto userDto;
@@ -18,7 +18,7 @@ public class CurrentAccountDto {
         super();
     }
 
-    public CurrentAccountDto(String id, Date createdAt, double balance, UserDto userDto, double overDraft ) {
+    public CurrentAccountDto(int id, Date createdAt, double balance, UserDto userDto, double overDraft ) {
         this.id = id;
         this.createdAt = createdAt;
         this.balance = balance;
@@ -27,18 +27,17 @@ public class CurrentAccountDto {
     }
 
     public CurrentAccountDto(Date createdAt, double balance, UserDto userDto, double overDraft ) {
-        this.id = id;
         this.createdAt = createdAt;
         this.balance = balance;
         this.userDto = userDto;
         this.overDraft = overDraft;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

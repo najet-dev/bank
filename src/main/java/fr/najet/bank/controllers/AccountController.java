@@ -66,7 +66,6 @@ public class AccountController {
 
         Account createdAccount = null;
         if(accountDto.getType().equals("CurrentAccount")){
-            createdAccount = new CurrentAccount(accountDto.getBalance(), accountDto.getUser(), accountDto.getOverDraft());
             currentAccountRepository.save ((CurrentAccount) createdAccount);
         }else if(accountDto.getType().equals("SavingsAccount")) {
             createdAccount = new SavingsAccount(accountDto.getBalance(), accountDto.getUser(), accountDto.getInterestRate());
@@ -74,7 +73,8 @@ public class AccountController {
         }
         return createdAccount;
     }
-   /* @PostMapping(value = "/account/add/{id}")
+
+  /* @PostMapping(value = "/account/add/{id}")
     public Account createAccount(@PathVariable int id, @RequestBody Account account) throws Exception{
         User user = userRepository.findById(id);
         user.getAccounts().add(account);

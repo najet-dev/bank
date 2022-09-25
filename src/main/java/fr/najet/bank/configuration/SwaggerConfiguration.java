@@ -1,4 +1,4 @@
-package fr.najet.bank.config;
+package fr.najet.bank.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
