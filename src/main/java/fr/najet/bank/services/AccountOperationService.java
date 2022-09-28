@@ -1,24 +1,21 @@
 package fr.najet.bank.services;
 
 import fr.najet.bank.dto.AccountHistoryDto;
-import fr.najet.bank.dto.AccountOperationDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.enums.OperationTypeEnum;
 import fr.najet.bank.exception.AccountNotFoundException;
 import fr.najet.bank.exception.BalanceNotSufficientException;
-import fr.najet.bank.mappers.AccountMapperImpl;
 import fr.najet.bank.repositories.AccountOperationRepository;
 import fr.najet.bank.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 @Transactional
@@ -29,15 +26,13 @@ public class AccountOperationService{
 
     @Autowired
     AccountOperationRepository accountOperationRepository;
-    private AccountMapperImpl dtoMapper;
-
-
 
 
 
     public List<AccountOperation> getAccountOperations(){
         return accountOperationRepository.findAll();
     }
+
 
    /* public AccountOperation createAccountOperation(AccountOperation accountOperation){
         return accountOperationRepository.save(accountOperation);
@@ -96,28 +91,27 @@ public class AccountOperationService{
 
 
 
-    public List<AccountOperationDto> historical(int id) {
+   /*public List<AccountOperationDto> historical(int id) {
         List<AccountOperation> accountOperations = accountOperationRepository.findById(id);
         return accountOperations.stream()
-                .map(op -> dtoMapper.fromAccountOperation(op))
+                .map(op -> historyDto.fromAccountOperation(op))
                 .collect(Collectors.toList());
-    }
-    public AccountHistoryDto getAccountHistorical(int id, int page, int size) throws AccountNotFoundException {
+    }*/
+    public List<AccountOperation> getAccountHistorical(int id, int page, int size) throws AccountNotFoundException {
 
         Account account = accountRepository.findById(id);
+
         if(account==null) {
             throw new AccountNotFoundException("Bank Account Not Found");
         }
-        Page<AccountOperation> accountOperations = accountOperationRepository.findByIdOrderBycreatedAtDesc(id, PageRequest.of(page, size));
+
+        List<AccountOperation> accountOperations = accountOperationRepository.getAccountOperations(id, PageRequest.of(page, size));
         AccountHistoryDto accountHistoryDto= new AccountHistoryDto();
-        List<AccountOperationDto> accountOperationDtos = accountOperations.getContent().stream().map(op -> dtoMapper.fromAccountOperation(op)).collect(Collectors.toList());
-        accountHistoryDto.setAccountOperationDtos(accountOperationDtos);
         accountHistoryDto.setId (account.getId());
-        accountHistoryDto.setBalance(account.getBalance());
         accountHistoryDto.setPageSize (size);
         accountHistoryDto.setCurrentPage(page);
-        accountHistoryDto.setTotalPages(accountOperations.getTotalPages());
-        return accountHistoryDto;
+
+        return accountOperations;
     }
 
 

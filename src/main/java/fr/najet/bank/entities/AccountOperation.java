@@ -9,77 +9,80 @@ import java.util.Date;
 @Entity
 @Transactional
 public class AccountOperation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public Date createdAt = new Date();
+  public Date createdAt = new Date();
 
-    private String description;
+  private String description;
 
-    public double amount;
+  public double amount;
 
-   @Enumerated(EnumType.STRING)
-    public OperationTypeEnum type;
-    @ManyToOne
-    public Account account;
+  @Enumerated(EnumType.STRING)
+  public OperationTypeEnum type;
+  @ManyToOne
+  public Account account;
 
 
-    public AccountOperation(){}
-    public AccountOperation( int id, Date createdAt,String description, double amount,OperationTypeEnum type, Account account) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.description = description;
-        this.amount = amount;
-        this.type = type;
-        this.account = account;
-    }
+  public AccountOperation() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public AccountOperation(int id, Date createdAt, String description, double amount,
+                          OperationTypeEnum type, Account account) {
+    this.id = id;
+    this.createdAt = createdAt;
+    this.description = description;
+    this.amount = amount;
+    this.type = type;
+    this.account = account;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+  public Date getCreatedAt() {
+    return createdAt;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public double getAmount() {
-        return amount;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+  public double getAmount() {
+    return amount;
+  }
 
-    public OperationTypeEnum getType() {
-        return type;
-    }
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
 
-    public void setType(OperationTypeEnum type) {
-        this.type = type;
-    }
+  public OperationTypeEnum getType() {
+    return type;
+  }
 
-    public Account getAccount() {
-        return account;
-    }
+  public void setType(OperationTypeEnum type) {
+    this.type = type;
+  }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+  public Account getAccount() {
+    return account;
+  }
+
+  public void setAccount(Account account) {
+    this.account = account;
+  }
 }

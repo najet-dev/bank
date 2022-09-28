@@ -21,9 +21,9 @@ public class Account {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="userId")
-    protected User user;
+    public User user;
     @JsonSerialize(using = AccountOperationSerializer.class)
-    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
     public List<AccountOperation> accountOperations = new ArrayList<>();
 
     public Account() {

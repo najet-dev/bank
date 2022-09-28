@@ -1,20 +1,24 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.entities.AccountOperation;
-import org.springframework.beans.BeanUtils;
-
 import java.util.List;
 
 public class AccountHistoryDto {
     private int id;
-    private double balance;
     private int currentPage;
     private int totalPages;
     private int pageSize;
-    private List<AccountOperationDto> accountOperationDtos;
+    private List<AccountOperationDto> accountOperations;
+
 
     public AccountHistoryDto() {
-        super();
+    }
+
+    public AccountHistoryDto(int id, int currentPage, int totalPages, int pageSize, List<AccountOperationDto> accountOperations) {
+        this.id = id;
+        this.currentPage = currentPage;
+        this.totalPages = totalPages;
+        this.pageSize = pageSize;
+        this.accountOperations = accountOperations;
     }
 
     public int getId() {
@@ -23,14 +27,6 @@ public class AccountHistoryDto {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
 
     public int getCurrentPage() {
@@ -57,18 +53,12 @@ public class AccountHistoryDto {
         this.pageSize = pageSize;
     }
 
-    public List<AccountOperationDto> getAccountOperationDtos() {
-        return accountOperationDtos;
+    public List<AccountOperationDto> getAccountOperations() {
+        return accountOperations;
     }
 
-    public void setAccountOperationDtos(List<AccountOperationDto> accountOperationDTOS) {
-        this.accountOperationDtos = accountOperationDtos;
-    }
-
-    public AccountOperationDto fromAccountOperation(AccountOperation accountOperation) {
-        AccountOperationDto accountOperationDto = new AccountOperationDto();
-        BeanUtils.copyProperties(accountOperation, accountOperationDto);
-        return accountOperationDto;
+    public void setAccountOperations(List<AccountOperationDto> accountOperations) {
+        this.accountOperations = accountOperations;
     }
 
 }

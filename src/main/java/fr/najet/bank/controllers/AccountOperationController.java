@@ -56,14 +56,14 @@ public class AccountOperationController {
                 transferDto.getAccountDestination(),
                 transferDto.getAmount());
     }
-    @GetMapping("/operations/{id}")
+   /* @GetMapping("/operations/{id}")
     public List<AccountOperationDto> getHistorical(@PathVariable int id){
         return accountOperationService.historical(id);
-    }
+    }*/
 
 
     @GetMapping("/{id}/pageOperations")
-    public AccountHistoryDto getAccountHistorical(
+    public List<AccountOperation> getAccountHistorical(
             @PathVariable int id,
             @RequestParam(name ="page", defaultValue = "0") int page,
             @RequestParam(name ="size", defaultValue = "5") int size) throws AccountNotFoundException{

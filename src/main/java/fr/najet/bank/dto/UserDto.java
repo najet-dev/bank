@@ -11,14 +11,14 @@ public class UserDto {
     public String firstName;
     public  String email;
     public  String userName;
-    public int role;
+    public String role;
     public  String password;
 
    public List<Account> accounts = new ArrayList<>();
 
     public UserDto(){}
 
-    public UserDto( String lastName, String firstName, String email, String userName, int role, String password) {
+    public UserDto( String lastName, String firstName, String email, String userName, String role, String password) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
@@ -66,11 +66,11 @@ public class UserDto {
         this.userName = userName;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

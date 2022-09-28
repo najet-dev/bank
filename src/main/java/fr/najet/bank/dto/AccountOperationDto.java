@@ -82,4 +82,9 @@ public class AccountOperationDto {
     public void setAccount(Account account) {
         this.account = account;
     }
+    /*public AccountOperationDto fromAccountOperation(AccountOperation accountOperation) {
+        AccountOperationDto accountOperationDto = new AccountOperationDto();
+        BeanUtils.copyProperties(accountOperation, accountOperationDto);
+        return accountOperationDto;
+    }*/
 }

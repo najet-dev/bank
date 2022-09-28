@@ -3,103 +3,129 @@ package fr.najet.bank.entities;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
-@Table(name="users")
+@Table(name = "users",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email")
+    })
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private  String lastName;
-    private String firstName;
-    private  String email;
-    private  String userName;
-    private int role;
-    private  String password;
-    @JsonSerialize(using = UserAccountSerializer.class)
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private List<Account> accounts = new ArrayList<>() ;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String lastName;
+  private String firstName;
+  private String email;
+  private String username;
+  private String role;
+  private String password;
 
-    public User() {
-        super();
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_roles",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles = new HashSet<>();
 
-    }
-    public User( int id, String lastName, String firstName, String email, String userName, int role, String password,  List<Account> accounts) {
-        super();
-        this.id = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.userName = userName;
-        this.role = role;
-        this.password = password;
-        this.accounts = accounts;
+  @JsonSerialize(using = UserAccountSerializer.class)
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+  private List<Account> accounts = new ArrayList<>();
 
-    }
+  public User() {
+  }
+
+  public User(Long id, String lastName, String firstName, String email, String username,
+              String role, String password, List<Account> accounts) {
+    this.id = id;
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.email = email;
+    this.username = username;
+    //this.role = role;
+    this.password = password;
+    this.accounts = accounts;
+  }
+
+  public User(String username, String email, String password) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+  }
 
 
-    public int getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getLastName() {
-        return lastName;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public int getRole() {
+  public void setUsername(String userName) {
+    this.username = userName;
+  }
+
+   /* public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
-    }
+    }*/
 
 
-    public String getPassword(){
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public List<Account> getAccounts() {
-        return accounts;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
+
+  public List<Account> getAccounts() {
+    return accounts;
+  }
+
+  public void setAccounts(List<Account> accounts) {
+    this.accounts = accounts;
+  }
+
 
 }
