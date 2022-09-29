@@ -13,39 +13,43 @@ import java.util.List;
 @Transactional
 public class AccountService {
 
-    @Autowired
-    AccountRepository accountRepository;
+  @Autowired
+  AccountRepository accountRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-
-    public List<Account> getAccounts(){
-        return accountRepository.findAll();
-    }
-
-    public Account createAccount(Account account){
-        return accountRepository.save(account);
-    }
-
-    public  Account getAccount(int id){return accountRepository.findById(id);}
-
-    public Account updateAccount( Account account) {return accountRepository.save(account);}
+  @Autowired
+  UserRepository userRepository;
 
 
-    public void deleteAccountById(int id){ accountRepository.deleteById(id);}
+  public List<Account> getAccounts() {
+    return accountRepository.findAll();
+  }
 
-    public void transfer(int codeSource, int codeDestination, double amount) {
-        Account account1 = accountRepository.findById(codeSource);
-        Account account2 = accountRepository.findById(codeDestination);
-        account1.setBalance(account1.getBalance() - amount);
+  public Account createAccount(Account account) {
+    return accountRepository.save(account);
+  }
 
-        account2.setBalance(account2.getBalance() + amount);
-        accountRepository.save(account1);
-        accountRepository.save(account2);
-    }
+  public Account getAccount(int id) {
+    return accountRepository.findById(id);
+  }
+
+  public Account updateAccount(Account account) {
+    return accountRepository.save(account);
+  }
 
 
+  public void deleteAccountById(int id) {
+    accountRepository.deleteById(id);
+  }
+
+  public void transfer(int codeSource, int codeDestination, double amount) {
+    Account account1 = accountRepository.findById(codeSource);
+    Account account2 = accountRepository.findById(codeDestination);
+    account1.setBalance(account1.getBalance() - amount);
+
+    account2.setBalance(account2.getBalance() + amount);
+    accountRepository.save(account1);
+    accountRepository.save(account2);
+  }
 
 
 }

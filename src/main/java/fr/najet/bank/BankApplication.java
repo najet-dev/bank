@@ -10,16 +10,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class BankApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BankApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(BankApplication.class, args);
+  }
 
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+  PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
 
-	}
-
-
-
+  }
 
 }
