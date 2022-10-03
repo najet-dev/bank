@@ -1,18 +1,16 @@
 package fr.najet.bank.entities;
 
 import fr.najet.bank.enums.OperationTypeEnum;
+import java.util.Date;
+import javax.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.*;
-import java.util.Date;
-
-@Entity
 @Transactional
+@Entity
 public class AccountOperation {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-
   public Date createdAt = new Date();
 
   private String description;
@@ -24,9 +22,7 @@ public class AccountOperation {
   @ManyToOne
   public Account account;
 
-
-  public AccountOperation() {
-  }
+  public AccountOperation() {}
 
   public AccountOperation(int id, Date createdAt, String description, double amount,
                           OperationTypeEnum type, Account account) {

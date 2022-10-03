@@ -2,86 +2,89 @@ package fr.najet.bank.dto;
 
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.User;
-
 import java.util.Date;
 
 public class AccountOperationDto {
-    public Long id;
-    public Date createdAt = new Date();
+  public Long id;
+  public Date createdAt = new Date();
 
-    protected User user;
+  public User user;
+  public int accountSource;
+  public int accountDestination;
 
-    public int accountSource;
+  public double amount;
 
-    public int accountDestination;
-    public double amount;
-    public Account account;
+  public Account account;
 
-    public AccountOperationDto(Date createdAt, User user, int accountSource, int accountDestination, double amount, Account account) {
-        this.createdAt = createdAt;
-        this.user = user;
-        this.accountSource = accountSource;
-        this.accountDestination = accountDestination;
-        this.amount = amount;
-        this.account = account;
-    }
-    public AccountOperationDto() {
-        super();
-    }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public AccountOperationDto(Date createdAt, User user, int accountSource, int accountDestination,
+                             double amount, Account account) {
+    this.createdAt = createdAt;
+    this.user = user;
+    this.accountSource = accountSource;
+    this.accountDestination = accountDestination;
+    this.amount = amount;
+    this.account = account;
+  }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+  public AccountOperationDto() {
+    super();
+  }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public Date getCreatedAt() {
+    return createdAt;
+  }
 
-    public int getAccountSource() {
-        return accountSource;
-    }
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setAccountSource(int accountSource) {
-        this.accountSource = accountSource;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public int getAccountDestination() {
-        return accountDestination;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-    public void setAccountDestination(int accountDestination) {
-        this.accountDestination = accountDestination;
-    }
+  public int getAccountSource() {
+    return accountSource;
+  }
 
-    public double getAmount() {
-        return amount;
-    }
+  public void setAccountSource(int accountSource) {
+    this.accountSource = accountSource;
+  }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+  public int getAccountDestination() {
+    return accountDestination;
+  }
 
-    public Account getAccount() {
-        return account;
-    }
+  public void setAccountDestination(int accountDestination) {
+    this.accountDestination = accountDestination;
+  }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+  public double getAmount() {
+    return amount;
+  }
+
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
+
+  public Account getAccount() {
+    return account;
+  }
+
+  public void setAccount(Account account) {
+    this.account = account;
+  }
     /*public AccountOperationDto fromAccountOperation(AccountOperation accountOperation) {
         AccountOperationDto accountOperationDto = new AccountOperationDto();
         BeanUtils.copyProperties(accountOperation, accountOperationDto);

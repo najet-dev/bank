@@ -1,72 +1,69 @@
 package fr.najet.bank.dto;
 
 import fr.najet.bank.entities.Account;
-
 import java.util.Date;
 
 public class CreditDto {
-    public int id;
+  public int id;
+  public Date createdAt = new Date();
 
-    public Date createdAt = new Date();
-    public double amount;
+  public double amount;
 
-    public Account account;
+  public Account account;
+  private String description;
 
-    private String description;
+  public CreditDto() {
+    super();
+  }
 
+  public CreditDto(int id, Date createdAt, double amount, Account account, String description) {
+    this.id = id;
+    this.createdAt = createdAt;
+    this.amount = amount;
+    this.account = account;
+    this.description = description;
+  }
 
-    public CreditDto() {
-        super();
-    }
+  public int getId() {
+    return id;
+  }
 
-    public CreditDto(int id, Date createdAt, double amount, Account account, String description) {
-        this.id = id;
-        this.createdAt = createdAt ;
-        this.amount = amount;
-        this.account = account;
-        this.description = description;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
+  public Date getCreatedAt() {
+    return createdAt;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public double getAmount() {
+    return amount;
+  }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
 
 
-    public Account getAccount() {
-        return account;
-    }
+  public Account getAccount() {
+    return account;
+  }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+  public void setAccount(Account account) {
+    this.account = account;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }
 
 

@@ -36,21 +36,9 @@ public class AccountService {
     return accountRepository.save(account);
   }
 
-
   public void deleteAccountById(int id) {
     accountRepository.deleteById(id);
   }
-
-  public void transfer(int codeSource, int codeDestination, double amount) {
-    Account account1 = accountRepository.findById(codeSource);
-    Account account2 = accountRepository.findById(codeDestination);
-    account1.setBalance(account1.getBalance() - amount);
-
-    account2.setBalance(account2.getBalance() + amount);
-    accountRepository.save(account1);
-    accountRepository.save(account2);
-  }
-
 
 }
 

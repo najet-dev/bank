@@ -10,11 +10,18 @@ import fr.najet.bank.repositories.CurrentAccountRepository;
 import fr.najet.bank.repositories.SavingsAccountRepository;
 import fr.najet.bank.repositories.UserRepository;
 import fr.najet.bank.services.AccountService;
+import fr.najet.bank.services.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AccountController {
@@ -30,6 +37,8 @@ public class AccountController {
 
   @Autowired
   SavingsAccountRepository savingsAccountRepository;
+  @Autowired
+  UserService userService;
 
 
   /**
@@ -51,9 +60,9 @@ public class AccountController {
   @GetMapping(value = "/account/{id}")
   public Account getAccountById(@PathVariable int id) {
     Account account = accountService.getAccount(id);
-      if (account == null) {
-          throw new ApiRequestException("Oops cannot get account with id " + id + " was not found");
-      }
+    if (account == null) {
+      throw new ApiRequestException("Oops cannot get account with id " + id + " was not found");
+    }
     return account;
   }
 

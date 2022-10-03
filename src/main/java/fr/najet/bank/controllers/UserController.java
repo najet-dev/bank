@@ -41,7 +41,7 @@ public class UserController {
    * @param id The id of the user
    * @return A user object full filled
    */
-  @GetMapping(value = "/users/{id}")
+  @GetMapping(value = "/user/{id}")
   public Optional<User> getUserById(@PathVariable Long id) {
     Optional<User> user = userService.getUser(id);
     if (user == null) {
@@ -55,7 +55,7 @@ public class UserController {
    *
    * @return -A List objet of user full filled
    */
-  @PostMapping(value = "/users/add")
+  @PostMapping(value = "/user/add")
   @ResponseBody
   public User addUser(@RequestBody User user) throws Exception {
     return this.userService.createUser(user);
@@ -72,18 +72,6 @@ public class UserController {
     return this.userService.createRole(role);
   }
 
-  /*@PostMapping(value = "/role/add")
-  @ResponseBody
-  public void addRoleToUser(@RequestBody RoleToUserForm form) throws Exception {
-      this.userService.addRoleToUser(form.getUsername(), form.getRoleName());
-  }
-
-
-  @Data
-  class RoleToUserForm {
-      private String username;
-      private String roleName;
-  }
   /**
    * Modify - modify a user.
    * @return user - The user is updated
@@ -100,7 +88,7 @@ public class UserController {
    * @param id - The id of the user to delete
    * @return user - The user is delete
    */
-  @DeleteMapping("/users/{id}")
+  @DeleteMapping("/user/{id}")
   @ResponseBody
   public ResponseEntity<Void> deleteUserById(@PathVariable Long id) throws Exception {
     userService.deleteUserById(id);

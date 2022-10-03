@@ -1,9 +1,8 @@
 package fr.najet.bank.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import javax.persistence.*;
 import java.util.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users",
@@ -19,7 +18,6 @@ public class User {
   private String firstName;
   private String email;
   private String username;
-  //private String role;
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
@@ -36,13 +34,12 @@ public class User {
   }
 
   public User(Long id, String lastName, String firstName, String email, String username,
-              String role, String password, List<Account> accounts) {
+               String password, List<Account> accounts) {
     this.id = id;
     this.lastName = lastName;
     this.firstName = firstName;
     this.email = email;
     this.username = username;
-    //this.role = role;
     this.password = password;
     this.accounts = accounts;
   }
@@ -52,7 +49,6 @@ public class User {
     this.email = email;
     this.password = password;
   }
-
 
   public Long getId() {
     return id;
@@ -93,15 +89,6 @@ public class User {
   public void setUsername(String userName) {
     this.username = userName;
   }
-
-   /* public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }*/
-
 
   public String getPassword() {
     return password;

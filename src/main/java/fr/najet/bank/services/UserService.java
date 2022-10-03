@@ -16,31 +16,35 @@ import java.util.Optional;
 @Transactional
 @Slf4j
 public class UserService {
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    RoleRepository roleRepository;
+  @Autowired
+  UserRepository userRepository;
+  @Autowired
+  RoleRepository roleRepository;
 
-    public List<User> getUsers(){
-        return userRepository.findAll();
-    }
+  public List<User> getUsers() {
+    return userRepository.findAll();
+  }
 
-    public User createUser(User user){
-        return userRepository.save(user);
-    }
+  public User createUser(User user) {
+    return userRepository.save(user);
+  }
 
-    public Role createRole(Role role){
-        return roleRepository.save(role);
-    }
-
-
+  public Role createRole(Role role) {
+    return roleRepository.save(role);
+  }
 
 
-    public Optional<User> getUser(Long id){return userRepository.findById(id);}
+  public Optional<User> getUser(Long id) {
+    return userRepository.findById(id);
+  }
 
-    public User updateUser( User user) {return userRepository.save(user);}
+  public User updateUser(User user) {
+    return userRepository.save(user);
+  }
 
 
-    public void deleteUserById(Long id){ userRepository.deleteById(id);}
+  public void deleteUserById(Long id) {
+    userRepository.deleteById(id);
+  }
 
 }

@@ -11,19 +11,19 @@ import java.util.List;
 
 public class AccountOperationSerializer extends JsonSerializer<List<AccountOperation>> {
 
-    public void serialize(
-            List<AccountOperation> accountOperations,
-            JsonGenerator generator,
-            SerializerProvider provider)
-            throws IOException, JsonProcessingException {
+  public void serialize(
+      List<AccountOperation> accountOperations,
+      JsonGenerator generator,
+      SerializerProvider provider)
+      throws IOException, JsonProcessingException {
 
-        List<Integer> ids = new ArrayList<>();
-        for (AccountOperation accountOperation : accountOperations) {
-            ids.add(accountOperation.getId());
-        }
-
-        generator.writeObject(ids);
+    List<Integer> ids = new ArrayList<>();
+    for (AccountOperation accountOperation : accountOperations) {
+      ids.add(accountOperation.getId());
     }
+
+    generator.writeObject(ids);
+  }
 
 
 }
