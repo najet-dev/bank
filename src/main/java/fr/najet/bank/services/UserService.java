@@ -4,13 +4,11 @@ import fr.najet.bank.entities.Role;
 import fr.najet.bank.entities.User;
 import fr.najet.bank.repositories.RoleRepository;
 import fr.najet.bank.repositories.UserRepository;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -34,7 +32,7 @@ public class UserService {
   }
 
 
-  public Optional<User> getUser(Long id) {
+  public User getUser(int id) {
     return userRepository.findById(id);
   }
 
@@ -43,7 +41,7 @@ public class UserService {
   }
 
 
-  public void deleteUserById(Long id) {
+  public void deleteUserById(int id) {
     userRepository.deleteById(id);
   }
 

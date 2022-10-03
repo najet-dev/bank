@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private int id;
   private String lastName;
   private String firstName;
   private String email;
@@ -30,10 +30,16 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Account> accounts = new ArrayList<>();
 
-  public User() {
-  }
+  public User(String lastName, String firstName, String username, String email, String password) {
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.email = email;
+    this.username = username;
+    this.password = password;
 
-  public User(Long id, String lastName, String firstName, String email, String username,
+  }
+  public User(){}
+ public User(int id, String lastName, String firstName, String email, String username,
                String password, List<Account> accounts) {
     this.id = id;
     this.lastName = lastName;
@@ -44,17 +50,17 @@ public class User {
     this.accounts = accounts;
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String password, String email) {
     this.username = username;
     this.email = email;
     this.password = password;
   }
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 

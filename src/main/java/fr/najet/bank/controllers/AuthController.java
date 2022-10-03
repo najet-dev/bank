@@ -57,7 +57,7 @@ public class AuthController {
         .collect(Collectors.toList());
 
     return ResponseEntity.ok(new JwtResponse(jwt,
-        (long) userDetails.getId(),
+         userDetails.getId(),
         userDetails.getUsername(),
         userDetails.getEmail(),
         roles));
@@ -76,11 +76,10 @@ public class AuthController {
           .badRequest()
           .body(new MessageResponse("Error: Email is already in use!"));
     }
-
     // Create new user's account
     User user = new User(signUpRequest.getUsername(),
-        signUpRequest.getEmail(),
-        encoder.encode(signUpRequest.getPassword()));
+        encoder.encode(signUpRequest.getPassword()),
+        signUpRequest.getEmail());
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();

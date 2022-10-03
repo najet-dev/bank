@@ -13,7 +13,7 @@ public class AccountUserDto {
 
   public double balance;
 
-  public Long userId;
+  public int userId;
 
   public List<AccountOperation> accountOperations = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class AccountUserDto {
   public AccountUserDto() {
   }
 
-  public AccountUserDto(String type, double balance, Long userId, double overDraft, double interestRate) {
+  public AccountUserDto(String type, double balance, int userId, double overDraft, double interestRate) {
     this.type = type;
     this.balance = balance;
     this.userId = userId;
@@ -56,11 +56,11 @@ public class AccountUserDto {
     this.balance = balance;
   }
 
-  public long getUserId() {
+  public int getUserId() {
     return userId;
   }
 
-  public void setUser(Long userId) {
+  public void setUser(int userId) {
     this.userId = userId;
   }
 

@@ -5,12 +5,17 @@ import fr.najet.bank.entities.User;
 import fr.najet.bank.exception.ApiRequestException;
 import fr.najet.bank.repositories.UserRepository;
 import fr.najet.bank.services.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
@@ -42,13 +47,14 @@ public class UserController {
    * @return A user object full filled
    */
   @GetMapping(value = "/user/{id}")
-  public Optional<User> getUserById(@PathVariable Long id) {
-    Optional<User> user = userService.getUser(id);
+  public User getUserById(@PathVariable int id) {
+    User user = userService.getUser(id);
     if (user == null) {
       throw new ApiRequestException("Oops cannot get user with id " + id + " was not found");
     }
     return user;
   }
+
 
   /**
    * Create - create user.
@@ -90,7 +96,7 @@ public class UserController {
    */
   @DeleteMapping("/user/{id}")
   @ResponseBody
-  public ResponseEntity<Void> deleteUserById(@PathVariable Long id) throws Exception {
+  public ResponseEntity<Void> deleteUserById(@PathVariable int id) throws Exception {
     userService.deleteUserById(id);
     return ResponseEntity.noContent().build();
   }

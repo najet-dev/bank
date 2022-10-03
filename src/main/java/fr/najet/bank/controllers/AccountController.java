@@ -1,9 +1,10 @@
 package fr.najet.bank.controllers;
 
-import fr.najet.bank.dto.AccountDto;
+import fr.najet.bank.dto.AccountUserDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.CurrentAccount;
 import fr.najet.bank.entities.SavingsAccount;
+import fr.najet.bank.entities.User;
 import fr.najet.bank.exception.ApiRequestException;
 import fr.najet.bank.repositories.AccountRepository;
 import fr.najet.bank.repositories.CurrentAccountRepository;
@@ -73,20 +74,23 @@ public class AccountController {
    */
 
   @PostMapping(value = "/account/add")
-  public Account createAccount(@RequestBody AccountDto accountDto) throws Exception {
-
+  public Account createAccount(@RequestBody AccountUserDto accountUserDto) throws Exception {
     Account createdAccount = null;
-    if (accountDto.getType().equals("CurrentAccount")) {
-      createdAccount = new CurrentAccount(accountDto.getBalance(), accountDto.getUser(),
-          accountDto.getOverDraft());
+    User user = userService.getUser(accountUserDto.getUserId());
+    if (accountUserDto.getType().equals("CurrentAccount")) {
+      createdAccount = new CurrentAccount(accountUserDto.getBalance(), user,
+          accountUserDto.getOverDraft());
       currentAccountRepository.save((CurrentAccount) createdAccount);
-    } else if (accountDto.getType().equals("SavingsAccount")) {
-      createdAccount = new SavingsAccount(accountDto.getBalance(), accountDto.getUser(),
-          accountDto.getInterestRate());
+    } else if (accountUserDto.getType().equals("SavingsAccount")) {
+      createdAccount = new SavingsAccount(accountUserDto.getBalance(), user,
+          accountUserDto.getInterestRate());
       savingsAccountRepository.save((SavingsAccount) createdAccount);
     }
     return createdAccount;
   }
+
+
+
 
 
   /* @PostMapping(value = "/account/add/{id}")
