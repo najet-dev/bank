@@ -19,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
@@ -77,13 +76,15 @@ public class AuthController {
           .body(new MessageResponse("Error: Email is already in use!"));
     }
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(),
+    User user = new User(
+        signUpRequest.getLastName(),
+        signUpRequest.getFirstName(),
+        signUpRequest.getUsername(),
         encoder.encode(signUpRequest.getPassword()),
         signUpRequest.getEmail());
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
-
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

@@ -18,9 +18,14 @@ const routes: Routes = [
         loadChildren: () => import('../inscription/inscription.module').then( m => m.InscriptionPageModule)
       },
       {
+        path: 'account',
+        loadChildren: () => import('../account/account.module').then( m => m.AccountPageModule)
+      },
+
+      {
         path: 'transfer',
         loadChildren: () => import('../transfer/transfer.module').then( m => m.TransferPageModule)
-      }
+      },
     ]
   }
 ];

@@ -8,6 +8,7 @@ public class AccountOperationDto {
   public int id;
   public Date createdAt = new Date();
   public int targetedAccount;
+  
   public OperationTypeEnum type;
 
   public double amount;

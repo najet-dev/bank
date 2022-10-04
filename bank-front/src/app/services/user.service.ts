@@ -15,24 +15,24 @@ export class UserService {
 
   constructor(public httpClient: HttpClient) { }
 
-  getUsers(): Observable<IUser[]> {
+ /* public getUsers(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${this.apiUrl}/users`);
   }
 
-  getUser(id: number): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${this.apiUrl}/user/${id}`);
+  public getUser(userId: number): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${this.apiUrl}/user/${userId}`);
+  }*/
+
+  public addUser(user: IUser) {
+  return this.httpClient.post<IUser>(`${this.apiUrl}/api/auth/signup`, user);
   }
 
-  postUser(user: IUser) {
-  return this.httpClient.post(`${this.apiUrl}/user/add`, user);
+  /*public updateUser(user: IUser) {
+  return this.httpClient.put<IUser>(`${this.apiUrl}/user/update`, user);
   }
-
-  patchUser(user: IUser) {
-  return this.httpClient.patch(`${this.apiUrl}/user/update`, user).subscribe((data) => data);
-  }
-  deleteUser(id: number) {
-  this.httpClient.delete(`${this.apiUrl}/user/${id}`).subscribe();
-  }
+  public deleteUser(id: number){
+  this.httpClient.delete(`${this.apiUrl}/user/${id}`);
+  }*/
 
 }
 

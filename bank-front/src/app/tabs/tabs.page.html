@@ -1,21 +1,26 @@
-<ion-tabs>
+<ion-content class="content">
+  <ion-tabs class="content">
+    <ion-tab-bar slot="bottom" color="primary">
+      <ion-tab-button tab="connexion">
+        <!--<ion-icon name="star-outline" color="light"></ion-icon>-->
+        <ion-label color="light">Connexion</ion-label>
+      </ion-tab-button>
 
-  <ion-tab-bar slot="bottom" color="primary">
-    <ion-tab-button tab="connexion">
-      <ion-icon name="star-outline" color="light"></ion-icon>
-      <ion-label color="light">Connexion</ion-label>
-    </ion-tab-button>
+      <ion-tab-button tab="inscription">
+       <!-- <ion-icon name="list-circle-outline" color="light"></ion-icon>-->
+        <ion-label color="light">Inscription</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="account">
+        <!-- <ion-icon name="list-circle-outline" color="light"></ion-icon>-->
+         <ion-label color="light">Compte</ion-label>
+       </ion-tab-button>
 
-    <ion-tab-button tab="inscription">
-      <ion-icon name="list-circle-outline" color="light"></ion-icon>
-      <ion-label color="light">Inscription</ion-label>
-    </ion-tab-button>
+      <ion-tab-button tab="transfer">
+        <!--<ion-icon name="chatbox-outline" color="light"></ion-icon>-->
+        <ion-label color="light">Virements</ion-label>
+      </ion-tab-button>
 
-    <ion-tab-button tab="transfer">
-      <ion-icon name="chatbox-outline" color="light"></ion-icon>
-      <ion-label color="light">Virements</ion-label>
-    </ion-tab-button>
+    </ion-tab-bar>
 
-  </ion-tab-bar>
-
-</ion-tabs>
+  </ion-tabs>
+</ion-content>

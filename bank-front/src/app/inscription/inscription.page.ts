@@ -22,7 +22,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./inscription.page.scss'],
 })
 export class InscriptionPage implements OnInit {
-  user: IUser = {};
+  //user: IUser[];
+  user: IUser = {
+    id: 0,
+    lastName: "",
+    firstName: "",
+    email: "",
+    username: "",
+    password: ""
+  };
 
   constructor(
     public formBuilder: FormBuilder,
@@ -47,8 +55,6 @@ export class InscriptionPage implements OnInit {
   get username() {
     return this.registrationForm.get('username');
   }
-
-
 
   get email() {
     return this.registrationForm.get('email');
@@ -93,7 +99,6 @@ export class InscriptionPage implements OnInit {
 
 
   };
-
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group(
@@ -150,12 +155,17 @@ export class InscriptionPage implements OnInit {
     }*/
     async onSubmit() {
       if (this.registrationForm.valid) {
-        this.user.lastName = this.registrationForm.value['lastName']
-        this.user.firstName = this.registrationForm.value['firstName']
+        //console.log(this.registrationForm.value)
+        this.user.lastName = this.registrationForm.value['lastname']
+        this.user.firstName = this.registrationForm.value['firstname']
         this.user.email = this.registrationForm.value['email']
         this.user.username = this.registrationForm.value['username']
         this.user.password = this.registrationForm.value['password']
-        this.userService.postUser(this.user).subscribe();
+        this.userService.addUser(this.user).subscribe(response =>{
+          console.log(response);
+          this.registrationForm.reset();
+
+        });
       }
     }
   }

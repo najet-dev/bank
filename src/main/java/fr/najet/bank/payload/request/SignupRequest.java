@@ -5,10 +5,30 @@ import java.util.Set;
 
 
 public class SignupRequest {
+
+  private String lastName;
+
+  private String firstName;
   private String username;
   private String password;
   private String email;
   private Set<String> role = new HashSet<>();
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
   public String getUsername() {
     return username;

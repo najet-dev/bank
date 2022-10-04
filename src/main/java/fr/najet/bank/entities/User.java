@@ -30,7 +30,7 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Account> accounts = new ArrayList<>();
 
-  public User(String lastName, String firstName, String username, String email, String password) {
+  public User(String lastName, String firstName, String username,  String password, String email) {
     this.lastName = lastName;
     this.firstName = firstName;
     this.email = email;
