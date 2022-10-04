@@ -1,6 +1,7 @@
 package fr.najet.bank.services;
 
 import fr.najet.bank.dto.AccountHistoryDto;
+import fr.najet.bank.dto.AccountOperationDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.enums.OperationTypeEnum;
@@ -23,7 +24,6 @@ public class AccountOperationService {
 
   @Autowired
   AccountRepository accountRepository;
-
   @Autowired
   AccountOperationRepository accountOperationRepository;
 
@@ -90,13 +90,14 @@ public class AccountOperationService {
     credit(accountDestination, amount, "Transfer from " + accountSource);
   }
 
-  /*public List<AccountOperationDto> historical(int id) {
-       List<AccountOperation> accountOperations = accountOperationRepository.findById(id);
-       return accountOperations.stream()
-               .map(op -> historyDto.fromAccountOperation(op))
-               .collect(Collectors.toList());
-   }*/
-  public Page<AccountOperation> getAccountHistorical(int accountId, int page, int size)
+  public AccountOperation getAccountOperation(int id) {
+    return accountOperationRepository.findById(id);
+  }
+  public void deleteAccountOperationById(int id) {
+    accountOperationRepository.deleteById(id);
+  }
+
+  public AccountHistoryDto getAccountHistorical(int accountId, int page, int size)
       throws AccountNotFoundException {
 
     Account account = accountRepository.findById(accountId);
@@ -104,14 +105,19 @@ public class AccountOperationService {
     if (account == null) {
       throw new AccountNotFoundException("Bank Account Not Found");
     }
+
     Page<AccountOperation> accountOperations =
         accountOperationRepository. findByAccountIdOrderByCreatedAtDesc(accountId, PageRequest.of(page, size));
-    AccountHistoryDto accountHistoryDto = new AccountHistoryDto();
-    accountHistoryDto.setId(account.getId());
-    accountHistoryDto.setBalance(account.getBalance());
-    accountHistoryDto.setPageSize(size);
-    accountHistoryDto.setCurrentPage(page);
 
-    return accountOperations;
+    Page<AccountOperationDto> pagedDto = accountOperations.map(
+        AccountOperationDto::fromAccountOperation
+        );
+
+
+    AccountHistoryDto accountHistoryDto = new AccountHistoryDto();
+    accountHistoryDto.setAccountId(account.getId());
+    accountHistoryDto.setBalance(account.getBalance());
+    accountHistoryDto.setAccountOperationsDto(pagedDto);
+    return accountHistoryDto;
   }
 }

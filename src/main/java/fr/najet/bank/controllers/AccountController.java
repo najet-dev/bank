@@ -89,18 +89,6 @@ public class AccountController {
     return createdAccount;
   }
 
-
-
-
-
-  /* @PostMapping(value = "/account/add/{id}")
-    public Account createAccount(@PathVariable int id, @RequestBody Account account) throws Exception{
-        User user = userRepository.findById(id);
-        user.getAccounts().add(account);
-        return this.accountService.updateAccount(account);
-    }*/
-
-
   /**
    * Modify - modify an account
    *

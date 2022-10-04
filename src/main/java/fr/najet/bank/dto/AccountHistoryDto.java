@@ -1,73 +1,46 @@
 package fr.najet.bank.dto;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public class AccountHistoryDto {
   private int accountId;
-
   private double balance;
-  private int currentPage;
-  private int totalPages;
-  private int pageSize;
-  private List<AccountOperationDto> accountOperations;
+  private Page<AccountOperationDto> accountOperationsDto;
 
   public AccountHistoryDto() {
   }
 
-  public AccountHistoryDto(int accountId, double balance, int currentPage, int totalPages, int pageSize,
-                           List<AccountOperationDto> accountOperations) {
+  public AccountHistoryDto(int accountId, double balance, Page<AccountOperationDto> accountOperationsDto) {
     this.accountId = accountId;
     this.balance = balance;
-    this.currentPage = currentPage;
-    this.totalPages = totalPages;
-    this.pageSize = pageSize;
-    this.accountOperations = accountOperations;
+    this.accountOperationsDto = accountOperationsDto;
   }
-  public int getId() {
+
+  public int getAccountId() {
     return accountId;
   }
+
+  public void setAccountId(int accountId) {
+    this.accountId = accountId;
+  }
+
   public double getBalance() {
     return balance;
   }
+
   public void setBalance(double balance) {
     this.balance = balance;
   }
-  public void setId(int accountId) {
-    this.accountId = accountId;
+
+
+  public Page<AccountOperationDto> getAccountOperationsDto() {
+    return accountOperationsDto;
   }
 
-  public int getCurrentPage() {
-    return currentPage;
+  public void setAccountOperationsDto(
+      Page<AccountOperationDto> accountOperationsDto) {
+    this.accountOperationsDto = accountOperationsDto;
   }
-
-  public void setCurrentPage(int currentPage) {
-    this.currentPage = currentPage;
-  }
-
-  public int getTotalPages() {
-    return totalPages;
-  }
-
-  public void setTotalPages(int totalPages) {
-    this.totalPages = totalPages;
-  }
-
-  public int getPageSize() {
-    return pageSize;
-  }
-
-  public void setPageSize(int pageSize) {
-    this.pageSize = pageSize;
-  }
-
-  public List<AccountOperationDto> getAccountOperations() {
-    return accountOperations;
-  }
-
-  public void setAccountOperations(List<AccountOperationDto> accountOperations) {
-    this.accountOperations = accountOperations;
-  }
-
 }
 
 

@@ -1,7 +1,6 @@
 package fr.najet.bank.repositories;
 
 import fr.najet.bank.entities.AccountOperation;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,13 +12,11 @@ public interface AccountOperationRepository extends JpaRepository<AccountOperati
 
   AccountOperation save(AccountOperation accountOperation);
 
-  List<AccountOperation> findById(int id);
-
-   /* @Query(value = "SELECT `amount` FROM account_operation WHERE account_id=:x", nativeQuery = true)
-    public List<AccountOperation> getAccountOperations(@Param("x") int code, Pageable pageable);*/
+  AccountOperation findById(int id);
+ // List<AccountOperation> findByAccountId(int id);
 
  Page<AccountOperation> findByAccountIdOrderByCreatedAtDesc(int accountId,
-                                                                Pageable pageable);
+                                                            Pageable pageable);
 
 
 

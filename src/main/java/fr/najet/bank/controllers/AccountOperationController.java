@@ -1,10 +1,12 @@
 package fr.najet.bank.controllers;
 
+import fr.najet.bank.dto.AccountHistoryDto;
 import fr.najet.bank.dto.CreditDto;
 import fr.najet.bank.dto.DebitDto;
 import fr.najet.bank.dto.TransferDto;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.exception.AccountNotFoundException;
+import fr.najet.bank.exception.ApiRequestException;
 import fr.najet.bank.exception.BalanceNotSufficientException;
 import fr.najet.bank.repositories.AccountOperationRepository;
 import fr.najet.bank.repositories.AccountRepository;
@@ -12,7 +14,8 @@ import fr.najet.bank.services.AccountOperationService;
 import fr.najet.bank.services.AccountService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,11 +45,20 @@ public class AccountOperationController {
   public List<AccountOperation> getAccountOperations() {
     return accountOperationService.getAccountOperations();
   }
-
-  /* @PutMapping(value="transfer")
-   public void transfer(@RequestBody TransferDto transfer){
-       accountService.transfer(transfer.getAccountSource(),transfer.getAccountDestination(), transfer.getAmount());
-   }*/
+  /**
+   * Read - Get one accountOperation
+   *
+   * @param id The id of the accountOperation
+   * @return An account object full filled
+   */
+  @GetMapping(value = "/accountOperation/{id}")
+  public AccountOperation getAccountOperationById(@PathVariable int id) {
+    AccountOperation accountOperation = accountOperationService.getAccountOperation(id);
+    if (accountOperation == null) {
+      throw new ApiRequestException("Oops cannot get account with id " + id + " was not found");
+    }
+    return accountOperation;
+  }
   @PostMapping("/debit")
   @ResponseBody
   public DebitDto debit(@RequestBody DebitDto debitDto)
@@ -72,14 +84,15 @@ public class AccountOperationController {
         transferDto.getAccountDestination(),
         transferDto.getAmount());
   }
-   /* @GetMapping("/operations/{id}")
-    public List<AccountOperationDto> getHistorical(@PathVariable int id){
-        return accountOperationService.historical(id);
-    }*/
 
-
+  @DeleteMapping("/accountOperation/{id}")
+  @ResponseBody
+  public ResponseEntity<Void> deleteAccountOpearationById(@PathVariable int id) throws Exception {
+    accountOperationService.deleteAccountOperationById(id);
+    return ResponseEntity.noContent().build();
+  }
   @GetMapping("/{accountId}/pageOperations")
-  public Page<AccountOperation> getAccountHistorical(
+  public AccountHistoryDto getAccountHistorical(
       @PathVariable int accountId,
       @RequestParam(name = "page", defaultValue = "0") int page,
       @RequestParam(name = "size", defaultValue = "3") int size) throws AccountNotFoundException {
