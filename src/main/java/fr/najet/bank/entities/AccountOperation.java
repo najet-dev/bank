@@ -2,7 +2,13 @@ package fr.najet.bank.entities;
 
 import fr.najet.bank.enums.OperationTypeEnum;
 import java.util.Date;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -33,6 +39,7 @@ public class AccountOperation {
     this.type = type;
     this.account = account;
   }
+
 
   public int getId() {
     return id;

@@ -2,7 +2,6 @@ import { IUser } from './../models/i-user';
 import { Component, OnInit } from '@angular/core';
 
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -66,7 +65,7 @@ export class InscriptionPage implements OnInit {
 
   public errorMessages = {
     lastname: [
-      { type: 'required', message: 'Lastname est requis' },
+      { type: 'required', message: 'Le nom est requis' },
       { type: 'minlength', message: 'Le nom doit contenir au minimum 1 caractères' },
       { type: 'maxlength', message: 'Le nom doit contenir au maximum 30 caractères' },
       { type: 'pattern', message: 'Entrez un nom valide' },
@@ -150,9 +149,6 @@ export class InscriptionPage implements OnInit {
       }
     )
     }
-   /* onSubmit() {
-      console.log(this.registrationForm.value);
-    }*/
     async onSubmit() {
       if (this.registrationForm.valid) {
         //console.log(this.registrationForm.value)

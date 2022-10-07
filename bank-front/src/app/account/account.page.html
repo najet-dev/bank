@@ -5,5 +5,36 @@
 </ion-header>
 
 <ion-content>
+  <div>
+    <form [formGroup]="accountFormGroup" class="form" (ngSubmit)='onSubmit()'>
+      <input type="number" formControlName="accountId" placeholder="  Numéro du compte">
+    <button><ion-icon name="search"></ion-icon>Search</button>
+  </form>
+
+  <div *ngIf="accountObservable | async as accountDetails">
+    <div>
+      <label>Numéro de compte</label>
+      <label>{{accountDetails.accountId}}</label>
+    </div>
+    <div>
+      <label>Solde</label>
+      <label>{{accountDetails.balance | number : '1.2-2'}}</label>
+    </div>
+    <table>
+      <thead>
+        <th>Numéro opération</th><th>Date</th><th>Type</th><th>Amount</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operation of accountDetails.accountOperationsDto">
+          <td>{{operation.id}}</td>
+          <td>{{operation.createdAt| date : 'dd-MM-yyyy:HH-mm-ss'}}</td>
+          <td>{{operation.type}}</td>
+          <td>{{operation.amount | number : '1.2-2'}}</td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+  </div>
 
 </ion-content>
+

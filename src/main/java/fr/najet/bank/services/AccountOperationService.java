@@ -111,11 +111,15 @@ public class AccountOperationService {
 
     Page<AccountOperationDto> pagedDto = accountOperations.map(
         AccountOperationDto::fromAccountOperation
-        );
+    );
     AccountHistoryDto accountHistoryDto = new AccountHistoryDto();
     accountHistoryDto.setAccountId(account.getId());
     accountHistoryDto.setBalance(account.getBalance());
+    accountHistoryDto.setPageSize(size);
+    accountHistoryDto.setCurrentPage(page);
     accountHistoryDto.setAccountOperationsDto(pagedDto);
     return accountHistoryDto;
   }
+
+
 }

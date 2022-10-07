@@ -11,7 +11,7 @@ public class CurrentAccount extends Account {
   }
 
   public CurrentAccount(double balance, User user, double overDraft) {
-    super("CurrentAccount", balance, user);
+    super();
     this.overDraft = overDraft;
   }
 
