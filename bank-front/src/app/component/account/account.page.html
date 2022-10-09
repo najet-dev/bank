@@ -6,7 +6,7 @@
 
 <ion-content>
   <div>
-    <form [formGroup]="accountFormGroup" class="form" (ngSubmit)='onSubmit()'>
+    <form [formGroup]="accountFormGroup" class="form" (ngSubmit)='submitAccount()'>
       <input type="number" formControlName="accountId" placeholder="  Numéro du compte">
     <button><ion-icon name="search"></ion-icon>Search</button>
   </form>
@@ -22,7 +22,7 @@
     </div>
     <table>
       <thead>
-        <th>Numéro opération</th><th>Date</th><th>Type</th><th>Amount</th>
+        <th>Numéro opération</th><th>Date</th><th>Type</th><th>Montant</th>
       </thead>
       <tbody>
         <tr *ngFor="let operation of accountDetails.accountOperationsDto">
@@ -35,6 +35,5 @@
     </table>
   </div>
   </div>
-
 </ion-content>
 

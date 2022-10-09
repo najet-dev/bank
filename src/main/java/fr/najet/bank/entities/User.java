@@ -33,11 +33,11 @@ public class User {
   public User(String lastName, String firstName, String username,  String password, String email) {
     this.lastName = lastName;
     this.firstName = firstName;
-    this.email = email;
     this.username = username;
     this.password = password;
-
+    this.email = email;
   }
+
   public User(){}
  public User(int id, String lastName, String firstName, String email, String username,
                String password, List<Account> accounts) {

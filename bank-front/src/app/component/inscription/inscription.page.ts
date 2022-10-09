@@ -1,27 +1,35 @@
+import { IUser } from '../../models/i-user';
 import { Component, OnInit } from '@angular/core';
+
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   FormsModule,
-  FormControl,
   ValidationErrors,
   ValidatorFn,
   Validators,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { HttpClient } from '@angular/common/http';
 
-
 @Component({
-  selector: 'app-connexion',
-  templateUrl: './connexion.page.html',
-  styleUrls: ['./connexion.page.scss'],
+  selector: 'app-inscription',
+  templateUrl: './inscription.page.html',
+  styleUrls: ['./inscription.page.scss'],
 })
-export class ConnexionPage implements OnInit {
-
+export class InscriptionPage implements OnInit {
+  //user: IUser[];
+  user: IUser = {
+    id: 0,
+    lastName: '',
+    firstName: '',
+    email: '',
+    username: '',
+    password: ''
+  };
 
   constructor(
     public formBuilder: FormBuilder,
@@ -47,8 +55,6 @@ export class ConnexionPage implements OnInit {
     return this.registrationForm.get('username');
   }
 
-
-
   get email() {
     return this.registrationForm.get('email');
   }
@@ -56,10 +62,9 @@ export class ConnexionPage implements OnInit {
   get password() {
     return this.registrationForm.get('password');
   }
-
   public errorMessages = {
     lastname: [
-      { type: 'required', message: 'Lastname est requis' },
+      { type: 'required', message: 'Le nom est requis' },
       { type: 'minlength', message: 'Le nom doit contenir au minimum 1 caractères' },
       { type: 'maxlength', message: 'Le nom doit contenir au maximum 30 caractères' },
       { type: 'pattern', message: 'Entrez un nom valide' },
@@ -92,7 +97,6 @@ export class ConnexionPage implements OnInit {
 
 
   };
-
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group(
@@ -144,10 +148,23 @@ export class ConnexionPage implements OnInit {
       }
     )
     }
-    onSubmit() {
-      console.log(this.registrationForm.value);
+    async onSubmit() {
+      if (this.registrationForm.valid) {
+        //console.log(this.registrationForm.value)
+        this.user.lastName = this.registrationForm.value['lastname']
+        this.user.firstName = this.registrationForm.value['firstname']
+        this.user.email = this.registrationForm.value['email']
+        this.user.username = this.registrationForm.value['username']
+        this.user.password = this.registrationForm.value['password']
+        this.userService.addUser(this.user).subscribe(response =>{
+          console.log(response);
+          this.registrationForm.reset();
+
+        });
+      }
     }
   }
+
 
 
 

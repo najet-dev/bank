@@ -73,6 +73,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/api/auth/signup").permitAll()
         .antMatchers("/{accountId}/pageOperations").permitAll()
         .antMatchers("/{accounts}/").permitAll()
+        .antMatchers("/transfer").permitAll()
+
 
 
         .anyRequest().authenticated();

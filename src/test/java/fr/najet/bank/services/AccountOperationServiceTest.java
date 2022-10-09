@@ -1,7 +1,5 @@
 package fr.najet.bank.services;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
 class AccountOperationServiceTest {
@@ -12,6 +10,7 @@ class AccountOperationServiceTest {
     //compte A : 2000 euros
     //compte B : 100 euros
     // transfert de A vers B  500 euros
+
 
     // vérifier que A a 1500 euros
     // vérifier que B a 600 euros

@@ -10,21 +10,21 @@ const routes: Routes = [
     children:[
       {
         path: 'connexion',
-        loadChildren: () => import('../connexion/connexion.module').then( m => m.ConnexionPageModule)
+        loadChildren: () => import('../component/connexion/connexion.module').then( m => m.ConnexionPageModule)
       },
 
       {
         path: 'inscription',
-        loadChildren: () => import('../inscription/inscription.module').then( m => m.InscriptionPageModule)
+        loadChildren: () => import('../component/inscription/inscription.module').then( m => m.InscriptionPageModule)
       },
       {
         path: 'account',
-        loadChildren: () => import('../account/account.module').then( m => m.AccountPageModule)
+        loadChildren: () => import('../component/account/account.module').then( m => m.AccountPageModule)
       },
 
       {
         path: 'transfer',
-        loadChildren: () => import('../transfer/transfer.module').then( m => m.TransferPageModule)
+        loadChildren: () => import('../component/transfer/transfer.module').then( m => m.TransferPageModule)
       },
     ]
   }

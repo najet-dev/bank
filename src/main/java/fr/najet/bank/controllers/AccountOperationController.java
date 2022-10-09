@@ -96,7 +96,7 @@ public class AccountOperationController {
   public AccountHistoryDto getAccountHistorical(
       @PathVariable int accountId,
       @RequestParam(name = "page", defaultValue = "0") int page,
-      @RequestParam(name = "size", defaultValue = "3") int size) throws AccountNotFoundException {
+      @RequestParam(name = "size", defaultValue = "5") int size) throws AccountNotFoundException {
 
     return accountOperationService.getAccountHistorical(accountId, page, size);
   }

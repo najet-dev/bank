@@ -4,3 +4,9 @@ ion-tab-button{
   font-size: 15px;
 }
 
+
+ion-tab-button {
+  --color-selected: rgb(218, 85, 116);
+  --background-focused: rgb(218, 85, 116);
+  --color: black;
+}

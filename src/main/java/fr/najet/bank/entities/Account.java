@@ -29,7 +29,7 @@ public class Account {
   protected Date createdAt = new Date();
   protected double balance;
 
-  @ManyToOne(cascade = CascadeType.MERGE)
+  @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY )
   @JoinColumn(name="userId")
   public User user;
   @JsonSerialize(using = AccountOperationSerializer.class)

@@ -15,12 +15,5 @@ export interface AccountOperation {
   description: string;
 
 }
-export interface IAccount {
-  id?: number;
-  type?: string;
-  balance?: number;
-  amount?: number;
- user?: {};
 
-}
 

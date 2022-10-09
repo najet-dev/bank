@@ -1,12 +1,12 @@
 package fr.najet.bank.exception;
 
-public class BalanceNotSufficientException extends Exception{
+public class BalanceNotSufficientException extends Exception {
 
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public BalanceNotSufficientException(String message) {
-        super(message);
-    }
+  public BalanceNotSufficientException(String message) {
+    super(message);
+  }
 
 }

@@ -13,8 +13,7 @@ public class AccountOperationDto {
 
   public double amount;
   public String description;
-
-  //public Account account;
+  
 
 
   public AccountOperationDto(int id, Date createdAt, int targetedAccount, OperationTypeEnum type,
@@ -88,16 +87,5 @@ public class AccountOperationDto {
     this.description = description;
   }
 
-  /*public Account getAccount() {
-    return account;
-  }
 
-  public void setAccount(Account account) {
-    this.account = account;
-  }
-    /*public AccountOperationDto fromAccountOperation(AccountOperation accountOperation) {
-        AccountOperationDto accountOperationDto = new AccountOperationDto();
-        BeanUtils.copyProperties(accountOperation, accountOperationDto);
-        return accountOperationDto;
-    }*/
 }
