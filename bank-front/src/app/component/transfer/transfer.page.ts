@@ -44,7 +44,6 @@ export class TransferPage implements OnInit {
     })
 
   }
-
   submitTransfer(){
     if (this.transferFrom.valid) {
       console.log(this.transferFrom.value);

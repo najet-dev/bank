@@ -86,7 +86,6 @@ public class AccountOperationController {
         transferDto.getAccountDestination(),
         transferDto.getAmount());
   }
-
   @DeleteMapping("/accountOperation/{id}")
   @ResponseBody
   public ResponseEntity<Void> deleteAccountOpearationById(@PathVariable int id) throws Exception {
