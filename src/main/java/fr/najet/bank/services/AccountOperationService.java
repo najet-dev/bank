@@ -2,6 +2,7 @@ package fr.najet.bank.services;
 
 import fr.najet.bank.dto.AccountHistoryDto;
 import fr.najet.bank.dto.AccountOperationDto;
+import fr.najet.bank.dto.MessageDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.enums.OperationTypeEnum;
@@ -24,6 +25,9 @@ public class AccountOperationService {
 
   @Autowired
   AccountRepository accountRepository;
+
+  @Autowired
+  AccountService accountService;
   @Autowired
   AccountOperationRepository accountOperationRepository;
 
@@ -84,15 +88,26 @@ public class AccountOperationService {
     accountRepository.save(account);
   }
 
-  public void transfer(int accountSource, int accountDestination, double amount)
+  public MessageDto transfer(int accountSource, int accountDestination, double amount)
       throws AccountNotFoundException, BalanceNotSufficientException {
-    debit(accountSource, amount, "Transfer to " + accountDestination);
-    credit(accountDestination, amount, "Transfer from " + accountSource);
+    Account account = accountRepository.findById(accountSource);
+
+    double accountAmount = account.getBalance();
+    //System.out.println(amount <= accountAmount);
+
+    if (amount <= accountAmount) {
+      debit(accountSource, amount, "Transfer to " + accountDestination);
+      credit(accountDestination, amount, "Transfer from " + accountSource);
+      return new MessageDto("virement effectué");
+    } else {
+      return new MessageDto("Le montant est supérieur ");
+    }
   }
 
   public AccountOperation getAccountOperation(int id) {
     return accountOperationRepository.findById(id);
   }
+
   public void deleteAccountOperationById(int id) {
     accountOperationRepository.deleteById(id);
   }
@@ -107,7 +122,8 @@ public class AccountOperationService {
     }
 
     Page<AccountOperation> accountOperations =
-        accountOperationRepository. findByAccountIdOrderByCreatedAtDesc(accountId, PageRequest.of(page, size));
+        accountOperationRepository.findByAccountIdOrderByCreatedAtDesc(accountId,
+            PageRequest.of(page, size));
 
     Page<AccountOperationDto> pagedDto = accountOperations.map(
         AccountOperationDto::fromAccountOperation

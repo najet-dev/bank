@@ -3,6 +3,7 @@ package fr.najet.bank.controllers;
 import fr.najet.bank.dto.AccountHistoryDto;
 import fr.najet.bank.dto.CreditDto;
 import fr.najet.bank.dto.DebitDto;
+import fr.najet.bank.dto.MessageDto;
 import fr.najet.bank.dto.TransferDto;
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.exception.AccountNotFoundException;
@@ -79,9 +80,9 @@ public class AccountOperationController {
   }
 
   @PutMapping("/transfer")
-  public void transfer(@RequestBody TransferDto transferDto)
+  public MessageDto transfer(@RequestBody TransferDto transferDto)
       throws AccountNotFoundException, BalanceNotSufficientException {
-    accountOperationService.transfer(transferDto.getAccountSource(),
+   return accountOperationService.transfer(transferDto.getAccountSource(),
         transferDto.getAccountDestination(),
         transferDto.getAmount());
   }
