@@ -9,10 +9,9 @@ const routes: Routes = [
     component: TabsPage,
     children:[
       {
-        path: 'connexion',
-        loadChildren: () => import('../component/connexion/connexion.module').then( m => m.ConnexionPageModule)
+        path: 'login',
+        loadChildren: () => import('../component/login/login.module').then( m => m.LoginPageModule)
       },
-
       {
         path: 'inscription',
         loadChildren: () => import('../component/inscription/inscription.module').then( m => m.InscriptionPageModule)

@@ -8,8 +8,11 @@ import java.util.List;
 
 public class AccountDto {
   protected int id;
+
   public String type;
+
   protected Date createdAt = new Date();
+
   protected double balance;
 
   protected User user;

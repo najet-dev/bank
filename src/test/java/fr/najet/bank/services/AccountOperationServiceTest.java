@@ -1,15 +1,30 @@
 package fr.najet.bank.services;
 
+import fr.najet.bank.dto.MessageDto;
+import fr.najet.bank.dto.TransferDto;
+import fr.najet.bank.exception.AccountNotFoundException;
+import fr.najet.bank.exception.BalanceNotSufficientException;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 class AccountOperationServiceTest {
 
+  @Autowired
+  AccountOperationService accountOperationService;
+
   @Test
-  void transfer() {
+  void transfer() throws AccountNotFoundException, BalanceNotSufficientException {
 
     //compte A : 2000 euros
     //compte B : 100 euros
     // transfert de A vers B  500 euros
+    TransferDto transferDto = new TransferDto();
+    transferDto.setAccountSource(2);
+    transferDto.setAccountDestination(3);
+    transferDto.setAmount(500);
+
+    MessageDto account = accountOperationService.transfer(2000, 100, 500);
+
 
 
     // vérifier que A a 1500 euros

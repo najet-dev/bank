@@ -15,7 +15,7 @@ import { AccountPage } from '../account/account.page' ;
   styleUrls: ['./transfer.page.scss'],
 })
 export class TransferPage implements OnInit {
-
+message = "";
 
   operation: IOperation = {
     accountId: 0,
@@ -52,7 +52,7 @@ export class TransferPage implements OnInit {
       this.transfer.amount = this.transferFrom.value['amount'];
       this.accountService.transfer(this.transfer).subscribe(response =>{
         let message = response['message'];
-        console.log(message);
+        //console.log(message);
         this.transferFrom.reset();
       });
 
@@ -77,6 +77,8 @@ export class TransferPage implements OnInit {
           text: 'valider',
           handler: () => {
             this.submitTransfer();
+            console.log('virement effectué');
+            return
           },
         },
       ],

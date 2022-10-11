@@ -12,6 +12,7 @@ import fr.najet.bank.repositories.AccountOperationRepository;
 import fr.najet.bank.repositories.AccountRepository;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -91,16 +92,17 @@ public class AccountOperationService {
   public MessageDto transfer(int accountSource, int accountDestination, double amount)
       throws AccountNotFoundException, BalanceNotSufficientException {
     Account account = accountRepository.findById(accountSource);
-
+    if (Objects.isNull(account)) {
+      throw new AccountNotFoundException("le compte suivant n'existe pas" + accountSource);
+    }
     double accountAmount = account.getBalance();
     //System.out.println(amount <= accountAmount);
-
     if (amount <= accountAmount) {
       debit(accountSource, amount, "Transfer to " + accountDestination);
       credit(accountDestination, amount, "Transfer from " + accountSource);
       return new MessageDto("virement effectué");
     } else {
-      return new MessageDto("Le montant est supérieur ");
+      throw new BalanceNotSufficientException("Le montant est supérieur à la balance du compte");
     }
   }
 
