@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { IOperation, ITransfer } from '../../models/i-transfer';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {AccountService} from '../../services/account.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AccountPage } from '../account/account.page' ;
@@ -33,61 +33,86 @@ message = "";
   transferFrom: FormGroup;
   isSubmitted = false;
 
-
-  ngOnInit() {
-    this.transferFrom = this.formBuilder.group({
-      accountSource: this.formBuilder.control(0),
-      accountDestination: this.formBuilder.control(0),
-      amount : this.formBuilder.control(0),
-
-
-    })
-
+  get accountSource() {
+    return this.transferFrom.get('accountSource');
   }
-  submitTransfer(){
+
+  get accountDestination() {
+    return this.transferFrom.get('accountDestination');
+  }
+  get amount() {
+    return this.transferFrom.get('amount');
+  }
+
+  public errorMessages = {
+    accountSource: [
+      { type: 'required', message: 'Le nom est requis' },
+      { type: 'pattern', message: 'Entrez un numéro valide' },
+    ],
+    accountDestination: [
+      { type: 'required', message: ' Le account destination est requis' },
+      { type: 'pattern', message: 'Entrez un numéro valide' },
+    ],
+    amount: [
+      { type: 'required', message: ' Le montant est requis' },
+      { type: 'pattern', message: 'Entrez un moutant valide' },
+    ],
+  }
+  ngOnInit() {
+    this. transferFrom = this.formBuilder.group(
+      {
+        accountSource: [
+          '',
+          [
+            Validators.required,
+          ],
+        ],
+        accountDestination: [
+          '',
+          [
+            Validators.required,
+          ],
+        ],
+        amount: [
+          '',
+          [
+            Validators.required,
+          ],
+        ],
+
+      },
+    )
+  }
+  
+
+  async submitTransfer(){
     if (this.transferFrom.valid) {
       console.log(this.transferFrom.value);
       this.transfer.accountSource = this.transferFrom.value['accountSource'];
       this.transfer.accountDestination = this.transferFrom.value["accountDestination"];
       this.transfer.amount = this.transferFrom.value['amount'];
-      this.accountService.transfer(this.transfer).subscribe(response =>{
-        let message = response['message'];
-        //console.log(message);
-        this.transferFrom.reset();
-      });
+      if(this.transfer.accountSource === this.transfer.accountDestination){
+        this.presentAlert("Transfert vers le même compte impossible")
+      }else{
+        this.accountService.transfer(this.transfer).subscribe(response =>{
+        // let message = response['message'];
+          console.log(response);
+          this.transferFrom.reset();
+          this.presentAlert("Transfert effectué")
 
+        });
+      }
     }
   }
-  async presentAlertConfirm() {
-    console.log('presentAlertConfirm')
+  async presentAlert(message:string) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'voulez-vous vraiment faire un virement ?',
-      message: '',
-      buttons: [
-        {
-          text: 'Annuler',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel: annuler');
-          },
-        },
-        {
-          text: 'valider',
-          handler: () => {
-            this.submitTransfer();
-            console.log('virement effectué');
-            return
-          },
-        },
-      ],
+      header: 'Alert',
+      subHeader: '',
+      message: message,
+      buttons: ['OK'],
     });
     await alert.present();
   }
-
-
-
 }
 
 

@@ -6,19 +6,19 @@
 
 <ion-content class="ion-content">
   <ion-card class="ion-card">
-      <form [formGroup]="transferFrom" (ngSubmit)="presentAlertConfirm()">
+      <form [formGroup]="transferFrom" (ngSubmit)="submitTransfer()">
         <div class="input">
           <label>Account Source</label>
-          <input type="number" formControlName="accountSource" class="from-control" required>
+          <input type="number" formControlName="accountSource" class="from-control">
 
           <label>Account Destination</label>
-          <input type="number" formControlName="accountDestination" class="from-control" required>
+          <input type="number" formControlName="accountDestination" class="from-control">
 
           <label>Amount</label>
-          <input class="input" type="number" formControlName="amount" class="form-control" required>
+          <input class="input" type="number" formControlName="amount" class="form-control">
         </div>
         <div>
-          <ion-button type="submit" class="btn">Valider</ion-button>
+          <ion-button type="submit" class="btn" [disabled]="!transferFrom.valid" >Valider</ion-button>
           <ion-button class="btn" routerLink="/account">Annuler</ion-button><br />
         </div>
       </form>

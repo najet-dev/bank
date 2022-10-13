@@ -40,6 +40,13 @@ public class AccountOperation {
     this.account = account;
   }
 
+  public AccountOperation(int id, int amount, String debit) {
+    this.id = id;
+    this.amount = amount;
+    this.description = debit;
+
+  }
+
 
   public int getId() {
     return id;

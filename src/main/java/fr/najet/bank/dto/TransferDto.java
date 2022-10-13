@@ -1,6 +1,8 @@
 package fr.najet.bank.dto;
 
-public class TransferDto {
+import fr.najet.bank.entities.AccountOperation;
+
+public class TransferDto extends AccountOperation {
 
   public int accountSource;
   public int accountDestination;

@@ -10,12 +10,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
-[x: string]: any;
+//[x: string]: any;
   accountFormGroup: FormGroup;
+  currentPage: number = 0;
   pageNumber : number = 0;
   pageSize : number = 5;
   accountObservable!: Observable<AccountDetails> ;
   totalPages : number;
+  page: number = 0;
+
 
 
   constructor(private formBuilder: FormBuilder, private accountService: AccountService ) { }
@@ -30,10 +33,6 @@ export class AccountPage implements OnInit {
   submitAccount(){
     let accounId: number = this.accountFormGroup.value.accountId;
     this.accountObservable = this.accountService.getAccount(accounId,this.currentPage,this.pageSize);
-  }
-  gotoPage(page: number) {
-    this.currentPage = page;
-    this.submitAccount();
   }
 
 
