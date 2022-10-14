@@ -96,13 +96,12 @@ public class AccountOperationService {
       throw new AccountNotFoundException("le compte suivant n'existe pas" + accountSource);
     }
     double accountAmount = account.getBalance();
-    //System.out.println(amount <= accountAmount);
     if (amount <= accountAmount) {
       debit(accountSource, amount, "Transfer to " + accountDestination);
       credit(accountDestination, amount, "Transfer from " + accountSource);
       return new MessageDto("virement effectué");
     } else {
-      throw new BalanceNotSufficientException("Le montant est supérieur à la balance du compte");
+      return new MessageDto("Le montant est supérieur à la balance du compte");
     }
   }
 

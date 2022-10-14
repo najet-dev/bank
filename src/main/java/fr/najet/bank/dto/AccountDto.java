@@ -9,6 +9,7 @@ import java.util.List;
 public class AccountDto {
   protected int id;
 
+
   public String type;
 
   protected Date createdAt = new Date();
@@ -26,7 +27,7 @@ public class AccountDto {
   public AccountDto() {
   }
 
-  public AccountDto(String type, double balance, User user, double overDraft, double interestRate) {
+  public AccountDto( String type, double balance, User user, double overDraft, double interestRate) {
     this.type = type;
     this.balance = balance;
     this.user = user;
@@ -37,6 +38,8 @@ public class AccountDto {
   public int getId() {
     return id;
   }
+
+
 
   public void setId(int id) {
     this.id = id;

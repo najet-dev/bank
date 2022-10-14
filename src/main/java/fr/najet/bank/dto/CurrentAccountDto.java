@@ -1,9 +1,6 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.entities.AccountOperation;
-import fr.najet.bank.entities.User;
 import java.util.Date;
-import java.util.List;
 
 public class CurrentAccountDto {
 
@@ -13,8 +10,7 @@ public class CurrentAccountDto {
   private UserDto userDto;
   private double overDraft;
 
-  public CurrentAccountDto(String type, Date createdAt, double balance, User user,
-                           List<AccountOperation> accountOperations, double overDraft) {
+  public CurrentAccountDto() {
     super();
   }
 
@@ -27,16 +23,17 @@ public class CurrentAccountDto {
     this.overDraft = overDraft;
   }
 
-  public CurrentAccountDto(Date createdAt, double balance, UserDto userDto, double overDraft) {
+/*  public CurrentAccountDto(Date createdAt, double balance, UserDto userDto, double overDraft) {
     this.createdAt = createdAt;
     this.balance = balance;
     this.userDto = userDto;
     this.overDraft = overDraft;
-  }
+  }*/
 
   public int getId() {
     return id;
   }
+
 
   public void setId(int id) {
     this.id = id;

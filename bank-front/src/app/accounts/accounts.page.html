@@ -1,0 +1,37 @@
+<div>
+  <select>
+    <option *ngFor="let emp of employee" [value]="emp.id">
+      {{emp.Name}}
+    </option>
+  </select>
+</div>
+
+<div class="container">
+  <form [formGroup]="accountForm">
+    <div class="row" formArrayName="account" *ngFor="let item of account">
+        <div class="form-group">
+          <label>Compte</label>
+          <ion-select>
+
+          </ion-select>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container">
+  <form [formGroup]="product">
+    <div class="row" formArrayName="category" *ngFor="let item of product.controls.category.controls; let i = index;">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Categoria {{i}}</label>
+          <ng-select [items]="categories"
+              [searchable]="true"
+              bindLabel="name"
+              formControlName="{{i}}">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </form>
+  <pre>{{product.value|json}}</pre>
+</div>

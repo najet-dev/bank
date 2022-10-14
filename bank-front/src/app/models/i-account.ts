@@ -2,9 +2,6 @@
 export interface AccountDetails {
   accountId: number;
   balance: number;
-  currentPage: number;
-  totalPages: number;
-  pageSize: number;
   accountOperationsDto: AccountOperationsDTOModel;
 }
 
@@ -27,12 +24,21 @@ export interface AccountOperationsDTOModel {
 
 export interface AccountOperation {
   id: number;
-  createdAt: Date;
+  createdAt?: Date;
   type: string;
   amount: number;
   description: string;
 
 
 }
+export interface IAccounts{
+  id: number;
+  type: String;
+  createdAt: Date;
+  balance: number;
+}
+export interface IAccountBalance{
+  id: number;
+  createdAt?: Date;
 
-
+}

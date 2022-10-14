@@ -21,19 +21,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Entity
 @Transactional
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name= "accounts")
+@Table(name = "accounts")
 public class Account {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected int id;
   protected String type;
   protected Date createdAt = new Date();
   protected double balance;
 
-  @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY )
-  @JoinColumn(name="userId")
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "userId")
   public User user;
   @JsonSerialize(using = AccountOperationSerializer.class)
-  @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
   public List<AccountOperation> accountOperations = new ArrayList<>();
 
   public Account() {
@@ -77,7 +78,7 @@ public class Account {
   }
 
   public void setUser(User user) {
-    this.user= user;
+    this.user = user;
   }
 
 

@@ -1,3 +1,5 @@
+import { IAccountBalance } from './../../models/i-transfer';
+import { AccountDetails } from './../../models/i-account';
 import { HttpClient } from '@angular/common/http';
 import { IOperation, ITransfer } from '../../models/i-transfer';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +7,7 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, 
 import {AccountService} from '../../services/account.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AccountPage } from '../account/account.page' ;
+import { Observable } from 'rxjs';
 
 
 
@@ -16,16 +19,28 @@ import { AccountPage } from '../account/account.page' ;
 })
 export class TransferPage implements OnInit {
 message = "";
+accountObservable!: Observable<AccountDetails> ;
+pageSize : number = 5;
+currentPage: number = 0;
+
+
+
 
   operation: IOperation = {
     accountId: 0,
     amount: 0,
   };
+  accountDetails: IAccountBalance ={
+    accountId: 0,
+    balance: 0,
+  };
 
   transfer: ITransfer ={
     accountSource: 0,
     accountDestination: 0,
-    amount: 0
+    amount: 0,
+    balance:0
+
   };
 
 
@@ -83,22 +98,29 @@ message = "";
       },
     )
   }
-  
+
 
   async submitTransfer(){
     if (this.transferFrom.valid) {
-      console.log(this.transferFrom.value);
+      // console.log(this.transferFrom.value);
       this.transfer.accountSource = this.transferFrom.value['accountSource'];
       this.transfer.accountDestination = this.transferFrom.value["accountDestination"];
       this.transfer.amount = this.transferFrom.value['amount'];
+
+
       if(this.transfer.accountSource === this.transfer.accountDestination){
+        this.transferFrom.reset();
         this.presentAlert("Transfert vers le même compte impossible")
-      }else{
+
+      }
+      else {
         this.accountService.transfer(this.transfer).subscribe(response =>{
         // let message = response['message'];
-          console.log(response);
+           console.log(response);
           this.transferFrom.reset();
-          this.presentAlert("Transfert effectué")
+          this.presentAlert(response['message'])
+          console.log(this.presentAlert(response['message'])
+          )
 
         });
       }
@@ -113,6 +135,8 @@ message = "";
     });
     await alert.present();
   }
+
+
 }
 
 

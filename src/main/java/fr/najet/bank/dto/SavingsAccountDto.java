@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class SavingsAccountDto {
   private int id;
+
   private Date createdAt;
   private double balance;
 
