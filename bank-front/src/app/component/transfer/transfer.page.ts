@@ -24,23 +24,17 @@ pageSize : number = 5;
 currentPage: number = 0;
 
 
-
-
   operation: IOperation = {
     accountId: 0,
     amount: 0,
   };
-  accountDetails: IAccountBalance ={
-    accountId: 0,
-    balance: 0,
-  };
+
 
   transfer: ITransfer ={
     accountSource: 0,
     accountDestination: 0,
     amount: 0,
-    balance:0
-
+    id: 0
   };
 
 
@@ -99,14 +93,12 @@ currentPage: number = 0;
     )
   }
 
-
   async submitTransfer(){
     if (this.transferFrom.valid) {
       // console.log(this.transferFrom.value);
       this.transfer.accountSource = this.transferFrom.value['accountSource'];
       this.transfer.accountDestination = this.transferFrom.value["accountDestination"];
       this.transfer.amount = this.transferFrom.value['amount'];
-
 
       if(this.transfer.accountSource === this.transfer.accountDestination){
         this.transferFrom.reset();

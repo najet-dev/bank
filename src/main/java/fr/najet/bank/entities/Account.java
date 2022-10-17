@@ -26,6 +26,7 @@ public class Account {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected int id;
+  protected String name;
   protected String type;
   protected Date createdAt = new Date();
   protected double balance;
@@ -41,8 +42,9 @@ public class Account {
     super();
   }
 
-  public Account(String type, double balance, User user) {
+  public Account(String type, String name, double balance, User user) {
     this.type = type;
+    this.name = name;
     this.balance = balance;
     this.user = user;
   }
@@ -56,6 +58,21 @@ public class Account {
     this.id = id;
   }
 
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public Date getCreatedAt() {
     return createdAt;

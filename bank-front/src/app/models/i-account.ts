@@ -2,6 +2,9 @@
 export interface AccountDetails {
   accountId: number;
   balance: number;
+  User: {
+    id: number;
+  };
   accountOperationsDto: AccountOperationsDTOModel;
 }
 
@@ -34,8 +37,8 @@ export interface AccountOperation {
 export interface IAccounts{
   id: number;
   type: String;
-  createdAt: Date;
-  balance: number;
+  createdAt?: Date;
+  balance?: number;
 }
 export interface IAccountBalance{
   id: number;

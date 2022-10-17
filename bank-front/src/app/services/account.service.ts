@@ -20,12 +20,13 @@ export class AccountService {
     return this.httpClient.get<AccountDetails>(this.apiUrl +'/'+ accountId + "/pageOperations?page/" + page + "&size="+size);
 
   }
-  public addDebit (transfer: ITransfer) {
+ 
+/*public addDebit (transfer: ITransfer) {
     return this.httpClient.post<ITransfer>(`${this.apiUrl}/debit`, transfer);
-    }
-    public addCredit(transfer: ITransfer) {
-      return this.httpClient.post<ITransfer>(`${this.apiUrl}/credit`, transfer);
-      }
+  }
+  public addCredit(transfer: ITransfer) {
+    return this.httpClient.post<ITransfer>(`${this.apiUrl}/credit`, transfer);
+  }*/
 
   public transfer(transfer: ITransfer){
     return this.httpClient.put(`${this.apiUrl}/transfer`, transfer);

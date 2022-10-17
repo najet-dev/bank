@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountService } from '../../services/account.service';
 import { Observable } from 'rxjs';
+import { IUser } from 'src/app/models/i-user';
 
 @Component({
   selector: 'app-account',
@@ -18,7 +19,6 @@ export class AccountPage implements OnInit {
   accountObservable!: Observable<AccountDetails> ;
   totalPages : number;
   page: number = 0;
-
 
 
   constructor(private formBuilder: FormBuilder, private accountService: AccountService ) { }

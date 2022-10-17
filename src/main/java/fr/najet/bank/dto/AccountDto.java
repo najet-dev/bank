@@ -12,6 +12,8 @@ public class AccountDto {
 
   public String type;
 
+  protected String name;
+
   protected Date createdAt = new Date();
 
   protected double balance;
@@ -27,8 +29,9 @@ public class AccountDto {
   public AccountDto() {
   }
 
-  public AccountDto( String type, double balance, User user, double overDraft, double interestRate) {
+  public AccountDto(String type, String name, double balance, User user, double overDraft, double interestRate) {
     this.type = type;
+    this.name= name;
     this.balance = balance;
     this.user = user;
     this.overDraft = overDraft;
@@ -39,14 +42,20 @@ public class AccountDto {
     return id;
   }
 
-
-
   public void setId(int id) {
     this.id = id;
   }
 
   public String getType() {
     return type;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public void setType(String type) {

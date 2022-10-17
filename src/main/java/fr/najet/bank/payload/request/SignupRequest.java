@@ -5,9 +5,7 @@ import java.util.Set;
 
 
 public class SignupRequest {
-
   private String lastName;
-
   private String firstName;
   private String username;
   private String password;

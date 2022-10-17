@@ -1,5 +1,6 @@
 package fr.najet.bank.controllers;
 
+import fr.najet.bank.dto.AccountForVirementDTO;
 import fr.najet.bank.dto.AccountUserDto;
 import fr.najet.bank.entities.Account;
 import fr.najet.bank.entities.CurrentAccount;
@@ -69,6 +70,27 @@ public class AccountController {
     return account;
   }
 
+  @GetMapping(value = "/account/user/{idUser}")
+  public List<AccountForVirementDTO> getAccountByIdUser(@PathVariable int idUser) {
+    List<Account> accounts = accountService.getAccountsByIdUser(idUser);
+    if (accounts == null) {
+      throw new ApiRequestException("Oops cannot get account with id " + idUser + " was not found");
+    }
+    List<AccountForVirementDTO> resultDTO = accounts.stream().map(
+        AccountForVirementDTO::fromAccount
+    ).toList();
+    /*
+    // c'est la même que :
+    List<AccountForVirementDTO> resultDTO = new ArrayList<>();
+    for (Account a: accounts) {
+        AccountForVirementDTO dto = AccountForVirementDTO.fromAccount(a);
+        resultDTO.add(dto);
+    }
+    //*/
+    return resultDTO;
+  }
+
+
   /**
    * Create - create account
    *
@@ -80,11 +102,11 @@ public class AccountController {
     Account createdAccount = null;
     User user = userService.getUser(accountUserDto.getUserId());
     if (accountUserDto.getType().equals("CurrentAccount")) {
-      createdAccount = new CurrentAccount(accountUserDto.getBalance(), user,
+      createdAccount = new CurrentAccount(accountUserDto.getName(),accountUserDto.getBalance(), user,
           accountUserDto.getOverDraft());
       currentAccountRepository.save((CurrentAccount) createdAccount);
     } else if (accountUserDto.getType().equals("SavingsAccount")) {
-      createdAccount = new SavingsAccount(accountUserDto.getBalance(), user,
+      createdAccount = new SavingsAccount(accountUserDto.getName(),accountUserDto.getBalance(), user,
           accountUserDto.getInterestRate());
       savingsAccountRepository.save((SavingsAccount) createdAccount);
     }
@@ -110,7 +132,7 @@ public class AccountController {
    * @param id - The id of the account to delete
    * @return account - An account is delete
    */
-  @DeleteMapping("/accounts/{id}")
+  @DeleteMapping("/account/{id}")
   @ResponseBody
   public ResponseEntity<Void> deleteAccountById(@PathVariable int id) throws Exception {
     accountService.deleteAccountById(id);

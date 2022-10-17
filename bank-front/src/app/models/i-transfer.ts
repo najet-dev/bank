@@ -15,9 +15,9 @@ export interface IAccountBalance {
 
 
 export interface ITransfer {
+  id: number;
   accountSource: number;
   accountDestination: number;
   amount: number;
-  balance: number;
 
 }

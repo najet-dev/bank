@@ -17,11 +17,11 @@ export class UserService {
 
  /* public getUsers(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${this.apiUrl}/users`);
-  }
-
-  public getUser(userId: number): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${this.apiUrl}/user/${userId}`);
   }*/
+
+  public getUser(userid: number): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${this.apiUrl}/user/${userid}`);
+  }
 
   public addUser(user: IUser) {
   return this.httpClient.post<IUser>(`${this.apiUrl}/api/auth/signup`, user);

@@ -5,6 +5,7 @@ import java.util.Date;
 public class SavingsAccountDto {
   private int id;
 
+  private String name;
   private Date createdAt;
   private double balance;
 
@@ -16,9 +17,10 @@ public class SavingsAccountDto {
     super();
   }
 
-  public SavingsAccountDto(int id, String type, Date createdAt, double balance, UserDto userDto,
+  public SavingsAccountDto(int id, String name, Date createdAt, double balance, UserDto userDto,
                            double interestRate) {
     this.id = id;
+    this.name = name;
     this.createdAt = createdAt;
     this.balance = balance;
     this.userDto = userDto;
@@ -33,6 +35,13 @@ public class SavingsAccountDto {
     this.id = id;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public Date getCreatedAt() {
     return createdAt;

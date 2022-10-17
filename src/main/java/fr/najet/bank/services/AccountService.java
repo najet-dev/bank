@@ -24,6 +24,12 @@ public class AccountService {
     return accountRepository.findAll();
   }
 
+  public List<Account>  getAccountsByIdUser(int idUser) {
+    List<Account> res = accountRepository.findByUser_Id(idUser);
+    return res;
+  }
+
+
   public Account createAccount(Account account) {
     return accountRepository.save(account);
   }

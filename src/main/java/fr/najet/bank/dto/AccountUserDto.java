@@ -7,8 +7,10 @@ import java.util.List;
 
 public class AccountUserDto {
 
+  public String name;
 
   public String type;
+
   public Date createdAt = new Date();
 
   public double balance;
@@ -24,7 +26,8 @@ public class AccountUserDto {
   public AccountUserDto() {
   }
 
-  public AccountUserDto(String type, double balance, int userId, double overDraft, double interestRate) {
+  public AccountUserDto(String name, String type, double balance, int userId, double overDraft, double interestRate) {
+    this.name = name;
     this.type = type;
     this.balance = balance;
     this.userId = userId;
@@ -38,6 +41,14 @@ public class AccountUserDto {
 
   public void setType(String type) {
     this.type = type;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public Date getCreatedAt() {

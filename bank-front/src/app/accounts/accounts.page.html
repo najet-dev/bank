@@ -1,37 +1,33 @@
-<div>
-  <select>
-    <option *ngFor="let emp of employee" [value]="emp.id">
-      {{emp.Name}}
-    </option>
-  </select>
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Virement entre compte</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<div class="container">
-  <form [formGroup]="accountForm">
-    <div class="row" formArrayName="account" *ngFor="let item of account">
-        <div class="form-group">
-          <label>Compte</label>
-          <ion-select>
+<ion-content class="ion-content">
+  <ion-card class="ion-card">
 
+    <form [formGroup]="transferFrom" (ngSubmit)="submitTransfer()">
+      <ion-item>
+        <ion-select  class="item"   placeholder="Choisir un compte"formControlName="accountSource">
+          <ion-select-option class="form-control" [value]="1">Compte Courant</ion-select-option>
+          <ion-select-option class="form-control" [value]="2">Compte Epargne</ion-select-option>
           </ion-select>
-      </div>
-    </div>
-  </form>
-</div>
-<div class="container">
-  <form [formGroup]="product">
-    <div class="row" formArrayName="category" *ngFor="let item of product.controls.category.controls; let i = index;">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label>Categoria {{i}}</label>
-          <ng-select [items]="categories"
-              [searchable]="true"
-              bindLabel="name"
-              formControlName="{{i}}">
-          </ng-select>
+        </ion-item>
+      <ion-item >
+        <ion-select class="item" placeholder="Choisir un compte"formControlName="accountDestination">
+          <ion-select-option class="form-control" [value]="1">Compte Courant</ion-select-option>
+          <ion-select-option class="form-control" [value]="2">Compte Epargne</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input class="input" type="number" formControlName="amount" placeholder="Montant" class="form-control"></ion-input>
+       </ion-item>
+        <div>
+          <ion-button type="submit" class="btn" [disabled]="!transferFrom.valid" >Valider</ion-button>
+          <ion-button class="btn" routerLink="/account">Annuler</ion-button><br />
         </div>
-      </div>
-    </div>
-  </form>
-  <pre>{{product.value|json}}</pre>
-</div>
+      </form>
+  </ion-card>
+</ion-content>
+

@@ -5,6 +5,8 @@ import java.util.Date;
 public class CurrentAccountDto {
 
   private int id;
+
+  private String name;
   private Date createdAt;
   private double balance;
   private UserDto userDto;
@@ -14,9 +16,10 @@ public class CurrentAccountDto {
     super();
   }
 
-  public CurrentAccountDto(int id, Date createdAt, double balance, UserDto userDto,
+  public CurrentAccountDto(int id, String name, Date createdAt, double balance, UserDto userDto,
                            double overDraft) {
     this.id = id;
+    this.name = name;
     this.createdAt = createdAt;
     this.balance = balance;
     this.userDto = userDto;
@@ -34,6 +37,13 @@ public class CurrentAccountDto {
     return id;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public void setId(int id) {
     this.id = id;

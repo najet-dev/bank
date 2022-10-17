@@ -12,8 +12,6 @@ public class UserDto {
 
   public String firstName;
 
-  public String email;
-
   public String userName;
 
   public String role;
@@ -24,13 +22,17 @@ public class UserDto {
 
   public UserDto() {
   }
+  public UserDto(String lastName, String firstName, List accounts) {
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.accounts = accounts;
+  }
 
-  public UserDto(String lastName, String firstName, String email, String userName, String role,
+  public UserDto(String lastName, String firstName, String userName, String role,
                  String password) {
 
     this.lastName = lastName;
     this.firstName = firstName;
-    this.email = email;
     this.userName = userName;
     this.role = role;
     this.password = password;
@@ -60,13 +62,6 @@ public class UserDto {
     this.firstName = firstName;
   }
 
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
 
   public String getUserName() {
     return userName;
@@ -92,8 +87,14 @@ public class UserDto {
     this.password = password;
   }
 
+  public List<Account> getAccounts() {
+    return accounts;
+  }
 
-  /*  public static User updateUser(UserDto userDto) {
+  public void setAccounts(List<Account> accounts) {
+    this.accounts = accounts;
+  }
+/*  public static User updateUser(UserDto userDto) {
         User user = new User(userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword());
         return user;
     }*/

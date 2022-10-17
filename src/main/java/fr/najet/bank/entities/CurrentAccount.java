@@ -10,10 +10,12 @@ public class CurrentAccount extends Account {
     super();
   }
 
-  public CurrentAccount(double balance, User user, double overDraft) {
-    super("CurrentAccount", balance, user);
+  public CurrentAccount(String name, double balance, User user, double overDraft) {
+    super("CurrentAccount", name, balance, user);
     this.overDraft = overDraft;
   }
+
+
 
   public double getOverDraft() {
     return overDraft;

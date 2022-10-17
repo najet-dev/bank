@@ -1,8 +1,21 @@
 package fr.najet.bank.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import java.util.*;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "users",
@@ -39,8 +52,8 @@ public class User {
   }
 
   public User(){}
- public User(int id, String lastName, String firstName, String email, String username,
-               String password, List<Account> accounts) {
+  public User(int id, String lastName, String firstName, String email, String username,
+              String password, List<Account> accounts) {
     this.id = id;
     this.lastName = lastName;
     this.firstName = firstName;

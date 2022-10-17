@@ -31,11 +31,6 @@ public class UserController {
    * @return -A List objet of user full filled
    */
 
-  @GetMapping("/hello")
-  public String hello() {
-    return "hello";
-  }
-
   @GetMapping(value = "/users")
   public List<User> getUsers() {
     return userService.getUsers();
@@ -102,6 +97,8 @@ public class UserController {
     userService.deleteUserById(id);
     return ResponseEntity.noContent().build();
   }
+
+
   
 }
 
