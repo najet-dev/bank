@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/{accountId}/pageOperations").permitAll()
         .antMatchers("/accounts").permitAll()
         .antMatchers("/credit").permitAll()
-        .antMatchers("/debit").permitAll()
+        .antMatchers("/account/user/{id}").permitAll()
         .antMatchers("/{account}/{id}").permitAll()
         .antMatchers("/transfer").permitAll()
         .anyRequest().authenticated();

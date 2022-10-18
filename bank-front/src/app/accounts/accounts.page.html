@@ -1,33 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Virement entre compte</ion-title>
+    <ion-title>account</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-content">
-  <ion-card class="ion-card">
+<ion-content>
+  <div>
+    <form [formGroup]="accountFormGroup" class="form" (ngSubmit)='submitAccount()'>
+      <input type="number" formControlName="accountId" placeholder="  Numéro du compte">
+    <button><ion-icon name="search"></ion-icon>Search</button>
+  </form>
 
-    <form [formGroup]="transferFrom" (ngSubmit)="submitTransfer()">
-      <ion-item>
-        <ion-select  class="item"   placeholder="Choisir un compte"formControlName="accountSource">
-          <ion-select-option class="form-control" [value]="1">Compte Courant</ion-select-option>
-          <ion-select-option class="form-control" [value]="2">Compte Epargne</ion-select-option>
-          </ion-select>
-        </ion-item>
-      <ion-item >
-        <ion-select class="item" placeholder="Choisir un compte"formControlName="accountDestination">
-          <ion-select-option class="form-control" [value]="1">Compte Courant</ion-select-option>
-          <ion-select-option class="form-control" [value]="2">Compte Epargne</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-input class="input" type="number" formControlName="amount" placeholder="Montant" class="form-control"></ion-input>
-       </ion-item>
-        <div>
-          <ion-button type="submit" class="btn" [disabled]="!transferFrom.valid" >Valider</ion-button>
-          <ion-button class="btn" routerLink="/account">Annuler</ion-button><br />
-        </div>
-      </form>
-  </ion-card>
+  <div *ngIf="accountObservable | async as accountDetails">
+    <div *ngFor="let userAccount of userAccounts">
+      {{userAccount.user}}
+      {{userAccount.balance}}
+      {{userAccount.type}}
+
+      <label>Numéro de compte</label>
+      <label>{{accountDetails.accountId}}</label>
+    </div>
+    <div>
+      <label>Solde</label>
+      <label>{{accountDetails.balance | number : '1.2-2'}}</label>
+    </div>
+
+
+    <table class="thead">
+      <thead >
+        <th>Date</th><th>Type</th><th>Montant</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operation of accountDetails.accountOperationsDto.content ">
+          <td>{{operation.createdAt| date : 'dd-MM-yyyy:HH-mm-ss'}}</td>
+          <td>{{operation.type}}</td>
+          <td>{{operation.amount | number : '1.2-2'}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <ul>
+      <li>
+      </li>
+    </ul>
+  </div>
+  </div>
 </ion-content>
 

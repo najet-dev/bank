@@ -11,7 +11,6 @@ import { IUser } from 'src/app/models/i-user';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
-//[x: string]: any;
   accountFormGroup: FormGroup;
   currentPage: number = 0;
   pageNumber : number = 0;
