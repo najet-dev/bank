@@ -2,17 +2,10 @@
 export interface AccountDetails {
   accountId: number;
   balance: number;
-  accountOperationsDto: AccountOperationsDTOModel;
-}
-
-export interface IAccountByIdUser {
-  id: number;
   userName: string;
   name: string;
-  type: string;
-  balance: number;
+  accountOperationsDto: AccountOperationsDTOModel;
 }
-
 
 export interface AccountOperationsDTOModel {
   content : AccountOperation[];

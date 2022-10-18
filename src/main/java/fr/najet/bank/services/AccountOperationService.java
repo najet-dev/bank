@@ -132,7 +132,7 @@ public class AccountOperationService {
     AccountHistoryDto accountHistoryDto = new AccountHistoryDto();
     accountHistoryDto.setAccountId(account.getId());
     accountHistoryDto.setBalance(account.getBalance());
-
+    
     accountHistoryDto.setAccountOperationsDto(pagedDto);
     return accountHistoryDto;
   }

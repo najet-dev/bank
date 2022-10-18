@@ -23,19 +23,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./accounts.page.scss'],
 })
 export class AccountsPage implements OnInit {
-  accountFormGroup: FormGroup;
-  userid: number = 1;
-  //userAccounts: IAccountByIdUser;
+  message = "";
   userAccounts: any;
-
-
-  currentPage: number = 0;
-  pageNumber : number = 0;
-  pageSize : number = 5;
-  accountObservable!: Observable<AccountDetails> ;
-  totalPages : number;
-  page: number = 0;
-
+  userid: number = 1;
   accountByIdUser: IAccountByIdUser ={
     id: 0,
     userName: '',
@@ -43,23 +33,105 @@ export class AccountsPage implements OnInit {
     type: '',
     balance: 0
   }
-  constructor(private formBuilder: FormBuilder, private accountService: AccountService ) { }
+  transfer: ITransfer ={
+    accountSource: 0,
+    accountDestination: 0,
+    amount: 0,
+    id: 0
+  };
+accountFormGroup: FormGroup<any>;
 
+  constructor(private formBuilder: FormBuilder, private accountService: AccountService, private httpClient: HttpClient,   public alertController: AlertController, public userService: UserService) { }
+  transferFrom: FormGroup;
+  isSubmitted = false;
+
+  get accountSource() {
+    return this.transferFrom.get('accountSource');
+  }
+
+  get accountDestination() {
+    return this.transferFrom.get('accountDestination');
+  }
+  get amount() {
+    return this.transferFrom.get('amount');
+  }
+
+  public errorMessages = {
+    accountSource: [
+      { type: 'required', message: 'Le nom est requis' },
+      { type: 'pattern', message: 'Entrez un numéro valide' },
+    ],
+
+  }
   ngOnInit() {
     this.accountService.getAccountByIdUser(this.userid).subscribe((data) => {
       this.userAccounts = data;
       console.log(data)
     });
-    this.accountFormGroup = this.formBuilder.group({
-      accountId : this.formBuilder.control('')
+    this. transferFrom = this.formBuilder.group(
+      {
+        accountSource: [
+          '',
+          [
+            Validators.required,
+          ],
+        ],
+      },
+    )
+  }
+
+  async submitTransfer(){
+    if (this.transferFrom.valid) {
+      // console.log(this.transferFrom.value);
+      this.transfer.accountSource = this.transferFrom.value['accountSource'];
+
+
+      if(this.transfer.accountSource === this.transfer.accountDestination){
+        this.transferFrom.reset();
+        this.presentAlert("Transfert vers le même compte impossible")
+      }
+      else {
+        this.accountService.transfer(this.transfer).subscribe(response =>{
+
+        // let message = response['message'];
+          console.log(response);
+          this.transferFrom.reset();
+          this.presentAlert(response['message'])
+          console.log(this.presentAlert(response['message'])
+          )
+        });
+      }
+    }
+  }
+  async presentAlert(message:string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: '',
+      message: message,
+      buttons: ['OK'],
     });
-
-  }
-
-  submitAccount(){
-    let accounId: number = this.accountFormGroup.value.accountId;
-    this.accountObservable = this.accountService.getAccount(accounId,this.currentPage,this.pageSize);
+    await alert.present();
   }
 
 
-}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

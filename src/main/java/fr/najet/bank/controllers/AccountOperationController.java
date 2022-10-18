@@ -82,13 +82,13 @@ public class AccountOperationController {
   @PutMapping("/transfer")
   public MessageDto transfer(@RequestBody TransferDto transferDto)
       throws AccountNotFoundException, BalanceNotSufficientException {
-   return accountOperationService.transfer(transferDto.getAccountSource(),
+    return accountOperationService.transfer(transferDto.getAccountSource(),
         transferDto.getAccountDestination(),
         transferDto.getAmount());
   }
   @DeleteMapping("/accountOperation/{id}")
   @ResponseBody
-  public ResponseEntity<Void> deleteAccountOpearationById(@PathVariable int id) throws Exception {
+  public ResponseEntity<Void> deleteAccountOperationById(@PathVariable int id) throws Exception {
     accountOperationService.deleteAccountOperationById(id);
     return ResponseEntity.noContent().build();
   }

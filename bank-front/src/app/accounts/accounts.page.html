@@ -8,15 +8,12 @@
   <div>
     <form [formGroup]="accountFormGroup" class="form" (ngSubmit)='submitAccount()'>
       <input type="number" formControlName="accountId" placeholder="  Numéro du compte">
+
     <button><ion-icon name="search"></ion-icon>Search</button>
   </form>
 
   <div *ngIf="accountObservable | async as accountDetails">
-    <div *ngFor="let userAccount of userAccounts">
-      {{userAccount.user}}
-      {{userAccount.balance}}
-      {{userAccount.type}}
-
+    <div>
       <label>Numéro de compte</label>
       <label>{{accountDetails.accountId}}</label>
     </div>
