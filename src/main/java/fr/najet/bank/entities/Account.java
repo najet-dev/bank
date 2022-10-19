@@ -49,6 +49,13 @@ public class Account {
     this.user = user;
   }
 
+  public Account(String type, String name, int balance, int id) {
+    this.type = type;
+    this.name = name;
+    this.balance = balance;
+    this.id = id;
+  }
+
 
   public int getId() {
     return id;
@@ -105,5 +112,14 @@ public class Account {
 
   public void setAccountOperations(List<AccountOperation> accountOperations) {
     this.accountOperations = accountOperations;
+  }
+
+  public void debit(int id, int amount) {
+    balance-=amount;
+    System.out.println(id + "a débiter" + amount);
+  }
+  public void credit(int id, double amount) {
+    balance+=amount;
+    System.out.println(id + "a crediter" + amount);
   }
 }

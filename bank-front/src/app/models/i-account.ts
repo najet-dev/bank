@@ -2,8 +2,9 @@
 export interface AccountDetails {
   accountId: number;
   balance: number;
-  userName: string;
-  name: string;
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
   accountOperationsDto: AccountOperationsDTOModel;
 }
 

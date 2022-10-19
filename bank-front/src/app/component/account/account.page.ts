@@ -11,6 +11,7 @@ import { ITransfer } from 'src/app/models/i-transfer';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
+
   userAccounts: any;
   userid: number = 1;
   accountFormGroup: FormGroup;

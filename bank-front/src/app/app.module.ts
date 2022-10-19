@@ -6,9 +6,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {CommonModule } from '@angular/common';
-
-
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +17,7 @@ import { AppComponent } from './app.component';
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    NgxPaginationModule,
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,

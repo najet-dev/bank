@@ -95,6 +95,9 @@ public class AccountOperationService {
     if (Objects.isNull(account)) {
       throw new AccountNotFoundException("le compte suivant n'existe pas" + accountSource);
     }
+    if (amount <= 0) {
+      return new MessageDto("la somme d'argent ne peut être transférer");
+    }
     double accountAmount = account.getBalance();
     if (amount <= accountAmount) {
       debit(accountSource, amount, "Transfer to " + accountDestination);
@@ -117,7 +120,6 @@ public class AccountOperationService {
       throws AccountNotFoundException {
 
     Account account = accountRepository.findById(accountId);
-
     if (account == null) {
       throw new AccountNotFoundException("Bank Account Not Found");
     }
@@ -132,7 +134,7 @@ public class AccountOperationService {
     AccountHistoryDto accountHistoryDto = new AccountHistoryDto();
     accountHistoryDto.setAccountId(account.getId());
     accountHistoryDto.setBalance(account.getBalance());
-    
+
     accountHistoryDto.setAccountOperationsDto(pagedDto);
     return accountHistoryDto;
   }
