@@ -1,5 +1,5 @@
 import { AccountDetails } from '../../models/i-account';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountService } from '../../services/account.service';
 import { Observable } from 'rxjs';
@@ -11,8 +11,9 @@ import { ITransfer } from 'src/app/models/i-transfer';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
-
   userAccounts: any;
+  @Input() current: number;
+
   userid: number = 1;
   accountFormGroup: FormGroup;
   currentPage: number = 0;
@@ -20,7 +21,7 @@ export class AccountPage implements OnInit {
   pageSize : number = 5;
   accountObservable!: Observable<AccountDetails> ;
   totalPages : number;
-  page: number = 0;
+  page: number = 1;
 
   transfer: ITransfer ={
     accountSource: 0,
@@ -29,9 +30,7 @@ export class AccountPage implements OnInit {
     amount: 0
   };
 
-
   constructor(private formBuilder: FormBuilder, private accountService: AccountService ) { }
-
 
   ngOnInit() {
     this.accountService.getAccountByIdUser(this.userid).subscribe((data) => {
@@ -44,13 +43,10 @@ export class AccountPage implements OnInit {
     });
 
   }
-
   submitAccount(){
-    console.dir(this.accountFormGroup);
+    console.dir(this.currentPage);
     let accounId: number = this.accountFormGroup.value.accountId;
     this.accountObservable = this.accountService.getAccount(accounId,this.currentPage,this.pageSize);
-
   }
-
 
 }

@@ -9,7 +9,7 @@ public class SignupRequest {
   private String firstName;
   private String username;
   private String password;
-  private String email;
+
   private Set<String> role = new HashSet<>();
 
   public String getLastName() {
@@ -44,13 +44,7 @@ public class SignupRequest {
     this.password = password;
   }
 
-  public String getEmail() {
-    return email;
-  }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
 
   public Set<String> getRole() {
     return role;

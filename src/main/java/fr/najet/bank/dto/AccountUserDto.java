@@ -4,8 +4,11 @@ import fr.najet.bank.entities.AccountOperation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class AccountUserDto {
+
+  public UUID userId = UUID.randomUUID();
 
   public String name;
 
@@ -14,8 +17,6 @@ public class AccountUserDto {
   public Date createdAt = new Date();
 
   public double balance;
-
-  public int userId;
 
   public List<AccountOperation> accountOperations = new ArrayList<>();
 
@@ -26,13 +27,20 @@ public class AccountUserDto {
   public AccountUserDto() {
   }
 
-  public AccountUserDto(String name, String type, double balance, int userId, double overDraft, double interestRate) {
+  public AccountUserDto(UUID userId,String name, String type, double balance, double overDraft, double interestRate) {
+    this.userId = userId;
     this.name = name;
     this.type = type;
     this.balance = balance;
-    this.userId = userId;
     this.overDraft = overDraft;
     this.interestRate = interestRate;
+  }
+  public UUID getUserId() {
+    return userId;
+  }
+
+  public void setUser(UUID userId) {
+    this.userId = userId;
   }
 
   public String getType() {
@@ -65,14 +73,6 @@ public class AccountUserDto {
 
   public void setBalance(double balance) {
     this.balance = balance;
-  }
-
-  public int getUserId() {
-    return userId;
-  }
-
-  public void setUser(int userId) {
-    this.userId = userId;
   }
 
   public List<AccountOperation> getAccountOperations() {

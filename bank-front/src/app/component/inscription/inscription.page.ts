@@ -21,12 +21,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./inscription.page.scss'],
 })
 export class InscriptionPage implements OnInit {
-  //user: IUser[];
   user: IUser = {
     id: 0,
     lastName: '',
     firstName: '',
-    email: '',
     username: '',
     password: ''
   };
@@ -55,10 +53,6 @@ export class InscriptionPage implements OnInit {
     return this.registrationForm.get('username');
   }
 
-  get email() {
-    return this.registrationForm.get('email');
-  }
-
   get password() {
     return this.registrationForm.get('password');
   }
@@ -76,12 +70,6 @@ export class InscriptionPage implements OnInit {
       { type: 'pattern', message: 'Entrez un prénom valide' },
     ],
     username: [
-      { type: 'required', message: ' Le pseudo est requis' },
-      { type: 'pattern', message: 'Entrez un pseudo valide' },
-      { type: 'minlength', message: 'Le pseudo doit contenir au minimum 4 caractères' },
-      { type: 'maxlength', message: 'Le pseudo doit contenir au maximum 20 caractères' },
-    ],
-    email: [
       { type: 'required', message: ' Email requis' },
       { type: 'email', message: 'Email doit être valide' },
     ],
@@ -123,15 +111,6 @@ export class InscriptionPage implements OnInit {
           '',
           [
             Validators.required,
-            Validators.maxLength(20),
-            Validators.minLength(4),
-            Validators.pattern(/^[A-Za-z1-9_.-]{4,20}$/),
-          ],
-        ],
-        email: [
-          '',
-          [
-            Validators.required,
             Validators.email,
             Validators.pattern(/^[a-z-0-9._%+-]+@[a-z-0-9.-]+\.[a-z]{2,4}$/),
           ],
@@ -147,23 +126,22 @@ export class InscriptionPage implements OnInit {
 
       }
     )
-    }
-    async onSubmit() {
-      if (this.registrationForm.valid) {
-        //console.log(this.registrationForm.value)
-        this.user.lastName = this.registrationForm.value['lastname']
-        this.user.firstName = this.registrationForm.value['firstname']
-        this.user.email = this.registrationForm.value['email']
-        this.user.username = this.registrationForm.value['username']
-        this.user.password = this.registrationForm.value['password']
-        this.userService.addUser(this.user).subscribe(response =>{
-          console.log(response);
-          this.registrationForm.reset();
+  }
+  async onSubmit() {
+    if (this.registrationForm.valid) {
+      //console.log(this.registrationForm.value)
+      this.user.lastName = this.registrationForm.value['lastname']
+      this.user.firstName = this.registrationForm.value['firstname']
+      this.user.username = this.registrationForm.value['username']
+      this.user.password = this.registrationForm.value['password']
+      this.userService.addUser(this.user).subscribe(response => {
+        console.log(response);
+        this.registrationForm.reset();
 
-        });
-      }
+      });
     }
   }
+}
 
 
 

@@ -1,5 +1,4 @@
-
- <ion-content>
+<ion-content>
   <ion-card>
     <form *ngIf="registrationForm" [formGroup]="registrationForm" class="form" (ngSubmit)='onSubmit()'>
 
@@ -17,25 +16,16 @@
         <ion-input type="text" formControlName="firstname" placeholder=" Prénom"></ion-input>
       </ion-item>
       <div *ngFor="let error of errorMessages.firstname">
-        <ng-container
-          *ngIf="firstname.hasError(error.type) && (firstname.dirty || firstname.touched)">
+        <ng-container *ngIf="firstname.hasError(error.type) && (firstname.dirty || firstname.touched)">
           <small class="error-message">{{error.message}}</small>
         </ng-container>
       </div>
 
       <ion-item class="input">
-        <ion-input type="text" formControlName="username" placeholder=" Pseudo"></ion-input>
+        <ion-input type="text" formControlName="username" placeholder=" Email"></ion-input>
       </ion-item>
       <div *ngFor="let error of errorMessages.username">
         <ng-container *ngIf="username.hasError(error.type) && (username.dirty || username.touched)">
-          <small class="error-message">{{error.message}}</small>
-        </ng-container>
-      </div>
-      <ion-item class="input">
-        <ion-input type="email" formControlName="email" placeholder=" E-mail"></ion-input>
-      </ion-item>
-      <div *ngFor="let error of errorMessages.email">
-        <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
           <small class="error-message">{{error.message}}</small>
         </ng-container>
       </div>
@@ -49,9 +39,11 @@
         </ng-container>
       </div>
 
-      <ion-button type="submit" class="btn" [disabled]="!registrationForm.valid" >Valider</ion-button>
+      <ion-button type="submit" class="btn" [disabled]="!registrationForm.valid">Valider</ion-button>
       <ion-button class="btn" routerLink="/connexion">Annuler</ion-button><br />
     </form>
-    <div class="connect"><h5>Vous avez déjà un compte? <a routerLink="/connexion"><br />Connectez-vous</a></h5></div>
+    <div class="connect">
+      <h5>Vous avez déjà un compte? <a routerLink="/connexion"><br />Connectez-vous</a></h5>
+    </div>
   </ion-card>
 </ion-content>

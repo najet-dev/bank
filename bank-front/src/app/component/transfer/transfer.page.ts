@@ -122,7 +122,7 @@ async submitTransfer(){
 }
 async presentAlert(message:string) {
   const alert = await this.alertController.create({
-    header: 'Alert',
+    header: '',
     subHeader: '',
     message: message,
     buttons: ['OK'],

@@ -25,14 +25,6 @@ public class CurrentAccountDto {
     this.userDto = userDto;
     this.overDraft = overDraft;
   }
-
-/*  public CurrentAccountDto(Date createdAt, double balance, UserDto userDto, double overDraft) {
-    this.createdAt = createdAt;
-    this.balance = balance;
-    this.userDto = userDto;
-    this.overDraft = overDraft;
-  }*/
-
   public int getId() {
     return id;
   }

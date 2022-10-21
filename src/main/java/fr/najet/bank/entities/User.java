@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,15 +20,12 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "users",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
-        @UniqueConstraint(columnNames = "email")
     })
 public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private UUID id  = UUID.randomUUID();
   private String lastName;
   private String firstName;
-  private String email;
   private String username;
   private String password;
 
@@ -43,37 +39,39 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Account> accounts = new ArrayList<>();
 
-  public User(String lastName, String firstName, String username,  String password, String email) {
+
+  public User(String lastName, String firstName, String password, String username) {
     this.lastName = lastName;
     this.firstName = firstName;
     this.username = username;
     this.password = password;
-    this.email = email;
   }
 
-  public User(){}
-  public User(int id, String lastName, String firstName, String email, String username,
+  public User() {
+    this.id = UUID.randomUUID();
+  }
+
+  public User(UUID id, String lastName, String firstName, String username,
               String password, List<Account> accounts) {
     this.id = id;
     this.lastName = lastName;
     this.firstName = firstName;
-    this.email = email;
     this.username = username;
     this.password = password;
     this.accounts = accounts;
   }
 
-  public User(String username, String password, String email) {
+  public User(String username, String password) {
     this.username = username;
     this.password = password;
-    this.email = email;
+
   }
 
-  public int getId() {
+  public UUID getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
@@ -91,14 +89,6 @@ public class User {
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   public String getUsername() {

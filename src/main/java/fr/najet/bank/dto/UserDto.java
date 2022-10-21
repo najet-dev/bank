@@ -3,10 +3,11 @@ package fr.najet.bank.dto;
 import fr.najet.bank.entities.Account;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserDto {
 
-  public int id;
+  public UUID id = UUID.randomUUID();
 
   public String lastName;
 
@@ -38,11 +39,11 @@ public class UserDto {
     this.password = password;
   }
 
-  public int getId() {
+  public  UUID getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId( UUID id) {
     this.id = id;
   }
 
@@ -94,8 +95,5 @@ public class UserDto {
   public void setAccounts(List<Account> accounts) {
     this.accounts = accounts;
   }
-/*  public static User updateUser(UserDto userDto) {
-        User user = new User(userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword());
-        return user;
-    }*/
+
 }

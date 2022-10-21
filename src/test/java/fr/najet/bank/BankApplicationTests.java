@@ -41,18 +41,23 @@ class BankApplicationTests {
     account.credit(1, 98);
     final double credit = account.getBalance();
     assertEquals(10098, credit);
-
   }
-
+  @Test
+  public void debitTest() throws Exception {
+    int accountA = 1;
+    double amount = 200;
+    final Account account = new Account("CurrentAccount","CurrentAccount", 10000, 1);
+    account.debit (1, 200);
+    final double debit = account.getBalance();
+    assertEquals(9800, debit);
+  }
   @Test
   public void transferTest() throws Exception {
     mockMvc.perform(put("/transfer")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content("{\"accountSource\":\"1\",\"accountDestination\":\"2\",\"amount\":799}")
+            .content("{\"accountSource\":\"1\",\"accountDestination\":\"2\",\"amount\":-799}")
             .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         .andDo(print());
-
-  }
-
+    }
   }

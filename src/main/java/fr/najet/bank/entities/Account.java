@@ -114,7 +114,7 @@ public class Account {
     this.accountOperations = accountOperations;
   }
 
-  public void debit(int id, int amount) {
+  public void debit(int id, double amount) {
     balance-=amount;
     System.out.println(id + "a débiter" + amount);
   }

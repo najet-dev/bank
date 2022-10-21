@@ -5,6 +5,8 @@ import fr.najet.bank.entities.User;
 import fr.najet.bank.repositories.RoleRepository;
 import fr.najet.bank.repositories.UserRepository;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,8 +34,11 @@ public class UserService {
   }
 
 
-  public User getUser(int id) {
-    return userRepository.findById(id);
+  public User getUser(UUID id) {
+    Optional<User> maybeUser =  userRepository.findById(id);
+    if(maybeUser.isPresent())
+      return maybeUser.get();
+    return null;
   }
 
   public User updateUser(User user) {
@@ -41,7 +46,7 @@ public class UserService {
   }
 
 
-  public void deleteUserById(int id) {
+  public void deleteUserById(UUID id) {
     userRepository.deleteById(id);
   }
 

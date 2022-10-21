@@ -96,7 +96,7 @@ public class AccountOperationService {
       throw new AccountNotFoundException("le compte suivant n'existe pas" + accountSource);
     }
     if (amount <= 0) {
-      return new MessageDto("la somme d'argent ne peut être transférer");
+      return new MessageDto("la somme d'argent ne peut pas être transférer cat le montant est inferieur à zéro");
     }
     double accountAmount = account.getBalance();
     if (amount <= accountAmount) {
