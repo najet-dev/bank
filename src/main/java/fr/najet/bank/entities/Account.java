@@ -116,10 +116,10 @@ public class Account {
 
   public void debit(int id, double amount) {
     balance-=amount;
-    System.out.println(id + "a débiter" + amount);
+    System.out.println(id + "à débiter" + amount);
   }
   public void credit(int id, double amount) {
     balance+=amount;
-    System.out.println(id + "a crediter" + amount);
+    System.out.println(id + "à créditer" + amount);
   }
 }

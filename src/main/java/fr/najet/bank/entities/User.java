@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,8 +23,12 @@ import javax.persistence.UniqueConstraint;
         @UniqueConstraint(columnNames = "username"),
     })
 public class User {
+
   @Id
-  private UUID id  = UUID.randomUUID();
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+
+  private int code;
   private String lastName;
   private String firstName;
   private String username;
@@ -39,8 +44,8 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Account> accounts = new ArrayList<>();
 
-
-  public User(String lastName, String firstName, String password, String username) {
+  public User(int code, String lastName, String firstName, String password, String username) {
+    this.code = code;
     this.lastName = lastName;
     this.firstName = firstName;
     this.username = username;
@@ -48,10 +53,20 @@ public class User {
   }
 
   public User() {
-    this.id = UUID.randomUUID();
+
   }
 
-  public User(UUID id, String lastName, String firstName, String username,
+
+
+  public int getCode() {
+    return code;
+  }
+
+  public void setCode(int code) {
+    this.code = code;
+  }
+
+  public User(int id, String lastName, String firstName, String username,
               String password, List<Account> accounts) {
     this.id = id;
     this.lastName = lastName;
@@ -66,12 +81,11 @@ public class User {
     this.password = password;
 
   }
-
-  public UUID getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(UUID id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -122,6 +136,5 @@ public class User {
   public void setAccounts(List<Account> accounts) {
     this.accounts = accounts;
   }
-
 
 }

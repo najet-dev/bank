@@ -1,6 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-card>
     <form *ngIf="registrationForm" [formGroup]="registrationForm" class="form" (ngSubmit)='onSubmit()'>
+      <ion-item class="input">
+        <ion-input type="number" formControlName="code" placeholder="code"></ion-input>
+      </ion-item>
+
+      <div *ngFor="let error of errorMessages.code">
+        <ng-container *ngIf="code.hasError(error.type) && (code.dirty || code.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
 
       <ion-item class="input">
         <ion-input type="text" formControlName="lastname" placeholder="  Nom"></ion-input>

@@ -15,6 +15,7 @@
 /home/najet/bank/src/main/java/fr/najet/bank/request/ReponseJSON.java
 /home/najet/bank/src/main/java/fr/najet/bank/repositories/AccountOperationRepository.java
 /home/najet/bank/src/main/java/fr/najet/bank/services/AccountService.java
+/home/najet/bank/src/main/java/fr/najet/bank/dto/AccountForVirementDTO.java
 /home/najet/bank/src/main/java/fr/najet/bank/services/UserDetailsImpl.java
 /home/najet/bank/src/main/java/fr/najet/bank/enums/OperationTypeEnum.java
 /home/najet/bank/src/main/java/fr/najet/bank/request/JwtResponse.java
@@ -47,6 +48,7 @@
 /home/najet/bank/src/main/java/fr/najet/bank/configuration/WebSecurityConfig.java
 /home/najet/bank/src/main/java/fr/najet/bank/dto/CurrentAccountDto.java
 /home/najet/bank/src/main/java/fr/najet/bank/controllers/TestController.java
+/home/najet/bank/src/main/java/fr/najet/bank/dto/MessageDto.java
 /home/najet/bank/src/main/java/fr/najet/bank/dto/AccountDto.java
 /home/najet/bank/src/main/java/fr/najet/bank/services/AccountOperationService.java
 /home/najet/bank/src/main/java/fr/najet/bank/controllers/AuthController.java

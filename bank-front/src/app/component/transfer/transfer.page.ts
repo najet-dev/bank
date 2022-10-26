@@ -10,6 +10,7 @@ import { AccountPage } from '../account/account.page' ;
 import { Observable } from 'rxjs';
 import { IAccountByIdUser } from 'src/app/models/i-accountUser';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 
 

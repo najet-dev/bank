@@ -5,12 +5,21 @@ import java.util.Set;
 
 
 public class SignupRequest {
+  private int code;
   private String lastName;
   private String firstName;
   private String username;
   private String password;
 
   private Set<String> role = new HashSet<>();
+
+  public int getCode() {
+    return code;
+  }
+
+  public void setCode(int code) {
+    this.code = code;
+  }
 
   public String getLastName() {
     return lastName;
@@ -43,8 +52,6 @@ public class SignupRequest {
   public void setPassword(String password) {
     this.password = password;
   }
-
-
 
   public Set<String> getRole() {
     return role;

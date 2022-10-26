@@ -6,7 +6,6 @@ import fr.najet.bank.exception.ApiRequestException;
 import fr.najet.bank.repositories.UserRepository;
 import fr.najet.bank.services.UserService;
 import java.util.List;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,7 +43,7 @@ public class UserController {
    * @return A user object full filled
    */
   @GetMapping(value = "/user/{id}")
-  public User getUserById(@PathVariable UUID id) {
+  public User getUserById(@PathVariable int id) {
     User user = userService.getUser(id);
     if (user == null) {
       throw new ApiRequestException("Oops cannot get user with id " + id + " was not found");
@@ -94,7 +93,7 @@ public class UserController {
    */
   @DeleteMapping("/user/{id}")
   @ResponseBody
-  public ResponseEntity<Void> deleteUserById(@PathVariable UUID id) throws Exception {
+  public ResponseEntity<Void> deleteUserById(@PathVariable int id) throws Exception {
     userService.deleteUserById(id);
     return ResponseEntity.noContent().build();
   }

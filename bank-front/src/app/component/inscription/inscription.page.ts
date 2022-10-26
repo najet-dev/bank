@@ -23,10 +23,11 @@ import { HttpClient } from '@angular/common/http';
 export class InscriptionPage implements OnInit {
   user: IUser = {
     id: 0,
+    code: 0,
     lastName: '',
     firstName: '',
     username: '',
-    password: ''
+    password: '',
   };
 
   constructor(
@@ -41,6 +42,9 @@ export class InscriptionPage implements OnInit {
   registrationForm: FormGroup;
   isSubmitted = false;
 
+  get code() {
+    return this.registrationForm.get('code');
+  }
   get lastname() {
     return this.registrationForm.get('lastname');
   }
@@ -57,6 +61,11 @@ export class InscriptionPage implements OnInit {
     return this.registrationForm.get('password');
   }
   public errorMessages = {
+    code: [
+      { type: 'required', message: 'Le code est requis' },
+      { type: 'minlength', message: 'Le nom doit contenir au minimum 10 chiffres' },
+      { type: 'pattern', message: 'Veuillez entrer 10 ciffres au maximum' },
+    ],
     lastname: [
       { type: 'required', message: 'Le nom est requis' },
       { type: 'minlength', message: 'Le nom doit contenir au minimum 1 caractères' },
@@ -89,6 +98,16 @@ export class InscriptionPage implements OnInit {
   ngOnInit() {
     this.registrationForm = this.formBuilder.group(
       {
+        code: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(10),
+            Validators.pattern(/^[0-9\-]{10}$/),
+
+
+          ],
+        ],
         lastname: [
           '',
           [
@@ -130,6 +149,7 @@ export class InscriptionPage implements OnInit {
   async onSubmit() {
     if (this.registrationForm.valid) {
       //console.log(this.registrationForm.value)
+      this.user.code = this.registrationForm.value['code']
       this.user.lastName = this.registrationForm.value['lastname']
       this.user.firstName = this.registrationForm.value['firstname']
       this.user.username = this.registrationForm.value['username']

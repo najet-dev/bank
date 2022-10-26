@@ -17,6 +17,7 @@ public class UserAccountSerializer extends JsonSerializer<List<Account>> {
       throws IOException, JsonProcessingException {
 
     List<Integer> ids = new ArrayList<>();
+
     for (Account account : accounts) {
       ids.add(account.id);
     }

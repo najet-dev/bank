@@ -1,13 +1,13 @@
 package fr.najet.bank.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import fr.najet.bank.entities.Account;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class UserDto {
 
-  public UUID id = UUID.randomUUID();
+  public int id;
 
   public String lastName;
 
@@ -38,12 +38,12 @@ public class UserDto {
     this.role = role;
     this.password = password;
   }
-
-  public  UUID getId() {
+  @JsonValue
+  public  int getId() {
     return id;
   }
 
-  public void setId( UUID id) {
+  public void setId( int id) {
     this.id = id;
   }
 

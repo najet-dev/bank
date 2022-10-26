@@ -1,17 +1,16 @@
 package fr.najet.bank.payload.response;
 
 import java.util.List;
-import java.util.UUID;
 
 public class JwtResponse {
   private String token;
   private String type = "Bearer";
-  private UUID id;
+  private int id;
   private String username;
 
   private List<String> roles;
 
-  public JwtResponse(String accessToken, UUID id, String username,
+  public JwtResponse(String accessToken, int id, String username,
                      List<String> roles) {
     this.token = accessToken;
     this.id = id;
@@ -37,11 +36,11 @@ public class JwtResponse {
     this.type = tokenType;
   }
 
-  public UUID getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(UUID id) {
+  public void setId(int id) {
     this.id = id;
   }
 

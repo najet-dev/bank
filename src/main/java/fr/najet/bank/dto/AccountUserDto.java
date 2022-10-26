@@ -1,14 +1,14 @@
 package fr.najet.bank.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import fr.najet.bank.entities.AccountOperation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class AccountUserDto {
 
-  public UUID userId = UUID.randomUUID();
+  public int userId;
 
   public String name;
 
@@ -27,7 +27,7 @@ public class AccountUserDto {
   public AccountUserDto() {
   }
 
-  public AccountUserDto(UUID userId,String name, String type, double balance, double overDraft, double interestRate) {
+  public AccountUserDto(int userId,String name, String type, double balance, double overDraft, double interestRate) {
     this.userId = userId;
     this.name = name;
     this.type = type;
@@ -35,11 +35,14 @@ public class AccountUserDto {
     this.overDraft = overDraft;
     this.interestRate = interestRate;
   }
-  public UUID getUserId() {
+
+
+  @JsonValue
+  public int getUserId() {
     return userId;
   }
 
-  public void setUser(UUID userId) {
+  public void setUser(int userId) {
     this.userId = userId;
   }
 
