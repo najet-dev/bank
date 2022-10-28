@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <form class="form" [formGroup]="accountFormGroup" class="form" (ngSubmit)='submitAccount()'>
+
+      <ion-item class="item">
+        <ion-select  class="item" placeholder="Choisir un compte"formControlName="accountId">
+          <ion-select-option class="box" class="form-control" *ngFor="let account of userAccounts" [value]="account.id">{{account.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      <ion-button type="submit" class="btn" >Valider</ion-button>
+  </form>
+  <div *ngIf="accountObservable | async as accountDetails">
+    <div class="solde">
+      <label >Solde actuel : </label>
+      <label>{{accountDetails.balance | number : '1.2-2'}}</label>
+    </div>
+    <table class="table">
+      <thead class="thead">
+        <th>Date</th><th>Type</th><th>Montant</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operation of accountDetails.accountOperationsDto.content">
+          <td>{{operation.createdAt| date : 'dd-MM-yyyy'}}</td>
+          <td>{{operation.type}}</td>
+          <td>{{operation.amount | number : '1.2-2'}}</td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+  </div>
+</ion-content>
+
