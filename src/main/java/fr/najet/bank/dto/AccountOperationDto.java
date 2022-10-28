@@ -1,85 +1,91 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.entities.Account;
-import fr.najet.bank.entities.User;
-
+import fr.najet.bank.entities.AccountOperation;
+import fr.najet.bank.enums.OperationTypeEnum;
 import java.util.Date;
 
 public class AccountOperationDto {
-    public Long id;
-    public Date createdAt = new Date();
+  public int id;
+  public Date createdAt = new Date();
+  public int targetedAccount;
+  
+  public OperationTypeEnum type;
 
-    protected User user;
+  public double amount;
+  public String description;
+  
 
-    public int accountSource;
 
-    public int accountDestination;
-    public double amount;
-    public Account account;
+  public AccountOperationDto(int id, Date createdAt, int targetedAccount, OperationTypeEnum type,
+                             double amount, String description) {
+    this.id = id;
+    this.createdAt = createdAt;
+    this.targetedAccount = targetedAccount;
+    this.type = type;
+    this.amount = amount;
+    this.description = description;
+  }
 
-    public AccountOperationDto(Date createdAt, User user, int accountSource, int accountDestination, double amount, Account account) {
-        this.createdAt = createdAt;
-        this.user = user;
-        this.accountSource = accountSource;
-        this.accountDestination = accountDestination;
-        this.amount = amount;
-        this.account = account;
-    }
-    public AccountOperationDto() {
-        super();
-    }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public static AccountOperationDto fromAccountOperation(AccountOperation original) {
+    return new AccountOperationDto(original.getId(), original.getCreatedAt(),
+        original.getAccount().getId(),
+        original.getType(),
+        original.getAmount(),
+        original.getDescription()
+    );
+  }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+  public AccountOperationDto() {
+    super();
+  }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public Date getCreatedAt() {
+    return createdAt;
+  }
 
-    public int getAccountSource() {
-        return accountSource;
-    }
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setAccountSource(int accountSource) {
-        this.accountSource = accountSource;
-    }
+  public int getTargetedAccount() {
+    return targetedAccount;
+  }
 
-    public int getAccountDestination() {
-        return accountDestination;
-    }
+  public void setTargetedAccount(int targetedAccount) {
+    this.targetedAccount = targetedAccount;
+  }
 
-    public void setAccountDestination(int accountDestination) {
-        this.accountDestination = accountDestination;
-    }
+  public OperationTypeEnum getType() {
+    return type;
+  }
 
-    public double getAmount() {
-        return amount;
-    }
+  public void setType(OperationTypeEnum type) {
+    this.type = type;
+  }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+  public double getAmount() {
+    return amount;
+  }
 
-    public Account getAccount() {
-        return account;
-    }
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
 }

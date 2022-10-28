@@ -3,67 +3,80 @@ package fr.najet.bank.dto;
 import java.util.Date;
 
 public class SavingsAccountDto {
-    private int id;
-    private Date createdAt;
-    private double balance;
+  private int id;
 
-    private UserDto userDto;
+  private String name;
+  private Date createdAt;
+  private double balance;
 
-    private double interestRate;
+  private UserDto userDto;
 
-    public SavingsAccountDto() {
-        super();
-    }
-    public SavingsAccountDto(int id, String type, Date createdAt, double balance, UserDto userDto, double interestRate ) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.balance = balance;
-        this.userDto = userDto;
-        this.interestRate = interestRate;
-    }
+  private double interestRate;
 
-    public int getId() {
-        return id;
-    }
+  public SavingsAccountDto() {
+    super();
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public SavingsAccountDto(int id, String name, Date createdAt, double balance, UserDto userDto,
+                           double interestRate) {
+    this.id = id;
+    this.name = name;
+    this.createdAt = createdAt;
+    this.balance = balance;
+    this.userDto = userDto;
+    this.interestRate = interestRate;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public double getBalance() {
+    return balance;
+  }
+
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
 
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+  public UserDto getUserDto() {
+    return userDto;
+  }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-    public double getBalance() {
-        return balance;
-    }
+  public void setUserDto(UserDto userDto) {
+    this.userDto = userDto;
+  }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+  public double getInterestRate() {
+    return interestRate;
+  }
 
+  public void setInterestRate(double interestRate) {
+    this.interestRate = interestRate;
+  }
 
-    public UserDto getUserDto() {
-        return userDto;
-    }
-
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
-    }
-
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
-
-    public void setType(String simpleName) {
-    }
+  public void setType(String simpleName) {
+  }
 }
 

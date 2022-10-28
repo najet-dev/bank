@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <form *ngIf="registrationForm" [formGroup]="registrationForm" class="form" (ngSubmit)='onSubmit()'>
+      <ion-item class="input">
+        <ion-input type="number" formControlName="code" placeholder="code"></ion-input>
+      </ion-item>
+
+      <div *ngFor="let error of errorMessages.code">
+        <ng-container *ngIf="code.hasError(error.type) && (code.dirty || code.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item class="input">
+        <ion-input type="text" formControlName="lastname" placeholder="  Nom"></ion-input>
+      </ion-item>
+
+      <div *ngFor="let error of errorMessages.lastname">
+        <ng-container *ngIf="lastname.hasError(error.type) && (lastname.dirty || lastname.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item class="input">
+        <ion-input type="text" formControlName="firstname" placeholder=" Prénom"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.firstname">
+        <ng-container *ngIf="firstname.hasError(error.type) && (firstname.dirty || firstname.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item class="input">
+        <ion-input type="text" formControlName="username" placeholder=" Email"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.username">
+        <ng-container *ngIf="username.hasError(error.type) && (username.dirty || username.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item class="input">
+        <ion-input type="password" formControlName="password" placeholder=" Mot de passe"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.password">
+        <ng-container *ngIf="password.hasError(error.type) && (password.dirty|| password.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-button type="submit" class="btn" [disabled]="!registrationForm.valid">Valider</ion-button>
+      <ion-button class="btn" routerLink="/connexion">Annuler</ion-button><br />
+    </form>
+    <div class="connect">
+      <h5>Vous avez déjà un compte? <a routerLink="/connexion"><br />Connectez-vous</a></h5>
+    </div>
+  </ion-card>
+</ion-content>

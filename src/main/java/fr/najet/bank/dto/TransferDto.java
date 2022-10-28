@@ -1,41 +1,47 @@
 package fr.najet.bank.dto;
 
-public class TransferDto {
+import fr.najet.bank.entities.AccountOperation;
 
-    public int accountSource;
-    public int accountDestination;
-    public double amount;
+public class TransferDto extends AccountOperation {
 
-    public TransferDto() {
-        super();
-    }
-    public TransferDto(int accountSource, int accountDestination, double amount) {
+  public int accountSource;
+  public int accountDestination;
+  public double amount;
 
-        this.accountSource = accountSource;
-        this.accountDestination = accountDestination;
-        this.amount = amount;
-    }
-    public int getAccountSource() {
-        return accountSource;
-    }
+  public TransferDto() {
+    super();
+  }
 
-    public void setAccountSource(int accountSource) {
-        this.accountSource = accountSource;
-    }
+  public TransferDto(int accountSource, int accountDestination, double amount) {
 
-    public int getAccountDestination() {
-        return accountDestination;
-    }
-    public void setAccountDestination(int accountDestination) {
-        this.accountDestination = accountDestination;
-    }
-    public double getAmount() {
-        return amount;
-    }
+    this.accountSource = accountSource;
+    this.accountDestination = accountDestination;
+    this.amount = amount;
+  }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+  public int getAccountSource() {
+    return accountSource;
+  }
+
+  public void setAccountSource(int accountSource) {
+    this.accountSource = accountSource;
+  }
+
+  public int getAccountDestination() {
+    return accountDestination;
+  }
+
+  public void setAccountDestination(int accountDestination) {
+    this.accountDestination = accountDestination;
+  }
+
+  public double getAmount() {
+    return amount;
+  }
+
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
 
 }
 

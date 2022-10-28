@@ -1,76 +1,78 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.entities.AccountOperation;
-import org.springframework.beans.BeanUtils;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public class AccountHistoryDto {
-    private int id;
-    private double balance;
-    private int currentPage;
-    private int totalPages;
-    private int pageSize;
-    private List<AccountOperationDto> accountOperationDtos;
+  private int accountId;
+  private double balance;
 
-    public AccountHistoryDto() {
-        super();
-    }
+  private int currentPage;
 
-    public int getId() {
-        return id;
-    }
+  private int totalPages;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  private int pageSize;
+  private Page<AccountOperationDto> accountOperationsDto;
 
-    public double getBalance() {
-        return balance;
-    }
+  public AccountHistoryDto() {
+  }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+  public AccountHistoryDto(int accountId, double balance,int currentPage, int totalPages, int pageSize, Page<AccountOperationDto> accountOperationsDto) {
+    this.accountId = accountId;
+    this.balance = balance;
+    this.currentPage = currentPage;
+    this.totalPages = totalPages;
+    this.pageSize = pageSize;
+    this.accountOperationsDto = accountOperationsDto;
+  }
 
-    public int getCurrentPage() {
-        return currentPage;
-    }
+  public int getAccountId() {
+    return accountId;
+  }
 
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
+  public void setAccountId(int accountId) {
+    this.accountId = accountId;
+  }
 
-    public int getTotalPages() {
-        return totalPages;
-    }
+  public double getBalance() {
+    return balance;
+  }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
+  public int getCurrentPage() {
+    return currentPage;
+  }
+  public void setCurrentPage(int currentPage) {
+    this.currentPage = currentPage;
+  }
 
-    public int getPageSize() {
-        return pageSize;
-    }
+  public int getTotalPages() {
+    return totalPages;
+  }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
+  public void setTotalPages(int totalPages) {
+    this.totalPages = totalPages;
+  }
 
-    public List<AccountOperationDto> getAccountOperationDtos() {
-        return accountOperationDtos;
-    }
+  public int getPageSize() {
+    return pageSize;
+  }
 
-    public void setAccountOperationDtos(List<AccountOperationDto> accountOperationDTOS) {
-        this.accountOperationDtos = accountOperationDtos;
-    }
+  public void setPageSize(int pageSize) {
+    this.pageSize = pageSize;
+  }
 
-    public AccountOperationDto fromAccountOperation(AccountOperation accountOperation) {
-        AccountOperationDto accountOperationDto = new AccountOperationDto();
-        BeanUtils.copyProperties(accountOperation, accountOperationDto);
-        return accountOperationDto;
-    }
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
 
+
+  public Page<AccountOperationDto> getAccountOperationsDto() {
+    return accountOperationsDto;
+  }
+
+  public void setAccountOperationsDto(
+      Page<AccountOperationDto> accountOperationsDto) {
+    this.accountOperationsDto = accountOperationsDto;
+  }
 }
 
 

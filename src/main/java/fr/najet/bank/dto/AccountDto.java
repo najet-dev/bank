@@ -2,149 +2,112 @@ package fr.najet.bank.dto;
 
 import fr.najet.bank.entities.AccountOperation;
 import fr.najet.bank.entities.User;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class AccountDto {
-    protected int id;
+  protected int id;
 
-    public String type;
 
-    protected Date createdAt = new Date();
-    protected double balance;
+  public String type;
 
-    protected User user;
-    protected   String lastName;
-    protected String firstName;
-    protected  String email;
-    protected  String userName;
-    protected int role;
-    protected String password;
-    public List<AccountOperation> accountOperations = new ArrayList<>();
+  protected String name;
 
-    protected double overDraft;
+  protected Date createdAt = new Date();
 
-    protected double interestRate;
+  protected double balance;
 
-    public AccountDto(){}
+  protected User user;
 
-    public AccountDto(String type, double balance, User user, double overDraft, double interestRate)  {
-        this.type = type;
-        this.balance = balance;
-        this.user = user;
-        this.overDraft = overDraft;
-        this.interestRate = interestRate;
-    }
-    public int getId() {
-        return id;
-    }
+  public List<AccountOperation> accountOperations = new ArrayList<>();
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  protected double overDraft;
 
-    public String getType() {
-        return type;
-    }
+  protected double interestRate;
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public AccountDto() {
+  }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+  public AccountDto(String type, String name, double balance, User user, double overDraft, double interestRate) {
+    this.type = type;
+    this.name= name;
+    this.balance = balance;
+    this.user = user;
+    this.overDraft = overDraft;
+    this.interestRate = interestRate;
+  }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public double getBalance() {
-        return balance;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public String getLastName() {
-        return lastName;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public Date getCreatedAt() {
+    return createdAt;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public double getBalance() {
+    return balance;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public int getRole() {
-        return role;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-    public void setRole(int role) {
-        this.role = role;
-    }
+  public List<AccountOperation> getAccountOperations() {
+    return accountOperations;
+  }
+  public void setAccountOperations(List<AccountOperation> accountOperations) {
+    this.accountOperations = accountOperations;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public double getOverDraft() {
+    return overDraft;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setOverDraft(double overDraft) {
+    this.overDraft = overDraft;
+  }
 
-    public List<AccountOperation> getAccountOperations() {
-        return accountOperations;
-    }
+  public double getInterestRate() {
+    return interestRate;
+  }
 
-    public void setAccountOperations(List<AccountOperation> accountOperations) {
-        this.accountOperations = accountOperations;
-    }
-    public double getOverDraft() {
-        return overDraft;
-    }
-
-    public void setOverDraft(double overDraft) {
-        this.overDraft = overDraft;
-    }
-
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
+  public void setInterestRate(double interestRate) {
+    this.interestRate = interestRate;
+  }
 
 }
 

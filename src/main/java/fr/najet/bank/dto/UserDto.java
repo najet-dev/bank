@@ -1,90 +1,99 @@
 package fr.najet.bank.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import fr.najet.bank.entities.Account;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDto {
-    public int id;
-    public  String lastName;
-    public String firstName;
-    public  String email;
-    public  String userName;
-    public int role;
-    public  String password;
 
-   public List<Account> accounts = new ArrayList<>();
+  public int id;
 
-    public UserDto(){}
+  public String lastName;
 
-    public UserDto( String lastName, String firstName, String email, String userName, int role, String password) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.userName = userName;
-        this.role = role;
-        this.password = password;
-    }
+  public String firstName;
 
-    public int getId() {
-        return id;
-    }
+  public String userName;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getLastName() {
-        return lastName;
-    }
+  public String role;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public String password;
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public List<Account> accounts = new ArrayList<>();
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public UserDto() {
+  }
+  public UserDto(String lastName, String firstName, List accounts) {
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.accounts = accounts;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public UserDto(String lastName, String firstName, String userName, String role,
+                 String password) {
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.userName = userName;
+    this.role = role;
+    this.password = password;
+  }
+  @JsonValue
+  public  int getId() {
+    return id;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public void setId( int id) {
+    this.id = id;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public int getRole() {
-        return role;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public void setRole(int role) {
-        this.role = role;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public String getPassword(){
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
 
-  /*  public static User updateUser(UserDto userDto) {
-        User user = new User(userDto.getLastName(), userDto.getFirstName(), userDto.getEmail(), userDto.getUserName(),userDto.getRole(), userDto.getPassword());
-        return user;
-    }*/
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public List<Account> getAccounts() {
+    return accounts;
+  }
+
+  public void setAccounts(List<Account> accounts) {
+    this.accounts = accounts;
+  }
+
 }

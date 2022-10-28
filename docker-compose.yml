@@ -1,0 +1,67 @@
+version: "3.7"
+
+services:
+  bank-web:
+    container_name: bank-web
+
+    build:
+      context: bank-front
+      dockerfile: Dockerfile
+    ports:
+      - 8100:80
+    volumes:
+      - ./bank-front:/app
+      - /app/node_modules
+    restart: unless-stopped
+
+  database:
+    container_name: "database"
+    #image: mysql:8.0
+    build:
+      context: BDD
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./BDD/data:/var/lib/mysql:z
+    ports:
+     - "3307:3306"
+    environment:
+      MYSQL_DATABASE: bank
+      MYSQL_USER: bank
+      MYSQL_PASSWORD: bank
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    container_name: "phpmyadmin"
+    links:
+      - database
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8088:80"
+    environment:
+      PMA_HOST: database
+      MYSQL_USER: bank
+      MYSQL_PASSWORD: root
+  api:
+    container_name: "api-bank"
+    build:
+      context : .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - "9090:9090"
+    environment:
+      - SERVER_PORT=9090
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/bank
+      - SPRING_DATASOURCE_USERNAME=bank
+      - SPRING_DATASOURCE_PASSWORD=bank
+      - SPRING_JPA_DATABASE-PLATFORM=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.Driver
+      - BANK_APP_JWTSECRET=bankSecretKey
+      - BANK_APP_JWTEXPIRATIONMS=3600000
+    restart: unless-stopped
+
+

@@ -1,78 +1,77 @@
 package fr.najet.bank.dto;
 
-import fr.najet.bank.entities.AccountOperation;
-import fr.najet.bank.entities.User;
-
 import java.util.Date;
-import java.util.List;
 
 public class CurrentAccountDto {
 
-    private int id;
-    private Date createdAt;
-    private double balance;
-    private UserDto userDto;
-    private double overDraft;
+  private int id;
 
-    public CurrentAccountDto(String type, Date createdAt, double balance, User user, List<AccountOperation> accountOperations, double overDraft) {
-        super();
-    }
+  private String name;
+  private Date createdAt;
+  private double balance;
+  private UserDto userDto;
+  private double overDraft;
 
-    public CurrentAccountDto(int id, Date createdAt, double balance, UserDto userDto, double overDraft ) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.balance = balance;
-        this.userDto = userDto;
-        this.overDraft = overDraft;
-    }
+  public CurrentAccountDto() {
+    super();
+  }
 
-    public CurrentAccountDto(Date createdAt, double balance, UserDto userDto, double overDraft ) {
-        this.createdAt = createdAt;
-        this.balance = balance;
-        this.userDto = userDto;
-        this.overDraft = overDraft;
-    }
+  public CurrentAccountDto(int id, String name, Date createdAt, double balance, UserDto userDto,
+                           double overDraft) {
+    this.id = id;
+    this.name = name;
+    this.createdAt = createdAt;
+    this.balance = balance;
+    this.userDto = userDto;
+    this.overDraft = overDraft;
+  }
+  public int getId() {
+    return id;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+  public Date getCreatedAt() {
+    return createdAt;
+  }
 
-    public double getBalance() {
-        return balance;
-    }
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+  public double getBalance() {
+    return balance;
+  }
 
-    public UserDto getUserDto() {
-        return userDto;
-    }
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
-    }
+  public UserDto getUserDto() {
+    return userDto;
+  }
 
-    public double getOverDraft() {
-        return overDraft;
-    }
+  public void setUserDto(UserDto userDto) {
+    this.userDto = userDto;
+  }
 
-    public void setOverDraft(double overDraft) {
-        this.overDraft = overDraft;
-    }
+  public double getOverDraft() {
+    return overDraft;
+  }
 
+  public void setOverDraft(double overDraft) {
+    this.overDraft = overDraft;
+  }
 
 
 }
